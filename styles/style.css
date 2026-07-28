@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "Inter";
+  src: url("../assets/fonts/InterVariable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
 /* =========================================================
    Base técnica inicial
    Los colores definitivos se ajustarán al sistema de marca.
@@ -8,6 +15,9 @@
 =========================== */
 
 :root {
+  /* Tipografía */
+  --font-family-base: "Inter", sans-serif;
+
   /* Marca */
   --color-brand-red: #b80113;
   --color-brand-blue: #001446;
@@ -58,7 +68,7 @@ body {
   margin: 0;
   background: var(--color-background);
   color: var(--color-text);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-family-base);
   line-height: 1.6;
 }
 
