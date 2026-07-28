@@ -257,6 +257,92 @@ a {
   text-decoration: underline;
   text-underline-offset: 0.25rem;
 }
+/* ========================================
+   Así de fácil funciona
+======================================== */
+
+.how-it-works {
+  padding-block: var(--space-6);
+  background: var(--color-bg);
+}
+
+.how-it-works__header {
+  max-width: 720px;
+  margin-inline: auto;
+  margin-bottom: var(--space-5);
+  text-align: center;
+}
+
+.how-it-works__eyebrow {
+  margin: 0 0 var(--space-2);
+  color: var(--color-brand-red);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.how-it-works__title {
+  margin: 0;
+  color: var(--color-brand-blue);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+}
+
+.how-it-works__description {
+  margin: var(--space-3) auto 0;
+  color: var(--color-text-muted);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.how-it-works__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.how-it-works__card {
+  padding: var(--space-5);
+  border: 1px solid rgba(0, 20, 70, 0.12);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.how-it-works__card--featured {
+  border-color: rgba(184, 1, 19, 0.35);
+}
+
+.how-it-works__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: var(--space-3);
+  border-radius: 999px;
+  background: var(--color-brand-blue);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.how-it-works__card--featured .how-it-works__number {
+  background: var(--color-brand-red);
+}
+
+.how-it-works__card h3 {
+  margin: 0;
+  color: var(--color-brand-blue);
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+.how-it-works__card p {
+  margin: var(--space-2) 0 0;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
 
 @media (max-width: 900px) {
   .hero__layout {
@@ -271,6 +357,13 @@ a {
   .hero__title {
     max-width: 20ch;
     font-size: clamp(2.25rem, 9vw, 3.75rem);
+  }
+  .how-it-works__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .how-it-works__card {
+    padding: var(--space-4);
   }
 }
 
