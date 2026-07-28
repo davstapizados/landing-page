@@ -3,25 +3,45 @@
    Los colores definitivos se ajustarán al sistema de marca.
    ========================================================= */
 
+/* ===========================
+   DAVS Design Tokens v1.0
+=========================== */
+
 :root {
-  --color-background: #ffffff;
-  --color-surface: #f4f4f4;
-  --color-text: #171717;
-  --color-text-secondary: #5f5f5f;
-  --color-primary: #171717;
-  --color-primary-contrast: #ffffff;
-  --color-border: #d9d9d9;
+  /* Marca */
+  --color-brand-red: #b80113;
+  --color-brand-blue: #001446;
 
-  --container-width: 1120px;
-  --radius-small: 8px;
-  --radius-medium: 14px;
+  /* Superficies */
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
 
-  --space-1: 0.5rem;
-  --space-2: 1rem;
-  --space-3: 1.5rem;
-  --space-4: 2rem;
-  --space-5: 3rem;
-  --space-6: 5rem;
+  /* Texto */
+  --color-text: #1f2937;
+  --color-text-muted: #6b7280;
+
+  /* Bordes */
+  --color-border: #e5e7eb;
+
+  /* Radios */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* Espaciado */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  /* Transiciones */
+  --transition: 200ms ease;
 }
 
 *,
@@ -162,11 +182,13 @@ a {
   }
 
   .hero__actions {
-    align-items: stretch;
+    display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
   }
 
-  .hero__actions .button {
-    width: 100%;
+  .hero__button {
+    width: auto;
   }
 }
