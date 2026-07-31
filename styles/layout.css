@@ -1,0 +1,30 @@
+.container {
+  width: min(100% - 2rem, var(--container-width));
+  margin-inline: auto;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg);
+}
+
+.site-header__content {
+  display: flex;
+  min-height: 60px;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-block: 0.25rem;
+}
+
+@media (max-width: 640px) {
+  .site-header__content {
+    min-height: 60px;
+    justify-content: center;
+    padding-block: 0.5rem;
+  }
+
+  .site-header .button {
+    display: none;
+  }
+}

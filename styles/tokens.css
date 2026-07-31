@@ -1,0 +1,54 @@
+/* ===========================
+   DAVS Design Tokens v1.0
+=========================== */
+
+:root {
+  /* Tipografía */
+  --font-family-base: "Inter", sans-serif;
+
+  /* Marca */
+  --color-brand-red: #b80113;
+  --color-brand-blue: #001446;
+
+  /* Superficies */
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+
+  /* Texto */
+  --color-text: #1f2937;
+  --color-text-muted: #6b7280;
+
+  /* Bordes */
+  --color-border: #e5e7eb;
+
+  /* Layout */
+  --container-width: 1200px;
+
+  /* Radios */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* Espaciado */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  /* Transiciones */
+  --transition: 200ms ease;
+
+  /* Alias semánticos */
+  --color-primary: var(--color-brand-red);
+  --color-primary-contrast: #ffffff;
+  --color-text-primary: var(--color-text);
+  --color-text-secondary: var(--color-text-muted);
+  --color-background: var(--color-bg);
+  --shadow-lg: var(--shadow-md);
+}

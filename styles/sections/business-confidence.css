@@ -1,0 +1,67 @@
+/* ========================================
+   Pensado para trabajar con tranquilidad
+   DEV-004
+======================================== */
+
+.business-confidence {
+  padding-block: var(--space-6);
+  background: var(--color-surface);
+}
+
+.business-confidence__header {
+  max-width: 760px;
+  margin-inline: auto;
+  margin-bottom: var(--space-5);
+  text-align: center;
+}
+
+.business-confidence__eyebrow {
+  margin: 0 0 var(--space-2);
+  color: var(--color-brand-red);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.business-confidence__title {
+  max-width: 16ch;
+  margin: 0 auto;
+  color: var(--color-brand-blue);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.15;
+}
+
+.business-confidence__intro {
+  max-width: 58ch;
+  margin: var(--space-3) auto 0;
+  color: var(--color-text-muted);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.business-confidence__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 4rem;
+  row-gap: 0;
+  margin-top: 2rem;
+}
+
+.business-confidence__closing {
+  margin-top: var(--space-5);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .business-confidence__grid {
+    grid-template-columns: 1fr;
+    margin-top: 1.5rem;
+  }
+
+  .feature {
+    padding-block: 1.5rem;
+  }
+}
