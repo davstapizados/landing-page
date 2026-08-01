@@ -1,0 +1,111 @@
+/* ========================================
+   Beneficios para el negocio
+   DEV-005 — Timeline editorial
+======================================== */
+
+.business-benefits {
+  padding-block: var(--space-6);
+  background: var(--color-bg);
+}
+
+.business-benefits__header {
+  max-width: 720px;
+  margin-inline: auto;
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+
+.business-benefits__eyebrow {
+  margin: 0 0 var(--space-2);
+  color: var(--color-brand-red);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.business-benefits__title {
+  margin: 0;
+  color: var(--color-brand-blue);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+}
+
+.business-benefits__intro {
+  max-width: 58ch;
+  margin: var(--space-3) auto 0;
+  color: var(--color-text-muted);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+/* Lista editorial vertical */
+
+.business-benefits__grid {
+  display: grid;
+  max-width: 920px;
+  margin-inline: auto;
+}
+
+.business-benefit {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr);
+  column-gap: var(--space-4);
+  padding-block: var(--space-5);
+  border-top: 1px solid var(--color-border);
+}
+
+.business-benefit:last-child {
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Número */
+
+.business-benefit__number {
+  margin: 0;
+  color: color-mix(in srgb, var(--color-brand-red) 75%, white);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+}
+
+/* El título y la descripción ocupan la columna derecha */
+
+.business-benefit__title {
+  grid-column: 2;
+  margin: 0 0 0.65rem;
+  color: var(--color-brand-blue);
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  line-height: 1.3;
+}
+
+.business-benefit__description {
+  grid-column: 2;
+  max-width: 62ch;
+  margin: var(--space-2) 0 0;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* Móvil */
+
+@media (max-width: 640px) {
+  .business-benefits__header {
+    margin-bottom: var(--space-5);
+  }
+
+  .business-benefit {
+    grid-template-columns: 2.75rem minmax(0, 1fr);
+    column-gap: var(--space-3);
+    padding-block: var(--space-4);
+  }
+
+  .business-benefit__number {
+    font-size: 0.875rem;
+  }
+
+  .business-benefit__title {
+    font-size: 1.25rem;
+  }
+}
