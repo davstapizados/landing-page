@@ -19,7 +19,6 @@
 
 @media (max-width: 640px) {
   .site-header__content {
-    min-height: 60px;
     justify-content: center;
     padding-block: 0.75rem;
   }

@@ -4,8 +4,7 @@
 ======================================== */
 
 .business-confidence {
-  padding-block: var(--space-6);
-  background: var(--color-surface);
+  padding-block: var(--space-5);
 }
 
 .business-confidence__header {
@@ -43,9 +42,9 @@
 .business-confidence__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 4rem;
+  column-gap: var(--space-6);
   row-gap: 0;
-  margin-top: 2rem;
+  margin-top: var(--space-4);
 }
 
 .business-confidence__closing {
@@ -58,10 +57,10 @@
 @media (max-width: 768px) {
   .business-confidence__grid {
     grid-template-columns: 1fr;
-    margin-top: 1.5rem;
+    margin-top: var(--space-3);
   }
 
   .feature {
-    padding-block: 1.5rem;
+    padding-block: var(--space-3);
   }
 }

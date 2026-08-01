@@ -21,9 +21,9 @@
 }
 
 .site-footer__logo {
+  display: block;
   width: 220px;
   height: auto;
-  display: block;
 }
 
 .site-footer__description {
@@ -61,6 +61,12 @@
 }
 
 .site-footer__links a:hover {
+  color: var(--color-primary);
+}
+
+.site-footer__links a:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+  outline-offset: 3px;
   color: var(--color-primary);
 }
 
@@ -108,6 +114,7 @@
     margin: var(--space-3) auto 0;
   }
 }
+
 @media (max-width: 420px) {
   .site-footer__links {
     grid-template-columns: 1fr;

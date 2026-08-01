@@ -97,6 +97,10 @@
 }
 
 @media (max-width: 640px) {
+  .faq {
+    padding-block: var(--space-5);
+  }
+
   .faq__header {
     margin-bottom: var(--space-4);
   }

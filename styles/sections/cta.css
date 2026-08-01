@@ -79,6 +79,10 @@
   transform: translateY(-1px);
 }
 
+.button--cta:focus-visible {
+  outline-color: white;
+}
+
 .cta__benefits {
   display: grid;
   gap: 0.65rem;

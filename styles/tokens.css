@@ -42,7 +42,7 @@
   --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
 
   /* Transiciones */
-  --transition: 200ms ease;
+  --transition: 160ms ease;
 
   /* Alias semánticos */
   --color-primary: var(--color-brand-red);

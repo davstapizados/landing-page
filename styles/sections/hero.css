@@ -97,13 +97,17 @@
 
   .hero__title {
     max-width: 20ch;
-    font-size: clamp(2.25rem, 9vw, 3.75rem);
+    font-size: clamp(2.1rem, 7vw, 3.25rem);
   }
 }
 
 @media (max-width: 640px) {
   .hero {
     padding-block: var(--space-4);
+  }
+
+  .hero__layout {
+    padding-inline: 0.25rem;
   }
 
   .hero__title {

@@ -41,14 +41,14 @@
 
 .how-it-works__card {
   padding: var(--space-5);
-  border: 1px solid rgba(0, 20, 70, 0.12);
+  border: 1px solid color-mix(in srgb, var(--color-brand-blue) 12%, transparent);
   border-radius: var(--radius-lg);
   background: var(--color-surface);
   box-shadow: var(--shadow-sm);
 }
 
 .how-it-works__card--featured {
-  border-color: rgba(184, 1, 19, 0.35);
+  border-color: color-mix(in srgb, var(--color-brand-red) 35%, transparent);
 }
 
 .how-it-works__number {
@@ -88,5 +88,11 @@
 
   .how-it-works__card {
     padding: var(--space-4);
+  }
+}
+
+@media (max-width: 640px) {
+  .how-it-works {
+    padding-block: var(--space-5);
   }
 }
