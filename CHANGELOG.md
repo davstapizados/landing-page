@@ -34,10 +34,6 @@ El proyecto utiliza Versionado Semántico (SemVer):
 ## SEO
 
 - Metadatos principales.
-- Open Graph.
-- Twitter Cards.
-- Robots.
-- Canonical.
 - Favicons.
 - Web Manifest.
 
@@ -65,10 +61,10 @@ El proyecto utiliza Versionado Semántico (SemVer):
 
 - ✔ Lighthouse
 - ✔ W3C HTML Validator
-- ✔ Core Web Vitals
 - ✔ Responsive
 - ✔ Chrome
-- ✔ Edge
+- PageSpeed Insights ejecutado sin datos reales de usuarios todavía.
+- Prueba en Edge pendiente.
 
 ---
 
