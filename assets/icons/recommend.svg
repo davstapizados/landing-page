@@ -1,0 +1,28 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 64 64"
+      fill="none"
+        aria-hidden="true"
+        >
+          <g
+              stroke="#d00014"
+                  stroke-width="2.6"
+                      stroke-linecap="round"
+                          stroke-linejoin="round"
+                            >
+                                <!-- Persona central -->
+                                    <circle cx="32" cy="19" r="7" />
+                                        <path d="M21 43v-5c0-7 4.8-11 11-11s11 4 11 11v5" />
+
+                                            <!-- Persona izquierda -->
+                                                <circle cx="15.5" cy="24" r="5.5" />
+                                                    <path d="M6 43v-3.5c0-5.6 3.7-9 9.5-9 2.1 0 3.9.4 5.4 1.3" />
+
+                                                        <!-- Persona derecha -->
+                                                            <circle cx="48.5" cy="24" r="5.5" />
+                                                                <path d="M58 43v-3.5c0-5.6-3.7-9-9.5-9-2.1 0-3.9.4-5.4 1.3" />
+
+                                                                    <!-- Base del grupo -->
+                                                                        <path d="M11 47h42" />
+                                                                          </g>
+                                                                          </svg>

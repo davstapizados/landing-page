@@ -1,0 +1,29 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 64 64"
+      fill="none"
+      >
+        <g
+            stroke="#d20a17"
+                stroke-width="3"
+                    stroke-linecap="round"
+                        stroke-linejoin="round"
+                          >
+                              <!-- Copa -->
+                                  <path d="M22 12h20v10c0 9-4 15-10 18-6-3-10-9-10-18V12Z"/>
+
+                                      <!-- Asa izquierda -->
+                                          <path d="M22 17h-7v5c0 7 4 11 10 12"/>
+
+                                              <!-- Asa derecha -->
+                                                  <path d="M42 17h7v5c0 7-4 11-10 12"/>
+
+                                                      <!-- Base -->
+                                                          <path d="M32 40v8"/>
+                                                              <path d="M25 52h14"/>
+                                                                  <path d="M22 56h20"/>
+
+                                                                      <!-- Detalle central -->
+                                                                          <path d="M32 20l2.2 4.4 4.8.7-3.5 3.4.8 4.8-4.3-2.2-4.3 2.2.8-4.8-3.5-3.4 4.8-.7L32 20Z"/>
+                                                                            </g>
+                                                                            </svg>

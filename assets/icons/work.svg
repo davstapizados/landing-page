@@ -1,0 +1,31 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 64 64"
+      fill="none"
+        stroke="#c90018"
+          stroke-width="2.6"
+            stroke-linecap="round"
+              stroke-linejoin="round"
+              >
+                <!-- Cabeza -->
+                  <circle cx="32" cy="13" r="5" />
+
+                    <!-- Cuerpo -->
+                      <path d="M25 25c1.5-4 4-6 7-6s5.5 2 7 6" />
+                        <path d="M27 25v12" />
+                          <path d="M37 25v12" />
+
+                            <!-- Brazos trabajando -->
+                              <path d="M27 27l-7 8" />
+                                <path d="M37 27l7 8" />
+
+                                  <!-- Asiento / butaca -->
+                                    <path d="M20 36h24" />
+                                      <path d="M19 36v11c0 3 2 5 5 5h20" />
+                                        <path d="M44 35v17" />
+                                          <path d="M24 52v4" />
+                                            <path d="M42 52v4" />
+
+                                              <!-- Detalle del asiento -->
+                                                <path d="M24 42h15" />
+                                                </svg>
