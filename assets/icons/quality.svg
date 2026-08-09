@@ -1,0 +1,57 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 64"
+  fill="none"
+>
+  <!-- Medalla -->
+  <circle
+    cx="32"
+    cy="25"
+    r="15.5"
+    stroke="#b80113"
+    stroke-width="3.6"
+  />
+
+  <!-- Estrella -->
+  <path
+    d="M32 15.8
+       L35.2 22.1
+       L42.2 23.1
+       L37.1 28
+       L38.3 35
+       L32 31.7
+       L25.7 35
+       L26.9 28
+       L21.8 23.1
+       L28.8 22.1
+       Z"
+    stroke="#b80113"
+    stroke-width="3.1"
+    stroke-linejoin="round"
+  />
+
+  <!-- Cintas -->
+  <path
+    d="M21.5 37.3
+       L18.5 54
+       L25.5 49.8
+       L31 56
+       L32 41"
+    stroke="#b80113"
+    stroke-width="3.6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <path
+    d="M42.5 37.3
+       L45.5 54
+       L38.5 49.8
+       L33 56
+       L32 41"
+    stroke="#b80113"
+    stroke-width="3.6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>

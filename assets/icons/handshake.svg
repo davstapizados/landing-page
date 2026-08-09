@@ -1,0 +1,85 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 64"
+  fill="none"
+>
+  <!-- Brazo izquierdo -->
+  <path
+    d="M7.5 23
+       L16 14.5
+       L25 20.5
+       L19.5 29
+       L11 30
+       Z"
+    stroke="#b80113"
+    stroke-width="3.6"
+    stroke-linejoin="round"
+  />
+
+  <!-- Brazo derecho -->
+  <path
+    d="M56.5 23
+       L48 14.5
+       L39 20.5
+       L44.5 29
+       L53 30
+       Z"
+    stroke="#b80113"
+    stroke-width="3.6"
+    stroke-linejoin="round"
+  />
+
+  <!-- Unión de manos -->
+  <path
+    d="M19.5 29
+       L27 22.5
+       C29.5 20.4 33.5 20.4 36 22.5
+       L44.5 29"
+    stroke="#b80113"
+    stroke-width="3.6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Dedos / apretón -->
+  <path
+    d="M21 32
+       L31.5 42
+       C33.5 44
+       36.5 44
+       38.5 42
+       L46 34"
+    stroke="#b80113"
+    stroke-width="3.6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <path
+    d="M25 36.5L21 40.5"
+    stroke="#b80113"
+    stroke-width="3.4"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="M30 41L26 45"
+    stroke="#b80113"
+    stroke-width="3.4"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="M35 43L31 47"
+    stroke="#b80113"
+    stroke-width="3.4"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="M40 40.5L36.5 44.5"
+    stroke="#b80113"
+    stroke-width="3.4"
+    stroke-linecap="round"
+  />
+</svg>

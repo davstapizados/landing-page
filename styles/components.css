@@ -1,28 +1,32 @@
-.brand {
-  display: inline-flex;
-  align-items: center;
-}
-
-.brand__logo {
-  display: block;
-  width: clamp(240px, 22vw, 300px);
-  height: auto;
-}
-
 .button {
   display: inline-flex;
   min-height: 48px;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.25rem;
+  padding: 0.75rem 1.6rem;
+
   border: 1px solid transparent;
-  border-radius: var(--radius-sm);
+  border-radius: 999px;
+
   font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+
   transition:
     background-color var(--transition),
     color var(--transition),
     border-color var(--transition),
     transform var(--transition);
+}
+
+.button__icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex: 0 0 auto;
+}
+
+.button--primary .button__icon {
+  filter: brightness(0) invert(1);
 }
 
 .button:hover {
@@ -40,27 +44,24 @@
 }
 
 .button--secondary {
-  border-color: var(--color-primary);
+  min-height: auto;
+  padding: 0.35rem 0;
+
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  border-radius: 0;
+
   background: transparent;
   color: var(--color-primary);
 }
 
 .button--secondary:hover {
-  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  background: transparent;
+  transform: translateY(-1px);
 }
 
 .text-link {
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 0.25rem;
-}
-
-@media (max-width: 640px) {
-  .brand {
-    margin-inline: auto;
-  }
-
-  .brand__logo {
-    width: 240px;
-  }
 }

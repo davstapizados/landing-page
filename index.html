@@ -108,109 +108,250 @@
           />
         </a>
 
-        <a class="button button--secondary" href="#contacto">
-          Quiero ser Punto de Atención
-        </a>
+        <div class="site-header__actions">
+          <a
+            class="site-header__whatsapp"
+            href="https://wa.me/5491132016031?text=Hola,%20me%20interesa%20conocer%20el%20Programa%20de%20Puntos%20de%20Atenci%C3%B3n%20de%20Davs%20Tapizados."
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Contactar a Davs Tapizados por WhatsApp"
+          >
+            WhatsApp
+          </a>
+
+          <button
+            class="site-header__menu"
+            type="button"
+            aria-label="Abrir menú"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
       </div>
     </header>
 
     <main id="contenido-principal">
       <section id="hero" class="hero">
-        <div class="container hero__layout">
-          <div class="hero__content">
-            <p class="hero__eyebrow">Programa de Puntos de Atención</p>
+        <div class="hero__media" aria-hidden="true">
+          <video
+            class="hero__video"
+            autoplay
+            muted
+            loop
+            playsinline
+            poster="assets/images/hero-interior.webp"
+          >
+            <source src="assets/videos/hero-davs.webm" type="video/webm" />
+            <source src="assets/videos/hero-davs.mp4" type="video/mp4" />
+          </video>
+        </div>
 
-            <h1 class="hero__title">
-              Incorporá un servicio premium de tapizados automotrices a tu
-              negocio sin invertir en maquinaria, personal especializado ni
-              stock.
-            </h1>
+        <div class="hero__overlay"></div>
 
-            <p class="hero__description">
-              Davs Tapizados fabrica e instala fundas automotrices
-              personalizadas. Como Punto de Atención, solo presentás la
-              propuesta a tus clientes; nosotros nos ocupamos de todo el
-              proceso.
-            </p>
+        <div class="container hero__content">
+          <p class="hero__eyebrow">Servicio premium</p>
 
-            <ul class="hero__benefits" aria-label="Beneficios del programa">
-              <li>Sin invertir en maquinaria.</li>
-              <li>Sin contratar personal especializado.</li>
-              <li>Sin mantener stock.</li>
-            </ul>
+          <h1 class="hero__title">
+            Vos recomendás. Nosotros hacemos el resto.
+          </h1>
 
-            <div class="hero__actions">
-              <a class="button button--primary" href="#contacto">
-                Quiero ser Punto de Atención
-              </a>
+          <p class="hero__description">
+            Incorporá un servicio de tapizados automotrices premium a tu negocio
+            sin invertir en maquinaria, personal especializado ni stock.
+          </p>
 
-              <a class="button button--secondary" href="#asi-funciona">
-                Cómo funciona
-              </a>
-            </div>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#contacto">
+              <img
+                class="button__icon"
+                src="assets/icons/whatsapp.svg"
+                alt=""
+                aria-hidden="true"
+              />
+
+              <span>Quiero ser Punto de Atención</span>
+            </a>
+
+            <a class="button button--secondary" href="#como-funciona">
+              <img
+                class="button__icon"
+                src="assets/icons/play.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              <span>Cómo funciona</span>
+            </a>
           </div>
+        </div>
+      </section>
+      <section class="trust-strip" aria-label="Ventajas del servicio">
+        <div class="container">
+          <div class="trust-grid">
+            <!-- CALIDAD PREMIUM -->
+            <div class="trust-card" tabindex="0">
+              <div class="trust-card__inner">
+                <div class="trust-card__front">
+                  <img
+                    src="assets/icons/quality.svg"
+                    alt=""
+                    class="trust-card__icon"
+                    aria-hidden="true"
+                  />
 
-          <div class="hero__media">
-            <img
-              class="hero__image"
-              src="assets/images/hero-interior.webp"
-              alt="Interior de automóvil con tapizado premium"
-              width="1200"
-              height="900"
-              fetchpriority="high"
-            />
+                  <h3>Calidad premium</h3>
+                </div>
+
+                <div class="trust-card__back">
+                  <p>Materiales y confección de primera línea.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- A TIEMPO -->
+            <div class="trust-card" tabindex="0">
+              <div class="trust-card__inner">
+                <div class="trust-card__front">
+                  <img
+                    src="assets/icons/clock.svg"
+                    alt=""
+                    class="trust-card__icon"
+                    aria-hidden="true"
+                  />
+
+                  <h3>A tiempo, siempre</h3>
+                </div>
+
+                <div class="trust-card__back">
+                  <p>Cumplimos con los plazos acordados.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- INSTALACIÓN -->
+            <div class="trust-card" tabindex="0">
+              <div class="trust-card__inner">
+                <div class="trust-card__front">
+                  <img
+                    src="assets/icons/installation.svg"
+                    alt=""
+                    class="trust-card__icon"
+                    aria-hidden="true"
+                  />
+
+                  <h3>Instalación profesional</h3>
+                </div>
+
+                <div class="trust-card__back">
+                  <p>Nos encargamos de todo el proceso.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- TODOS GANAN -->
+            <div class="trust-card" tabindex="0">
+              <div class="trust-card__inner">
+                <div class="trust-card__front">
+                  <img
+                    src="assets/icons/handshake.svg"
+                    alt=""
+                    class="trust-card__icon"
+                    aria-hidden="true"
+                  />
+
+                  <h3>Ganás vos,<br />ganamos todos</h3>
+                </div>
+
+                <div class="trust-card__back">
+                  <p>Un servicio que genera valor para tu negocio.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="asi-funciona" class="how-it-works">
-        <div class="container">
-          <div class="how-it-works__header">
-            <p class="how-it-works__eyebrow">Modelo simple y complementario</p>
+      <section id="como-funciona" class="how-it-works">
+        <div class="container how-it-works__container">
+          <header class="how-it-works__header">
+            <p class="how-it-works__eyebrow">Cómo funciona</p>
 
-            <h2 class="how-it-works__title">Así de fácil funciona</h2>
+            <h2 class="how-it-works__title">
+              Simple para vos.<br />
+              Completo para tu cliente.
+            </h2>
 
-            <p class="how-it-works__description">
-              Un Punto de Atención es un negocio aliado que recomienda los
-              servicios de Davs Tapizados a sus clientes. Nosotros nos
-              encargamos del resto.
-            </p>
-          </div>
+            <span class="how-it-works__accent" aria-hidden="true"></span>
+          </header>
 
-          <div class="how-it-works__grid">
-            <article class="how-it-works__card">
-              <span class="how-it-works__number" aria-hidden="true">1</span>
+          <div class="how-it-works__steps">
+            <!-- PASO 01 -->
+            <article class="how-step">
+              <div class="how-step__visual">
+                <div class="how-step__icon" aria-hidden="true">
+                  <!-- Icono pendiente -->
+                </div>
+              </div>
 
-              <h3>Vos recomendás el servicio</h3>
+              <div class="how-step__content">
+                <span class="how-step__number">01</span>
 
-              <p>
-                Cuando un cliente quiere renovar el interior de su vehículo, le
-                presentás la propuesta de Davs Tapizados y lo ponés en contacto
-                con nosotros.
-              </p>
+                <div class="how-step__text">
+                  <h3>Vos recomendás</h3>
+
+                  <p>
+                    Cuando un cliente quiere renovar el interior de su vehículo,
+                    le presentás el servicio de Davs Tapizados con el material
+                    que te proporcionamos.
+                  </p>
+                </div>
+              </div>
             </article>
 
-            <article class="how-it-works__card how-it-works__card--featured">
-              <span class="how-it-works__number" aria-hidden="true">2</span>
+            <!-- PASO 02 -->
+            <article class="how-step">
+              <div class="how-step__visual">
+                <div class="how-step__icon" aria-hidden="true">
+                  <!-- Icono pendiente -->
+                </div>
+              </div>
 
-              <h3>Nosotros hacemos todo el trabajo</h3>
+              <div class="how-step__content">
+                <span class="how-step__number">02</span>
 
-              <p>
-                Nos encargamos del asesoramiento, la fabricación de las fundas a
-                medida, la instalación y el seguimiento de cada trabajo.
-              </p>
+                <div class="how-step__text">
+                  <h3>Nosotros hacemos el resto</h3>
+
+                  <p>
+                    Nos encargamos del asesoramiento, la fabricación de las
+                    fundas a medida, la instalación y el seguimiento de cada
+                    trabajo.
+                  </p>
+                </div>
+              </div>
             </article>
 
-            <article class="how-it-works__card">
-              <span class="how-it-works__number" aria-hidden="true">3</span>
+            <!-- PASO 03 -->
+            <article class="how-step">
+              <div class="how-step__visual">
+                <div class="how-step__icon" aria-hidden="true">
+                  <!-- Icono pendiente -->
+                </div>
+              </div>
 
-              <h3>Tu negocio suma valor</h3>
+              <div class="how-step__content">
+                <span class="how-step__number">03</span>
 
-              <p>
-                Ampliás los servicios que ofrecés y tus clientes reciben un
-                trabajo profesional, sin invertir en maquinaria, contratar
-                personal especializado ni cambiar tu actividad principal.
-              </p>
+                <div class="how-step__text">
+                  <h3>Todos ganan</h3>
+
+                  <p>
+                    Tu cliente recibe un servicio de calidad premium y vos
+                    recibís una comisión al finalizar el trabajo.
+                  </p>
+                </div>
+              </div>
             </article>
           </div>
         </div>
@@ -614,5 +755,6 @@
         <p>© 2026 Davs Tapizados. Todos los derechos reservados.</p>
       </div>
     </footer>
+    <script src="assets/js/trust-cards.js"></script>
   </body>
 </html>
