@@ -2,13 +2,11 @@
 @import url("base.css");
 @import url("layout.css");
 @import url("components.css");
-@import url("components/feature.css");
 
 @import url("sections/hero.css");
 @import url("sections/trust-strip.css");
 
 @import url("sections/how-it-works.css");
-@import url("sections/business-confidence.css");
 @import url("sections/business-benefits.css");
 @import url("sections/faq.css");
 @import url("sections/cta.css");

@@ -1,114 +1,307 @@
 /* ========================================
-   Beneficios para el negocio
-   DEV-005 — Timeline editorial
+   BENEFICIOS
 ======================================== */
 
 .business-benefits {
-  padding-block: var(--space-6);
+  position: relative;
+  overflow: hidden;
+
+  padding-block: clamp(4.5rem, 8vw, 7rem);
+
   background: var(--color-bg);
 }
 
-.business-benefits__header {
-  max-width: 720px;
-  margin-inline: auto;
-  margin-bottom: var(--space-6);
-  text-align: center;
+.business-benefits__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(360px, 0.85fr);
+  gap: clamp(3rem, 6vw, 6rem);
+
+  align-items: center;
+}
+
+/* ========================================
+   CONTENIDO
+======================================== */
+
+.business-benefits__content {
+  min-width: 0;
 }
 
 .business-benefits__eyebrow {
-  margin: 0 0 var(--space-2);
+  margin: 0 0 0.8rem;
+
   color: var(--color-brand-red);
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .business-benefits__title {
+  max-width: 14ch;
   margin: 0;
+
   color: var(--color-brand-blue);
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.1;
+
+  font-size: clamp(2.4rem, 4.5vw, 4.2rem);
+  font-weight: 750;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+
+  text-wrap: balance;
 }
 
-.business-benefits__intro {
-  max-width: 58ch;
-  margin: var(--space-3) auto 0;
-  color: var(--color-text-muted);
-  font-size: 1.0625rem;
-  line-height: 1.7;
-}
-
-/* Lista editorial vertical */
-
-.business-benefits__grid {
+.business-benefits__list {
   display: grid;
-  max-width: 920px;
-  margin-inline: auto;
+  gap: clamp(1.35rem, 2.5vw, 2rem);
+
+  margin: clamp(2.5rem, 5vw, 4rem) 0 0;
+  padding: 0;
+
+  list-style: none;
 }
 
-.business-benefit {
+.business-benefits__item {
   display: grid;
-  grid-template-columns: 2.2rem minmax(0, 1fr);
-  column-gap: var(--space-4);
-  padding-block: var(--space-5);
-  border-top: 1px solid var(--color-border);
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 1rem;
+
+  align-items: start;
+
+  color: var(--color-text);
+
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.55;
 }
 
-.business-benefit:last-child {
-  border-bottom: 1px solid var(--color-border);
+.business-benefits__check {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--color-brand-red);
+
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
 }
 
-/* Número */
+/* ========================================
+   VISUAL
+======================================== */
 
-.business-benefit__number {
+.business-benefits__visual {
+  position: relative;
+
+  min-width: 0;
+
+  padding-bottom: 4.5rem;
+}
+
+.business-benefits__image-wrapper {
+  overflow: hidden;
+
+  aspect-ratio: 4 / 5;
+
+  border-radius: 26px;
+
+  background: linear-gradient(145deg, rgb(0 20 70 / 0.08), rgb(0 20 70 / 0.02));
+}
+
+.business-benefits__image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ========================================
+   TARJETA SUPERPUESTA
+======================================== */
+
+.business-benefits__card {
+  position: absolute;
+  top: 50%;
+  right: -1.5rem;
+  bottom: auto;
+
+  width: min(58%, 250px);
+  padding: 1.35rem;
+
+  border: 1px solid rgb(255 255 255 / 0.14);
+  border-radius: 20px;
+
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--color-brand-blue) 94%, black),
+    var(--color-brand-blue)
+  );
+
+  box-shadow:
+    0 22px 50px rgb(0 20 70 / 0.22),
+    0 6px 16px rgb(0 0 0 / 0.12);
+
+  transform: translateY(-50%);
+}
+
+.business-benefits__card-icon {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 1rem;
+
+  color: var(--color-brand-red);
+}
+
+.business-benefits__card-icon svg {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+}
+
+.business-benefits__card-text {
+  max-width: 17ch;
   margin: 0;
-  color: color-mix(in srgb, var(--color-brand-red) 75%, white);
-  font-size: 1rem;
-  font-weight: 800;
-  line-height: 1.3;
-  letter-spacing: 0.08em;
-}
 
-/* El título y la descripción ocupan la columna derecha */
+  color: #ffffff;
 
-.business-benefit__title {
-  grid-column: 2;
-  margin: 0;
-  color: var(--color-brand-blue);
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  font-weight: 750;
   line-height: 1.3;
 }
 
-.business-benefit__description {
-  grid-column: 2;
-  max-width: 62ch;
-  margin: var(--space-2) 0 0;
-  color: var(--color-text-muted);
-  line-height: 1.7;
+.business-benefits__card-accent {
+  display: block;
+
+  width: 42px;
+  height: 3px;
+
+  margin-top: 1.1rem;
+
+  border-radius: 999px;
+
+  background: var(--color-brand-red);
 }
 
-/* Móvil */
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+  .business-benefits__layout {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .business-benefits__title {
+    max-width: 16ch;
+  }
+
+  .business-benefits__visual {
+    max-width: 620px;
+    margin-inline: auto;
+
+    padding-bottom: 4rem;
+  }
+
+  .business-benefits__image-wrapper {
+    aspect-ratio: 16 / 10;
+  }
+
+  .business-benefits__card {
+    right: 1.5rem;
+
+    width: min(65%, 340px);
+  }
+}
+
+/* ========================================
+   MÓVIL
+======================================== */
 
 @media (max-width: 640px) {
   .business-benefits {
-    padding-block: var(--space-5);
-  }
-  .business-benefits__header {
-    margin-bottom: var(--space-5);
+    padding-block: 4rem;
   }
 
-  .business-benefit {
-    grid-template-columns: 2.2rem minmax(0, 1fr);
-    column-gap: var(--space-3);
-    padding-block: var(--space-4);
+  .business-benefits__layout {
+    gap: 3rem;
   }
 
-  .business-benefit__number {
-    font-size: 0.875rem;
+  .business-benefits__eyebrow {
+    margin-bottom: 0.65rem;
+
+    font-size: 0.78rem;
   }
 
-  .business-benefit__title {
-    font-size: 1.25rem;
+  .business-benefits__title {
+    max-width: 13ch;
+
+    font-size: clamp(2.2rem, 10vw, 3rem);
+    line-height: 1.04;
+  }
+
+  .business-benefits__list {
+    gap: 1.35rem;
+
+    margin-top: 2.25rem;
+  }
+
+  .business-benefits__item {
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 0.8rem;
+
+    font-size: 1rem;
+  }
+
+  .business-benefits__check {
+    font-size: 1.7rem;
+  }
+
+  .business-benefits__visual {
+    padding-bottom: 0;
+  }
+
+  .business-benefits__image-wrapper {
+    aspect-ratio: 4 / 3;
+
+    border-radius: 20px;
+  }
+
+  .business-benefits__card {
+    position: relative;
+    right: auto;
+    bottom: auto;
+
+    width: min(72%, 250px);
+
+    margin: -2rem 1rem 0 auto;
+    padding: 1.25rem;
+
+    border-radius: 16px;
+
+    transform: none;
+  }
+
+  .business-benefits__card-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0.9rem;
+  }
+
+  .business-benefits__card-text {
+    max-width: 17ch;
+    font-size: 1.15rem;
+    line-height: 1.3;
+  }
+
+  .business-benefits__card-accent {
+    width: 38px;
+    margin-top: 1rem;
   }
 }

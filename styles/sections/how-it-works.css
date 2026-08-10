@@ -146,6 +146,7 @@
 }
 
 .how-step:last-child .how-step__content {
+  padding-bottom: 0;
   border-bottom: 0;
 }
 
@@ -183,9 +184,8 @@
 
 @media (max-width: 640px) {
   .how-it-works {
-    padding-block: 4rem 4.5rem;
+    padding-block: 4rem 2rem;
   }
-
   .how-it-works__container {
     width: min(100% - 1.5rem, 520px);
   }
@@ -215,6 +215,10 @@
     gap: 0.85rem;
 
     min-height: 190px;
+  }
+
+  .how-step:last-child {
+    min-height: auto;
   }
 
   .how-step__icon {
