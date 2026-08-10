@@ -6,7 +6,7 @@
   position: relative;
   overflow: hidden;
 
-  padding-block: clamp(4.5rem, 8vw, 7rem);
+  padding-block: clamp(4.5rem, 7vw, 6rem) clamp(3rem, 5vw, 4rem);
 
   background: var(--color-bg);
 }
@@ -94,10 +94,7 @@
 
 .business-benefits__visual {
   position: relative;
-
   min-width: 0;
-
-  padding-bottom: 4.5rem;
 }
 
 .business-benefits__image-wrapper {
@@ -203,20 +200,35 @@
   }
 
   .business-benefits__visual {
-    max-width: 620px;
-    margin-inline: auto;
+    position: relative;
 
-    padding-bottom: 4rem;
+    width: min(100%, 560px);
+    margin-inline: auto;
+    padding-bottom: 2rem;
   }
 
   .business-benefits__image-wrapper {
+    width: 82%;
+    margin-inline: auto;
+
     aspect-ratio: 16 / 10;
+
+    border-radius: 22px;
   }
 
   .business-benefits__card {
-    right: 1.5rem;
+    position: absolute;
 
-    width: min(65%, 340px);
+    top: 50%;
+    right: 2%;
+    bottom: auto;
+
+    width: min(46%, 220px);
+    padding: 1.15rem;
+
+    border-radius: 17px;
+
+    transform: translateY(-38%);
   }
 }
 

@@ -1,47 +1,57 @@
 /* ========================================
-   Preguntas frecuentes
-   DEV-006
+   FAQ
 ======================================== */
 
 .faq {
-  padding-block: var(--space-6);
-  background: var(--color-surface);
+  padding-block: clamp(3.5rem, 5vw, 4.75rem);
+
+  background: #ffffff;
+  color: var(--color-brand-blue);
 }
 
+.faq__layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.7fr) minmax(0, 1.3fr);
+  gap: clamp(2.5rem, 5vw, 5rem);
+
+  align-items: start;
+}
+
+/* ========================================
+   ENCABEZADO
+======================================== */
+
 .faq__header {
-  max-width: 720px;
-  margin-inline: auto;
-  margin-bottom: var(--space-5);
-  text-align: center;
+  max-width: 420px;
 }
 
 .faq__eyebrow {
-  margin: 0 0 var(--space-2);
+  margin: 0 0 0.8rem;
+
   color: var(--color-brand-red);
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .faq__title {
   margin: 0;
+
   color: var(--color-brand-blue);
-  font-size: clamp(2rem, 4vw, 3rem);
+
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 750;
   line-height: 1.1;
+  letter-spacing: -0.035em;
 }
 
-.faq__intro {
-  max-width: 58ch;
-  margin: var(--space-3) auto 0;
-  color: var(--color-text-muted);
-  font-size: 1.0625rem;
-  line-height: 1.7;
-}
+/* ========================================
+   LISTA
+======================================== */
 
 .faq__list {
-  max-width: 920px;
-  margin-inline: auto;
   border-top: 1px solid var(--color-border);
 }
 
@@ -51,12 +61,23 @@
 
 .faq__question {
   position: relative;
-  padding: 1.5rem 3rem 1.5rem 0;
+
+  display: flex;
+  gap: 1.5rem;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0.95rem 0;
+
   color: var(--color-brand-blue);
-  font-size: 1.125rem;
+
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.4;
+
   cursor: pointer;
+
   list-style: none;
 }
 
@@ -64,54 +85,115 @@
   display: none;
 }
 
-.faq__question::after {
-  content: "+";
+.faq__question::marker {
+  content: "";
+}
+
+/* ========================================
+   ICONO + / -
+======================================== */
+
+.faq__icon {
+  position: relative;
+
+  flex: 0 0 1.25rem;
+
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.faq__icon::before,
+.faq__icon::after {
+  content: "";
+
   position: absolute;
   top: 50%;
-  right: 0;
-  color: var(--color-brand-red);
-  font-size: 1.8rem;
-  font-weight: 500;
-  line-height: 1;
-  transform: translateY(-50%);
+  left: 50%;
+
+  width: 14px;
+  height: 2px;
+
+  border-radius: 999px;
+
+  background: var(--color-brand-blue);
+
+  transform: translate(-50%, -50%);
+  transition: transform 180ms ease;
 }
 
-.faq__item[open] .faq__question::after {
-  content: "−";
+.faq__icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
 }
 
-.faq__question:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
-  outline-offset: 4px;
+.faq__item[open] .faq__icon::after {
+  transform: translate(-50%, -50%) rotate(0deg);
 }
+
+/* ========================================
+   RESPUESTA
+======================================== */
 
 .faq__answer {
-  padding: 0 3rem 1.5rem 1rem;
+  padding: 0 3rem 1.25rem 0;
 }
 
 .faq__answer p {
-  max-width: 68ch;
+  max-width: 65ch;
   margin: 0;
+
   color: var(--color-text-muted);
-  line-height: 1.7;
+
+  font-size: 0.95rem;
+  line-height: 1.65;
 }
 
-@media (max-width: 640px) {
+/* ========================================
+   INTERACCIÓN
+======================================== */
+
+.faq__question:hover {
+  color: var(--color-brand-red);
+}
+
+.faq__question:focus-visible {
+  outline: 2px solid var(--color-brand-red);
+  outline-offset: 4px;
+}
+
+/* ========================================
+   MÓVIL
+======================================== */
+
+@media (max-width: 768px) {
   .faq {
-    padding-block: var(--space-5);
+    padding-block: 4rem;
+  }
+
+  .faq__layout {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
   }
 
   .faq__header {
-    margin-bottom: var(--space-4);
+    max-width: none;
+  }
+
+  .faq__title {
+    max-width: 18ch;
+
+    font-size: clamp(1.8rem, 6.5vw, 2.2rem);
+    line-height: 1.1;
   }
 
   .faq__question {
-    padding-block: 1.25rem;
-    padding-right: 2.5rem;
-    font-size: 1rem;
+    gap: 1rem;
+
+    padding-block: 1.1rem;
+
+    font-size: 0.98rem;
   }
 
   .faq__answer {
-    padding: 0 0 1.25rem 1rem;
+    padding: 0 2.25rem 1.25rem 0;
   }
 }
