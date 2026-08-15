@@ -287,8 +287,11 @@
 
   .business-benefits__card {
     position: relative;
+
+    top: auto;
     right: auto;
     bottom: auto;
+    left: auto;
 
     width: min(72%, 250px);
 
