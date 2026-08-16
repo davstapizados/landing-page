@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+
+    <title>Diseñá tus fundas | Davs Tapizados</title>
+
+    <meta
+      name="description"
+      content="Diseñá una idea para el interior de tu auto, elegí materiales, colores y detalles, y solicitá tu presupuesto a Davs Tapizados."
+    />
+
+    <!-- Estilos compartidos de Davs -->
+    <link rel="stylesheet" href="../styles/tokens.css" />
+    <link rel="stylesheet" href="../styles/base.css" />
+    <link rel="stylesheet" href="../styles/layout.css" />
+    <link rel="stylesheet" href="../styles/components.css" />
+
+    <!-- Estilos exclusivos de /clientes/ -->
+    <link rel="stylesheet" href="../styles/clientes/clientes.css" />
+    <link rel="stylesheet" href="../styles/clientes/configurator.css" />
+
+    <!-- JavaScript exclusivo del configurador -->
+    <script src="../assets/js/clientes-configurator.js" defer></script>
+  </head>
+
+  <body class="clientes-page">
+    <a class="skip-link" href="#contenido-principal">
+      Ir al contenido principal
+    </a>
+
+    <!-- ==================================================
+         HEADER B2C
+    =================================================== -->
+    <header class="clientes-header">
+      <div class="clientes-header__inner">
+        <a
+          class="clientes-header__brand"
+          href="../"
+          aria-label="Davs Tapizados - Ir al inicio"
+        >
+          DAVS TAPIZADOS
+        </a>
+
+        <nav
+          class="clientes-header__actions"
+          aria-label="Navegación de clientes"
+        >
+          <a href="../nuestros-trabajos/"> Nuestros trabajos </a>
+
+          <a href="#otros-trabajos"> Otros trabajos </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="contenido-principal">
+      <!-- ==================================================
+           HERO
+      =================================================== -->
+      <section class="clientes-hero" aria-labelledby="clientes-hero-title">
+        <div class="clientes-hero__content">
+          <p class="clientes-hero__eyebrow">DAVS TAPIZADOS</p>
+
+          <h1 id="clientes-hero-title">
+            Renová el interior de tu auto a tu estilo.
+          </h1>
+
+          <p class="clientes-hero__description">
+            Explorá estilos, materiales, colores y detalles para crear una idea
+            de tus nuevas fundas. Después nos mostrás tu vehículo y te ayudamos
+            a llevarla a la realidad.
+          </p>
+
+          <div class="clientes-hero__actions">
+            <button
+              class="button button--primary"
+              type="button"
+              data-action="start-configurator"
+            >
+              Empezar a diseñar mis fundas
+            </button>
+
+            <a class="button button--secondary" href="#otros-trabajos">
+              Consultar otro trabajo
+            </a>
+          </div>
+        </div>
+
+        <div class="clientes-hero__visual" aria-hidden="true">
+          <!-- La imagen definitiva del Hero se incorporará después. -->
+        </div>
+      </section>
+
+      <!-- ==================================================
+           CONFIGURADOR
+           Oculto hasta pulsar "Empezar a diseñar"
+      =================================================== -->
+      <section
+        class="configurator"
+        id="configurador"
+        aria-labelledby="configurator-title"
+        hidden
+      >
+        <header class="configurator__header">
+          <div>
+            <p class="configurator__progress">Diseñá · 1 de 4</p>
+
+            <h2 id="configurator-title">Creá tu idea</h2>
+          </div>
+
+          <button
+            class="configurator__exit"
+            type="button"
+            data-action="exit-configurator"
+          >
+            Salir
+          </button>
+        </header>
+
+        <div class="configurator__workspace">
+          <!-- ==============================================
+               VISUAL FIJO DE LA BUTACA
+          =============================================== -->
+          <div
+            class="configurator__visual"
+            aria-label="Vista orientativa de la butaca configurada"
+          >
+            <div class="seat-preview">
+              <p class="seat-preview__placeholder">Butaca Maestra Davs</p>
+
+              <!--
+                Más adelante este contenedor tendrá las capas:
+                - material
+                - principal (zonas 2 + 2B)
+                - centro (zona 3)
+                - patrón (zona 4)
+                - costura (zona 5)
+                - vivos (zona 6)
+                - bordado (zona 7)
+              -->
+            </div>
+          </div>
+
+          <!-- ==============================================
+               PANEL VARIABLE
+          =============================================== -->
+          <div class="configurator__controls">
+            <!-- PASO 1: ESTILO -->
+            <section
+              class="configurator-step is-active"
+              data-step="style"
+              aria-labelledby="step-style-title"
+            >
+              <p class="configurator-step__counter">Diseñá · 1 de 4</p>
+
+              <h3 id="step-style-title">Elegí un punto de partida</h3>
+
+              <p>
+                Después vas a poder cambiar el material, los colores y los
+                detalles.
+              </p>
+
+              <div class="configurator-options">
+                <button
+                  type="button"
+                  class="configurator-option"
+                  data-style="sobrio"
+                  aria-pressed="false"
+                >
+                  <strong>Sobrio</strong>
+                  <span>Diseño limpio y discreto.</span>
+                </button>
+
+                <button
+                  type="button"
+                  class="configurator-option"
+                  data-style="deportivo"
+                  aria-pressed="false"
+                >
+                  <strong>Deportivo</strong>
+                  <span>Más contraste y carácter.</span>
+                </button>
+
+                <button
+                  type="button"
+                  class="configurator-option"
+                  data-style="premium"
+                  aria-pressed="false"
+                >
+                  <strong>Premium</strong>
+                  <span>Más detalle visual y terminaciones elaboradas.</span>
+                </button>
+              </div>
+
+              <button
+                class="configurator-start-empty"
+                type="button"
+                data-style="personalizado"
+              >
+                Empezar desde cero
+              </button>
+            </section>
+
+            <!-- PASO 2: MATERIAL -->
+            <section
+              class="configurator-step"
+              data-step="material"
+              aria-labelledby="step-material-title"
+              hidden
+            >
+              <p class="configurator-step__counter">Diseñá · 2 de 4</p>
+
+              <h3 id="step-material-title">Elegí el material</h3>
+
+              <p>
+                El material influye en el presupuesto final. El estilo no
+                determina el precio.
+              </p>
+
+              <div class="configurator-options">
+                <button
+                  type="button"
+                  class="configurator-option"
+                  data-material="sintetico"
+                  aria-pressed="false"
+                >
+                  <strong>Cuero sintético</strong>
+                  <span>Alternativa más accesible.</span>
+                </button>
+
+                <button
+                  type="button"
+                  class="configurator-option"
+                  data-material="genuino"
+                  aria-pressed="false"
+                >
+                  <strong>Cuero genuino</strong>
+                  <span>Material natural de mayor valor.</span>
+                </button>
+              </div>
+            </section>
+
+            <!-- PASO 3: COLORES -->
+            <section
+              class="configurator-step"
+              data-step="colors"
+              aria-labelledby="step-colors-title"
+              hidden
+            >
+              <p class="configurator-step__counter">Diseñá · 3 de 4</p>
+
+              <h3 id="step-colors-title">Elegí tu combinación</h3>
+
+              <p>Vas a ver cómo cambia la butaca mientras elegís.</p>
+
+              <div class="color-group">
+                <h4>Color principal</h4>
+
+                <div
+                  class="swatch-grid"
+                  role="group"
+                  aria-label="Color principal"
+                >
+                  <button
+                    type="button"
+                    class="color-swatch"
+                    data-color-group="principal"
+                    data-color="negro"
+                    aria-pressed="false"
+                  >
+                    <span
+                      class="color-swatch__sample color-swatch__sample--black"
+                    ></span>
+                    <span>Negro</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="color-swatch"
+                    data-color-group="principal"
+                    data-color="gris"
+                    aria-pressed="false"
+                  >
+                    <span
+                      class="color-swatch__sample color-swatch__sample--gray"
+                    ></span>
+                    <span>Gris</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="color-swatch"
+                    data-color-group="principal"
+                    data-color="marron"
+                    aria-pressed="false"
+                  >
+                    <span
+                      class="color-swatch__sample color-swatch__sample--brown"
+                    ></span>
+                    <span>Marrón</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="color-group">
+                <h4>Color del centro</h4>
+
+                <div
+                  class="swatch-grid"
+                  role="group"
+                  aria-label="Color del centro"
+                >
+                  <button
+                    type="button"
+                    class="color-swatch"
+                    data-color-group="centro"
+                    data-color="negro"
+                    aria-pressed="false"
+                  >
+                    <span
+                      class="color-swatch__sample color-swatch__sample--black"
+                    ></span>
+                    <span>Negro</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="color-swatch"
+                    data-color-group="centro"
+                    data-color="rojo"
+                    aria-pressed="false"
+                  >
+                    <span
+                      class="color-swatch__sample color-swatch__sample--red"
+                    ></span>
+                    <span>Rojo</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="color-swatch"
+                    data-color-group="centro"
+                    data-color="gris"
+                    aria-pressed="false"
+                  >
+                    <span
+                      class="color-swatch__sample color-swatch__sample--gray"
+                    ></span>
+                    <span>Gris</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="color-group">
+                <h4>Costura</h4>
+
+                <div
+                  class="swatch-grid"
+                  role="group"
+                  aria-label="Color de costura"
+                >
+                  <button
+                    type="button"
+                    class="color-swatch"
+                    data-color-group="costura"
+                    data-color="negra"
+                    aria-pressed="false"
+                  >
+                    <span
+                      class="color-swatch__sample color-swatch__sample--black"
+                    ></span>
+                    <span>Negra</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="color-swatch"
+                    data-color-group="costura"
+                    data-color="roja"
+                    aria-pressed="false"
+                  >
+                    <span
+                      class="color-swatch__sample color-swatch__sample--red"
+                    ></span>
+                    <span>Roja</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="color-swatch"
+                    data-color-group="costura"
+                    data-color="clara"
+                    aria-pressed="false"
+                  >
+                    <span
+                      class="color-swatch__sample color-swatch__sample--light"
+                    ></span>
+                    <span>Clara</span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- PASO 4: DETALLES -->
+            <section
+              class="configurator-step"
+              data-step="details"
+              aria-labelledby="step-details-title"
+              hidden
+            >
+              <p class="configurator-step__counter">Diseñá · 4 de 4</p>
+
+              <h3 id="step-details-title">Dale el toque final</h3>
+
+              <p>
+                Elegí el diseño del centro y agregá los detalles que quieras.
+              </p>
+
+              <div class="detail-group">
+                <h4>Diseño del centro</h4>
+
+                <div
+                  class="detail-grid"
+                  role="group"
+                  aria-label="Diseño del centro"
+                >
+                  <button
+                    type="button"
+                    class="detail-option"
+                    data-design="liso"
+                    aria-pressed="false"
+                  >
+                    <span
+                      class="detail-option__sample detail-option__sample--plain"
+                    ></span>
+                    <span>Liso</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="detail-option"
+                    data-design="rombos"
+                    aria-pressed="false"
+                  >
+                    <span
+                      class="detail-option__sample detail-option__sample--diamonds"
+                    ></span>
+                    <span>Rombos</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="detail-option"
+                    data-design="canelones"
+                    aria-pressed="false"
+                  >
+                    <span
+                      class="detail-option__sample detail-option__sample--channels"
+                    ></span>
+                    <span>Canelones</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="detail-group">
+                <h4>Detalles opcionales</h4>
+
+                <div
+                  class="detail-grid detail-grid--optional"
+                  role="group"
+                  aria-label="Detalles opcionales"
+                >
+                  <button
+                    type="button"
+                    class="detail-option"
+                    data-extra="bordado"
+                    aria-pressed="false"
+                  >
+                    <strong>Bordado</strong>
+                    <span>Podés definirlo con Davs antes de fabricar.</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="detail-option"
+                    data-extra="vivos"
+                    aria-pressed="false"
+                  >
+                    <strong>Vivos</strong>
+                    <span>Detalle aplicado sobre las uniones de la funda.</span>
+                  </button>
+                </div>
+              </div>
+
+              <p class="detail-note" data-bordado-note hidden>
+                El diseño, tamaño y ubicación del bordado se confirman antes de
+                fabricar.
+              </p>
+            </section>
+
+            <section
+              class="configurator-step"
+              data-step="renew"
+              aria-labelledby="step-renew-title"
+              hidden
+            >
+              <p class="configurator-step__counter">Qué renovar</p>
+
+              <h3 id="step-renew-title">
+                ¿Qué partes del interior querés renovar?
+              </h3>
+
+              <p>Podés elegir una o varias opciones.</p>
+
+              <div
+                class="renew-grid"
+                role="group"
+                aria-label="Partes del interior a renovar"
+              >
+                <button
+                  type="button"
+                  class="renew-option"
+                  data-renew="asientos"
+                  aria-pressed="false"
+                >
+                  <strong>Juego completo de asientos</strong>
+                  <span>Delanteros + traseros</span>
+                </button>
+
+                <button
+                  type="button"
+                  class="renew-option"
+                  data-renew="piso"
+                  aria-pressed="false"
+                >
+                  <strong>Piso</strong>
+                </button>
+
+                <button
+                  type="button"
+                  class="renew-option"
+                  data-renew="apoyabrazos"
+                  aria-pressed="false"
+                >
+                  <strong>Apoyabrazos</strong>
+                </button>
+
+                <button
+                  type="button"
+                  class="renew-option"
+                  data-renew="volante"
+                  aria-pressed="false"
+                >
+                  <strong>Volante</strong>
+                </button>
+              </div>
+            </section>
+
+            <section
+              class="configurator-step"
+              data-step="vehicle"
+              aria-labelledby="step-vehicle-title"
+              hidden
+            >
+              <p class="configurator-step__counter">Tu auto</p>
+
+              <h3 id="step-vehicle-title">Contanos qué auto tenés</h3>
+
+              <p>
+                Necesitamos algunos datos para evaluar correctamente el trabajo.
+              </p>
+
+              <div class="vehicle-form">
+                <div class="vehicle-field">
+                  <label for="vehicle-brand"> Marca </label>
+
+                  <input
+                    id="vehicle-brand"
+                    name="marca"
+                    type="text"
+                    autocomplete="off"
+                    maxlength="40"
+                    placeholder="Ej.: Fiat"
+                    data-vehicle="marca"
+                  />
+                </div>
+
+                <div class="vehicle-field">
+                  <label for="vehicle-model"> Modelo </label>
+
+                  <input
+                    id="vehicle-model"
+                    name="modelo"
+                    type="text"
+                    autocomplete="off"
+                    maxlength="40"
+                    placeholder="Ej.: Cronos"
+                    data-vehicle="modelo"
+                  />
+                </div>
+
+                <div class="vehicle-field">
+                  <label for="vehicle-year"> Año </label>
+
+                  <input
+                    id="vehicle-year"
+                    name="anio"
+                    type="number"
+                    inputmode="numeric"
+                    min="1980"
+                    max="2030"
+                    placeholder="Ej.: 2023"
+                    data-vehicle="anio"
+                  />
+                </div>
+
+                <div class="vehicle-field">
+                  <label for="vehicle-version">
+                    Versión
+                    <span>Opcional</span>
+                  </label>
+
+                  <input
+                    id="vehicle-version"
+                    name="version"
+                    type="text"
+                    autocomplete="off"
+                    maxlength="60"
+                    placeholder="Ej.: Drive"
+                    data-vehicle="version"
+                  />
+                </div>
+              </div>
+
+              <p class="vehicle-note">
+                Si no conocés la versión, podés continuar igualmente.
+              </p>
+            </section>
+
+            <section
+              class="configurator-step"
+              data-step="photos"
+              aria-labelledby="step-photos-title"
+              hidden
+            >
+              <p class="configurator-step__counter">Fotos</p>
+
+              <h3 id="step-photos-title">Prepará estas fotos</h3>
+
+              <p>
+                Nos ayudan a entender la configuración y el estado actual de tu
+                vehículo.
+              </p>
+
+              <div class="photos-grid" data-photos-list>
+                <article class="photo-guide" data-photo-for="asientos" hidden>
+                  <strong>Butacas delanteras</strong>
+                  <span>Que se vean completas.</span>
+                </article>
+
+                <article class="photo-guide" data-photo-for="asientos" hidden>
+                  <strong>Asiento trasero</strong>
+                  <span>Que se vean asiento, respaldo y apoyacabezas.</span>
+                </article>
+
+                <article class="photo-guide" data-photo-for="asientos" hidden>
+                  <strong>Detalles particulares</strong>
+                  <span
+                    >Apoyabrazos, divisiones u otros elementos especiales.</span
+                  >
+                </article>
+
+                <article class="photo-guide" data-photo-for="piso" hidden>
+                  <strong>Piso delantero</strong>
+                  <span>Vista general del sector delantero.</span>
+                </article>
+
+                <article class="photo-guide" data-photo-for="piso" hidden>
+                  <strong>Piso trasero</strong>
+                  <span>Vista general del sector trasero.</span>
+                </article>
+
+                <article
+                  class="photo-guide"
+                  data-photo-for="apoyabrazos"
+                  hidden
+                >
+                  <strong>Apoyabrazos</strong>
+                  <span>Foto completa y detalle del estado actual.</span>
+                </article>
+
+                <article class="photo-guide" data-photo-for="volante" hidden>
+                  <strong>Volante completo</strong>
+                  <span>Una foto de frente.</span>
+                </article>
+
+                <article class="photo-guide" data-photo-for="volante" hidden>
+                  <strong>Detalle del volante</strong>
+                  <span>Acercate a las zonas desgastadas o dañadas.</span>
+                </article>
+              </div>
+
+              <p class="photos-note">
+                No tenés que subir las fotos acá. Las vas a adjuntar cuando se
+                abra WhatsApp.
+              </p>
+            </section>
+
+            <!-- NAVEGACIÓN DEL CONFIGURADOR -->
+            <div class="configurator__navigation">
+              <button
+                type="button"
+                class="button button--secondary"
+                data-action="previous-step"
+                disabled
+              >
+                Atrás
+              </button>
+
+              <button
+                type="button"
+                class="button button--primary"
+                data-action="next-step"
+                disabled
+              >
+                Continuar
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           OTROS TRABAJOS
+      =================================================== -->
+      <section
+        class="other-services"
+        id="otros-trabajos"
+        aria-labelledby="other-services-title"
+      >
+        <div class="other-services__content">
+          <h2 id="other-services-title">¿Buscás otro trabajo para tu auto?</h2>
+
+          <p>
+            También podés consultarnos por piso, apoyabrazos, volante y
+            reparación o modificación de espuma.
+          </p>
+
+          <button
+            type="button"
+            class="button button--primary"
+            data-action="start-other-services"
+          >
+            Consultar otro trabajo
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==================================================
+         FOOTER
+    =================================================== -->
+    <footer class="clientes-footer">
+      <p>© Davs Tapizados</p>
+    </footer>
+  </body>
+</html>
