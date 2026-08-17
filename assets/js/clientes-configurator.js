@@ -795,6 +795,23 @@
       updateVehicleState(input);
     });
   });
+  const versionInput = document.querySelector('[data-vehicle="version"]');
+
+  if (versionInput) {
+    versionInput.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter") {
+        return;
+      }
+
+      event.preventDefault();
+
+      if (!isVehicleValid()) {
+        return;
+      }
+
+      goToNextStep();
+    });
+  }
 
   editButtons.forEach((button) => {
     button.addEventListener("click", () => {
