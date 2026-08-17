@@ -1,10 +1,6 @@
 "use strict";
 
 (() => {
-  /* =======================================================
-     ESTADO TEMPORAL
-  ======================================================= */
-
   const state = {
     estilo: null,
     material: null,
@@ -29,10 +25,7 @@
   };
 
   let currentStepIndex = 0;
-
-  /* =======================================================
-     ELEMENTOS
-  ======================================================= */
+  let editingFromSummary = false;
 
   const startButton = document.querySelector(
     '[data-action="start-configurator"]',
@@ -50,7 +43,9 @@
   );
 
   const nextButton = document.querySelector('[data-action="next-step"]');
-
+  const whatsappButton = document.querySelector(
+    '[data-action="send-whatsapp"]',
+  );
   const previousButton = document.querySelector(
     '[data-action="previous-step"]',
   );
@@ -68,13 +63,49 @@
 
   const bordadoNote = document.querySelector("[data-bordado-note]");
 
+  const summaryDesign = document.querySelector("[data-summary-design]");
+  const summaryWork = document.querySelector("[data-summary-work]");
+  const summaryVehicle = document.querySelector("[data-summary-vehicle]");
+  const summaryPhotos = document.querySelector("[data-summary-photos]");
+  const editButtons = document.querySelectorAll("[data-edit-step]");
+  const configuratorProgress = document.querySelector(
+    "[data-configurator-progress]",
+  );
+  const configuratorTitle = document.querySelector("[data-configurator-title]");
+
   if (!startButton || !configurator) {
     return;
   }
 
-  /* =======================================================
-     ABRIR / CERRAR
-  ======================================================= */
+  const labels = {
+    estilos: {
+      sobrio: "Sobrio",
+      deportivo: "Deportivo",
+      premium: "Premium",
+      personalizado: "Personalizado",
+    },
+
+    materiales: {
+      sintetico: "Cuero sintético",
+      genuino: "Cuero genuino",
+    },
+
+    colores: {
+      negro: "Negro",
+      gris: "Gris",
+      marron: "Marrón",
+      rojo: "Rojo",
+      negra: "Negra",
+      roja: "Roja",
+      clara: "Clara",
+    },
+
+    disenos: {
+      liso: "Liso",
+      rombos: "Rombos",
+      canelones: "Canelones",
+    },
+  };
 
   const openConfigurator = () => {
     siteHeader.hidden = true;
@@ -106,10 +137,6 @@
     });
   };
 
-  /* =======================================================
-     ESTILO
-  ======================================================= */
-
   const selectStyle = (button) => {
     const selectedStyle = button.dataset.style;
 
@@ -129,10 +156,6 @@
     updateNavigationState();
   };
 
-  /* =======================================================
-     MATERIAL
-  ======================================================= */
-
   const selectMaterial = (button) => {
     const selectedMaterial = button.dataset.material;
 
@@ -151,10 +174,6 @@
 
     updateNavigationState();
   };
-
-  /* =======================================================
-     COLORES
-  ======================================================= */
 
   const selectColor = (button) => {
     const group = button.dataset.colorGroup;
@@ -190,10 +209,6 @@
     updateNavigationState();
   };
 
-  /* =======================================================
-     DISEÑO
-  ======================================================= */
-
   const selectDesign = (button) => {
     const selectedDesign = button.dataset.design;
 
@@ -212,10 +227,6 @@
 
     updateNavigationState();
   };
-
-  /* =======================================================
-     DETALLES OPCIONALES
-  ======================================================= */
 
   const toggleExtra = (button) => {
     const extra = button.dataset.extra;
@@ -240,10 +251,6 @@
       button.setAttribute("aria-pressed", String(state.vivos));
     }
   };
-
-  /* =======================================================
-     QUÉ RENOVAR
-  ======================================================= */
 
   const updateRenewButtons = () => {
     renewButtons.forEach((button) => {
@@ -291,10 +298,6 @@
     updateNavigationState();
   };
 
-  /* =======================================================
-     VEHÍCULO
-  ======================================================= */
-
   const normalizeText = (value) => {
     return value.trim().replace(/\s+/g, " ");
   };
@@ -337,10 +340,6 @@
     );
   };
 
-  /* =======================================================
-     FOTOS
-  ======================================================= */
-
   const isPhotoTypeSelected = (type) => {
     if (type === "asientos") {
       return state.asientos;
@@ -369,9 +368,93 @@
     });
   };
 
-  /* =======================================================
-     NAVEGACIÓN
-  ======================================================= */
+  const buildWorkSummary = () => {
+    const items = [];
+
+    if (state.asientos) {
+      items.push("Juego completo de asientos");
+    }
+
+    if (state.piso) {
+      items.push("Piso");
+    }
+
+    if (state.apoyabrazos) {
+      items.push("Apoyabrazos");
+    }
+
+    if (state.volante) {
+      items.push("Volante");
+    }
+
+    return items.join(" · ");
+  };
+
+  const buildPhotoSummary = () => {
+    const items = [];
+
+    if (state.asientos) {
+      items.push(
+        "Butacas delanteras",
+        "Asiento trasero",
+        "Detalles particulares",
+      );
+    }
+
+    if (state.piso) {
+      items.push("Piso delantero", "Piso trasero");
+    }
+
+    if (state.apoyabrazos) {
+      items.push("Apoyabrazos");
+    }
+
+    if (state.volante) {
+      items.push("Volante completo", "Detalle del volante");
+    }
+
+    return items.join(" · ");
+  };
+
+  const updateSummary = () => {
+    if (summaryDesign) {
+      const details = [
+        labels.estilos[state.estilo] || state.estilo,
+        labels.materiales[state.material] || state.material,
+        `${labels.colores[state.colorPrincipal]} + ${labels.colores[state.colorCentro]}`,
+        `Costura ${labels.colores[state.colorCostura]}`,
+        labels.disenos[state.diseno] || state.diseno,
+      ];
+
+      if (state.bordado) {
+        details.push("Bordado");
+      }
+
+      if (state.vivos) {
+        details.push("Vivos");
+      }
+
+      summaryDesign.textContent = details.join(" · ");
+    }
+
+    if (summaryWork) {
+      summaryWork.textContent = buildWorkSummary();
+    }
+
+    if (summaryVehicle) {
+      const vehicleParts = [state.marca, state.modelo, state.anio];
+
+      if (state.version) {
+        vehicleParts.push(state.version);
+      }
+
+      summaryVehicle.textContent = vehicleParts.join(" · ");
+    }
+
+    if (summaryPhotos) {
+      summaryPhotos.textContent = buildPhotoSummary();
+    }
+  };
 
   const updateNavigationState = () => {
     if (previousButton) {
@@ -380,6 +463,12 @@
 
     if (!nextButton) {
       return;
+    }
+
+    nextButton.hidden = false;
+
+    if (whatsappButton) {
+      whatsappButton.hidden = true;
     }
 
     if (currentStepIndex === 0) {
@@ -428,7 +517,74 @@
       return;
     }
 
+    if (currentStepIndex === 7) {
+      nextButton.hidden = true;
+
+      if (whatsappButton) {
+        whatsappButton.hidden = false;
+      }
+
+      return;
+    }
+
     nextButton.disabled = true;
+  };
+  const updateConfiguratorHeader = (stepName) => {
+    const headerMap = {
+      style: {
+        progress: "Diseñá · 1 de 4",
+        title: "Creá tu idea",
+      },
+
+      material: {
+        progress: "Diseñá · 2 de 4",
+        title: "Creá tu idea",
+      },
+
+      colors: {
+        progress: "Diseñá · 3 de 4",
+        title: "Creá tu idea",
+      },
+
+      details: {
+        progress: "Diseñá · 4 de 4",
+        title: "Creá tu idea",
+      },
+
+      renew: {
+        progress: "2 de 4 · Qué renovar",
+        title: "Elegí qué renovar",
+      },
+
+      vehicle: {
+        progress: "3 de 4 · Tu auto",
+        title: "Tu auto",
+      },
+
+      photos: {
+        progress: "3 de 4 · Fotos",
+        title: "Prepará las fotos",
+      },
+
+      summary: {
+        progress: "4 de 4 · Tu idea",
+        title: "Tu idea",
+      },
+    };
+
+    const header = headerMap[stepName];
+
+    if (!header) {
+      return;
+    }
+
+    if (configuratorProgress) {
+      configuratorProgress.textContent = header.progress;
+    }
+
+    if (configuratorTitle) {
+      configuratorTitle.textContent = header.title;
+    }
   };
 
   const showStep = (index) => {
@@ -441,14 +597,41 @@
 
     currentStepIndex = index;
 
-    if (steps[index]?.dataset.step === "photos") {
+    const stepName = steps[index]?.dataset.step;
+    updateConfiguratorHeader(stepName);
+
+    if (stepName === "photos") {
       updatePhotoGuides();
+    }
+
+    if (stepName === "summary") {
+      updateSummary();
     }
 
     updateNavigationState();
   };
 
   const goToNextStep = () => {
+    if (editingFromSummary) {
+      const summaryIndex = steps.findIndex(
+        (step) => step.dataset.step === "summary",
+      );
+
+      if (summaryIndex === -1) {
+        return;
+      }
+
+      editingFromSummary = false;
+
+      showStep(summaryIndex);
+
+      if (nextButton) {
+        nextButton.textContent = "Continuar";
+      }
+
+      return;
+    }
+
     if (currentStepIndex >= steps.length - 1) {
       return;
     }
@@ -457,6 +640,26 @@
   };
 
   const goToPreviousStep = () => {
+    if (editingFromSummary) {
+      const summaryIndex = steps.findIndex(
+        (step) => step.dataset.step === "summary",
+      );
+
+      if (summaryIndex === -1) {
+        return;
+      }
+
+      editingFromSummary = false;
+
+      showStep(summaryIndex);
+
+      if (nextButton) {
+        nextButton.textContent = "Continuar";
+      }
+
+      return;
+    }
+
     if (currentStepIndex <= 0) {
       return;
     }
@@ -464,9 +667,86 @@
     showStep(currentStepIndex - 1);
   };
 
-  /* =======================================================
-     EVENTOS
-  ======================================================= */
+  const goToNamedStep = (stepName) => {
+    const targetIndex = steps.findIndex(
+      (step) => step.dataset.step === stepName,
+    );
+
+    if (targetIndex === -1) {
+      return;
+    }
+
+    editingFromSummary = true;
+
+    showStep(targetIndex);
+
+    if (nextButton) {
+      nextButton.textContent = "Guardar cambios";
+    }
+  };
+
+  const WHATSAPP_NUMBER = "5491132016031";
+
+  const buildWhatsAppMessage = () => {
+    const trabajos = [];
+
+    if (state.asientos) {
+      trabajos.push("Juego completo de asientos");
+    }
+
+    if (state.piso) {
+      trabajos.push("Piso");
+    }
+
+    if (state.apoyabrazos) {
+      trabajos.push("Apoyabrazos");
+    }
+
+    if (state.volante) {
+      trabajos.push("Volante");
+    }
+
+    const messageLines = [
+      "Hola, quiero solicitar un presupuesto.",
+      "",
+      "VEHÍCULO",
+      `Marca: ${state.marca}`,
+      `Modelo: ${state.modelo}`,
+      `Año: ${state.anio}`,
+    ];
+
+    if (state.version) {
+      messageLines.push(`Versión: ${state.version}`);
+    }
+
+    messageLines.push(
+      "",
+      "TRABAJO SOLICITADO",
+      ...trabajos,
+      "",
+      "DISEÑO DE LAS FUNDAS",
+      `Estilo: ${labels.estilos[state.estilo] || state.estilo}`,
+      `Material: ${labels.materiales[state.material] || state.material}`,
+      `Color principal: ${labels.colores[state.colorPrincipal] || state.colorPrincipal}`,
+      `Color del centro: ${labels.colores[state.colorCentro] || state.colorCentro}`,
+      `Costura: ${labels.colores[state.colorCostura] || state.colorCostura}`,
+      `Diseño: ${labels.disenos[state.diseno] || state.diseno}`,
+      `Bordado: ${state.bordado ? "Sí" : "No"}`,
+      `Vivos: ${state.vivos ? "Sí" : "No"}`,
+      "",
+      "Adjunto las fotos del vehículo para que puedan evaluarlo.",
+    );
+
+    return messageLines.join("\n");
+  };
+
+  const openWhatsApp = () => {
+    const message = buildWhatsAppMessage();
+
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  };
 
   startButton.addEventListener("click", openConfigurator);
 
@@ -516,6 +796,21 @@
     });
   });
 
+  editButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const stepName = button.dataset.editStep;
+
+      if (!stepName) {
+        return;
+      }
+
+      goToNamedStep(stepName);
+    });
+  });
+
+  if (whatsappButton) {
+    whatsappButton.addEventListener("click", openWhatsApp);
+  }
   if (nextButton) {
     nextButton.addEventListener("click", goToNextStep);
   }
@@ -523,10 +818,6 @@
   if (previousButton) {
     previousButton.addEventListener("click", goToPreviousStep);
   }
-
-  /* =======================================================
-     ESTADO INICIAL
-  ======================================================= */
 
   updateRenewButtons();
   showStep(0);

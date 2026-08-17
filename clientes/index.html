@@ -108,9 +108,13 @@
       >
         <header class="configurator__header">
           <div>
-            <p class="configurator__progress">Diseñá · 1 de 4</p>
+            <p class="configurator__progress" data-configurator-progress>
+              Diseñá · 1 de 4
+            </p>
 
-            <h2 id="configurator-title">Creá tu idea</h2>
+            <h2 id="configurator-title" data-configurator-title>
+              Creá tu idea
+            </h2>
           </div>
 
           <button
@@ -711,6 +715,107 @@
               </p>
             </section>
 
+            <section
+              class="configurator-step"
+              data-step="summary"
+              aria-labelledby="step-summary-title"
+              hidden
+            >
+              <p class="configurator-step__counter">Tu idea</p>
+
+              <h3 id="step-summary-title">Así queda tu idea</h3>
+
+              <p>Revisá que esté todo como querés antes de enviárnoslo.</p>
+
+              <div class="summary-content">
+                <section class="summary-card">
+                  <div class="summary-card__header">
+                    <h4>Diseño</h4>
+                  </div>
+
+                  <p data-summary-design>—</p>
+
+                  <div class="summary-edit-group" aria-label="Editar diseño">
+                    <button
+                      type="button"
+                      class="summary-edit"
+                      data-edit-step="style"
+                    >
+                      Estilo
+                    </button>
+
+                    <button
+                      type="button"
+                      class="summary-edit"
+                      data-edit-step="material"
+                    >
+                      Material
+                    </button>
+
+                    <button
+                      type="button"
+                      class="summary-edit"
+                      data-edit-step="colors"
+                    >
+                      Colores
+                    </button>
+
+                    <button
+                      type="button"
+                      class="summary-edit"
+                      data-edit-step="details"
+                    >
+                      Detalles
+                    </button>
+                  </div>
+                </section>
+
+                <section class="summary-card">
+                  <div class="summary-card__header">
+                    <h4>Trabajo solicitado</h4>
+
+                    <button
+                      type="button"
+                      class="summary-edit"
+                      data-edit-step="renew"
+                    >
+                      Editar
+                    </button>
+                  </div>
+
+                  <p data-summary-work>—</p>
+                </section>
+
+                <section class="summary-card">
+                  <div class="summary-card__header">
+                    <h4>Tu auto</h4>
+
+                    <button
+                      type="button"
+                      class="summary-edit"
+                      data-edit-step="vehicle"
+                    >
+                      Editar
+                    </button>
+                  </div>
+
+                  <p data-summary-vehicle>—</p>
+                </section>
+
+                <section class="summary-card">
+                  <h4>Fotos a adjuntar</h4>
+
+                  <p data-summary-photos>—</p>
+                </section>
+              </div>
+
+              <p class="summary-disclaimer">
+                La representación es orientativa. Los materiales, tonos,
+                terminaciones y compatibilidad final se confirman antes de
+                fabricar.
+              </p>
+            </section>
+
             <!-- NAVEGACIÓN DEL CONFIGURADOR -->
             <div class="configurator__navigation">
               <button
@@ -729,6 +834,15 @@
                 disabled
               >
                 Continuar
+              </button>
+
+              <button
+                type="button"
+                class="button button--primary"
+                data-action="send-whatsapp"
+                hidden
+              >
+                Enviar mi idea por WhatsApp
               </button>
             </div>
           </div>
