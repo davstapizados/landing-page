@@ -532,42 +532,42 @@
   const updateConfiguratorHeader = (stepName) => {
     const headerMap = {
       style: {
-        progress: "Diseñá · 1 de 4",
+        progress: "1 DE 5 · DISEÑO 1/4",
         title: "Creá tu idea",
       },
 
       material: {
-        progress: "Diseñá · 2 de 4",
+        progress: "1 DE 5 · DISEÑO 2/4",
         title: "Creá tu idea",
       },
 
       colors: {
-        progress: "Diseñá · 3 de 4",
+        progress: "1 DE 5 · DISEÑO 3/4",
         title: "Creá tu idea",
       },
 
       details: {
-        progress: "Diseñá · 4 de 4",
+        progress: "1 DE 5 · DISEÑO 4/4",
         title: "Creá tu idea",
       },
 
       renew: {
-        progress: "2 de 4 · Qué renovar",
+        progress: "2 DE 5 · QUÉ RENOVAR",
         title: "Elegí qué renovar",
       },
 
       vehicle: {
-        progress: "3 de 4 · Tu auto",
+        progress: "3 DE 5 · TU AUTO",
         title: "Tu auto",
       },
 
       photos: {
-        progress: "3 de 4 · Fotos",
+        progress: "4 DE 5 · FOTOS",
         title: "Prepará las fotos",
       },
 
       summary: {
-        progress: "4 de 4 · Tu idea",
+        progress: "5 DE 5 · TU IDEA",
         title: "Tu idea",
       },
     };

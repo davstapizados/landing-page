@@ -288,6 +288,7 @@
 
 .configurator__navigation .button--primary {
   justify-self: stretch;
+  white-space: nowrap;
 }
 
 .configurator__navigation button:disabled {
