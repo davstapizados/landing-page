@@ -613,7 +613,7 @@
     min-height: calc(100dvh - 64px);
 
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(260px, 42dvh) minmax(0, 1fr);
+    grid-template-rows: minmax(190px, 30dvh) minmax(0, 1fr);
 
     gap: 0;
   }
