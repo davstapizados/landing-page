@@ -90,7 +90,7 @@
 }
 
 .seat-preview {
-  width: min(100%, 620px);
+  width: min(100%, 560px, calc(80dvh - 80px));
   aspect-ratio: 4 / 5;
 
   position: relative;
@@ -109,6 +109,72 @@
   );
 
   overflow: hidden;
+}
+
+.seat-render {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.seat-layer,
+.seat-preview__placeholder {
+  position: absolute;
+  inset: 0;
+}
+
+.seat-layer {
+  pointer-events: none;
+}
+
+.seat-preview__placeholder {
+  display: grid;
+  place-items: center;
+  z-index: 20;
+}
+
+.seat-layer--base {
+  z-index: 1;
+}
+
+.seat-layer--material {
+  z-index: 2;
+}
+
+.seat-layer--principal {
+  z-index: 3;
+}
+
+.seat-layer--lateral {
+  z-index: 3;
+}
+
+.seat-layer--center {
+  z-index: 4;
+}
+
+.seat-layer--pattern {
+  z-index: 5;
+}
+
+.seat-layer--stitching {
+  z-index: 6;
+}
+
+.seat-layer--piping {
+  z-index: 7;
+}
+
+.seat-layer--embroidery {
+  z-index: 8;
+}
+
+.seat-layer__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
 }
 
 .seat-preview__placeholder {
@@ -682,6 +748,11 @@
     display: none;
   }
 }
+@media (max-width: 480px) and (min-height: 600px) {
+  .configurator__workspace {
+    grid-template-rows: minmax(220px, 35dvh) minmax(0, 1fr);
+  }
+}
 
 /* ---------------------------------------------------------
    Ajuste específico: paso Colores
@@ -704,13 +775,19 @@
 }
 
 .configurator-step[data-step="colors"] .color-swatch {
-  min-height: 52px;
-  padding: 6px;
+  min-height: 44px;
+
+  flex-direction: row;
+  gap: 6px;
+
+  padding: 6px 10px;
 }
 
 .configurator-step[data-step="colors"] .color-swatch__sample {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
+
+  flex: 0 0 auto;
 }
 
 .configurator-step[data-step="colors"] .swatch-grid {
@@ -997,4 +1074,103 @@
   .configurator-step {
     animation: none;
   }
+}
+/* ---------------------------------------------------------
+   Butaca Maestra — primera capa funcional: centro
+   --------------------------------------------------------- */
+
+.seat-render[data-center="negro"] {
+  --seat-center-color: rgba(17, 17, 17, 0.4);
+}
+
+.seat-render[data-center="rojo"] {
+  --seat-center-color: rgba(197, 29, 36, 0.4);
+}
+
+.seat-render[data-center="gris"] {
+  --seat-center-color: rgba(140, 140, 140, 0.4);
+}
+
+.seat-layer--center {
+  background-color: var(--seat-center-color, transparent);
+
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  mask-mode: alpha;
+}
+
+[data-seat-layer="center-back"] {
+  -webkit-mask-image: url("../../assets/configurator/centro/center-back-mask.png");
+  mask-image: url("../../assets/configurator/centro/center-back-mask.png");
+}
+
+[data-seat-layer="center-seat"] {
+  -webkit-mask-image: url("../../assets/configurator/centro/center-seat-mask.png");
+  mask-image: url("../../assets/configurator/centro/center-seat-mask.png");
+}
+
+/* ---------------------------------------------------------
+   Butaca Maestra — segunda capa funcional: principal
+   --------------------------------------------------------- */
+
+.seat-render[data-principal="negro"] {
+  --seat-principal-color: rgba(17, 17, 17, 0.4);
+}
+
+.seat-render[data-principal="gris"] {
+  --seat-principal-color: rgba(140, 140, 140, 0.4);
+}
+
+.seat-render[data-principal="marron"] {
+  --seat-principal-color: rgba(118, 80, 58, 0.4);
+}
+
+.seat-layer--principal {
+  background-color: var(--seat-principal-color, transparent);
+
+  -webkit-mask-image: url("../../assets/configurator/principal/principal-mask.png");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+
+  mask-image: url("../../assets/configurator/principal/principal-mask.png");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  mask-mode: alpha;
+}
+/* ---------------------------------------------------------
+   Butaca Maestra — tercera capa funcional: laterales
+   --------------------------------------------------------- */
+
+.seat-render[data-lateral="negro"] {
+  --seat-lateral-color: rgba(17, 17, 17, 0.4);
+}
+
+.seat-render[data-lateral="rojo"] {
+  --seat-lateral-color: rgba(197, 29, 36, 0.4);
+}
+
+.seat-render[data-lateral="gris"] {
+  --seat-lateral-color: rgba(140, 140, 140, 0.4);
+}
+
+.seat-layer--lateral {
+  background-color: var(--seat-lateral-color, transparent);
+
+  -webkit-mask-image: url("../../assets/configurator/lateral/lateral-mask.png");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+
+  mask-image: url("../../assets/configurator/lateral/lateral-mask.png");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  mask-mode: alpha;
 }

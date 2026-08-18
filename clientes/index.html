@@ -134,19 +134,76 @@
             class="configurator__visual"
             aria-label="Vista orientativa de la butaca configurada"
           >
-            <div class="seat-preview">
-              <p class="seat-preview__placeholder">Butaca Maestra Davs</p>
+            <div
+              class="seat-preview"
+              aria-label="Vista previa de la Butaca Maestra Davs"
+            >
+              <div class="seat-render" data-seat-render>
+                <!-- BASE -->
+                <div class="seat-layer seat-layer--base" data-seat-layer="base">
+                  <img
+                    src="../assets/configurator/base/butaca-base.png"
+                    alt=""
+                    class="seat-layer__image"
+                  />
+                </div>
 
-              <!--
-                Más adelante este contenedor tendrá las capas:
-                - material
-                - principal (zonas 2 + 2B)
-                - centro (zona 3)
-                - patrón (zona 4)
-                - costura (zona 5)
-                - vivos (zona 6)
-                - bordado (zona 7)
-              -->
+                <!-- MATERIAL GLOBAL -->
+                <div
+                  class="seat-layer seat-layer--material"
+                  data-seat-layer="material"
+                ></div>
+
+                <!-- COLOR PRINCIPAL / EXTERIOR -->
+                <div
+                  class="seat-layer seat-layer--principal"
+                  data-seat-layer="principal"
+                ></div>
+
+                <!-- COLOR LATERAL / FRANJAS -->
+                <div
+                  class="seat-layer seat-layer--lateral"
+                  data-seat-layer="lateral"
+                ></div>
+
+                <!-- CENTRO -->
+                <div
+                  class="seat-layer seat-layer--center"
+                  data-seat-layer="center-back"
+                ></div>
+                <div
+                  class="seat-layer seat-layer--center"
+                  data-seat-layer="center-seat"
+                ></div>
+
+                <!-- PATRONES -->
+                <div
+                  class="seat-layer seat-layer--pattern"
+                  data-seat-layer="pattern-back"
+                ></div>
+                <div
+                  class="seat-layer seat-layer--pattern"
+                  data-seat-layer="pattern-seat"
+                ></div>
+
+                <!-- DETALLES -->
+                <div
+                  class="seat-layer seat-layer--stitching"
+                  data-seat-layer="stitching"
+                ></div>
+                <div
+                  class="seat-layer seat-layer--piping"
+                  data-seat-layer="piping"
+                ></div>
+                <div
+                  class="seat-layer seat-layer--embroidery"
+                  data-seat-layer="embroidery-back"
+                ></div>
+                <div
+                  class="seat-layer seat-layer--embroidery"
+                  data-seat-layer="embroidery-headrest"
+                ></div>
+              </div>
             </div>
           </div>
 
@@ -301,6 +358,54 @@
                       class="color-swatch__sample color-swatch__sample--brown"
                     ></span>
                     <span>Marrón</span>
+                  </button>
+                </div>
+              </div>
+              <div class="color-group">
+                <h4>Color lateral</h4>
+
+                <div
+                  class="swatch-grid"
+                  role="group"
+                  aria-label="Color lateral"
+                >
+                  <button
+                    type="button"
+                    class="color-swatch"
+                    data-color-group="lateral"
+                    data-color="negro"
+                    aria-pressed="false"
+                  >
+                    <span
+                      class="color-swatch__sample color-swatch__sample--black"
+                    ></span>
+                    <span>Negro</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="color-swatch"
+                    data-color-group="lateral"
+                    data-color="rojo"
+                    aria-pressed="false"
+                  >
+                    <span
+                      class="color-swatch__sample color-swatch__sample--red"
+                    ></span>
+                    <span>Rojo</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="color-swatch"
+                    data-color-group="lateral"
+                    data-color="gris"
+                    aria-pressed="false"
+                  >
+                    <span
+                      class="color-swatch__sample color-swatch__sample--gray"
+                    ></span>
+                    <span>Gris</span>
                   </button>
                 </div>
               </div>

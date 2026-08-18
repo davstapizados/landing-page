@@ -6,6 +6,7 @@
     material: null,
 
     colorPrincipal: null,
+    colorLateral: null,
     colorCentro: null,
     colorCostura: null,
 
@@ -60,7 +61,7 @@
   const renewButtons = document.querySelectorAll("[data-renew]");
   const vehicleInputs = document.querySelectorAll("[data-vehicle]");
   const photoGuides = document.querySelectorAll("[data-photo-for]");
-
+  const seatRender = document.querySelector("[data-seat-render]");
   const bordadoNote = document.querySelector("[data-bordado-note]");
 
   const summaryDesign = document.querySelector("[data-summary-design]");
@@ -105,6 +106,22 @@
       rombos: "Rombos",
       canelones: "Canelones",
     },
+  };
+
+  const updateSeatPreview = () => {
+    if (!seatRender) {
+      return;
+    }
+
+    seatRender.dataset.material = state.material || "";
+    seatRender.dataset.principal = state.colorPrincipal || "";
+    seatRender.dataset.lateral = state.colorLateral || "";
+    seatRender.dataset.center = state.colorCentro || "";
+    seatRender.dataset.stitching = state.colorCostura || "";
+    seatRender.dataset.pattern = state.diseno || "";
+
+    seatRender.dataset.piping = state.vivos ? "on" : "off";
+    seatRender.dataset.embroidery = state.bordado ? "on" : "off";
   };
 
   const openConfigurator = () => {
@@ -171,7 +188,7 @@
         String(materialButton.dataset.material === selectedMaterial),
       );
     });
-
+    updateSeatPreview();
     updateNavigationState();
   };
 
@@ -186,7 +203,9 @@
     if (group === "principal") {
       state.colorPrincipal = color;
     }
-
+    if (group === "lateral") {
+      state.colorLateral = color;
+    }
     if (group === "centro") {
       state.colorCentro = color;
     }
@@ -205,7 +224,7 @@
         String(colorButton.dataset.color === color),
       );
     });
-
+    updateSeatPreview();
     updateNavigationState();
   };
 
@@ -224,7 +243,7 @@
         String(designButton.dataset.design === selectedDesign),
       );
     });
-
+    updateSeatPreview();
     updateNavigationState();
   };
 
@@ -250,6 +269,7 @@
 
       button.setAttribute("aria-pressed", String(state.vivos));
     }
+    updateSeatPreview();
   };
 
   const updateRenewButtons = () => {
@@ -421,7 +441,7 @@
       const details = [
         labels.estilos[state.estilo] || state.estilo,
         labels.materiales[state.material] || state.material,
-        `${labels.colores[state.colorPrincipal]} + ${labels.colores[state.colorCentro]}`,
+        `${labels.colores[state.colorPrincipal]} + ${labels.colores[state.colorLateral]} + ${labels.colores[state.colorCentro]}`,
         `Costura ${labels.colores[state.colorCostura]}`,
         labels.disenos[state.diseno] || state.diseno,
       ];
@@ -484,6 +504,7 @@
     if (currentStepIndex === 2) {
       nextButton.disabled = !(
         state.colorPrincipal &&
+        state.colorLateral &&
         state.colorCentro &&
         state.colorCostura
       );
@@ -728,6 +749,7 @@
       `Estilo: ${labels.estilos[state.estilo] || state.estilo}`,
       `Material: ${labels.materiales[state.material] || state.material}`,
       `Color principal: ${labels.colores[state.colorPrincipal] || state.colorPrincipal}`,
+      `Color lateral: ${labels.colores[state.colorLateral] || state.colorLateral}`,
       `Color del centro: ${labels.colores[state.colorCentro] || state.colorCentro}`,
       `Costura: ${labels.colores[state.colorCostura] || state.colorCostura}`,
       `Diseño: ${labels.disenos[state.diseno] || state.diseno}`,
