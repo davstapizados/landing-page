@@ -1174,3 +1174,33 @@
   mask-size: contain;
   mask-mode: alpha;
 }
+/* ---------------------------------------------------------
+   Butaca Maestra — cuarta capa funcional: costura
+   --------------------------------------------------------- */
+
+.seat-render[data-stitching="negra"] {
+  --seat-stitching-color: #111111;
+}
+
+.seat-render[data-stitching="roja"] {
+  --seat-stitching-color: #c51d24;
+}
+
+.seat-render[data-stitching="clara"] {
+  --seat-stitching-color: #e6e2dc;
+}
+
+.seat-layer--stitching {
+  background-color: var(--seat-stitching-color, transparent);
+
+  -webkit-mask-image: url("../../assets/configurator/costura/stitching-mask.png");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+
+  mask-image: url("../../assets/configurator/costura/stitching-mask.png");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  mask-mode: alpha;
+}
