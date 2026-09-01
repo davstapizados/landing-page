@@ -149,11 +149,11 @@
   z-index: 3;
 }
 
-.seat-layer--center {
+.seat-layer--pattern {
   z-index: 4;
 }
 
-.seat-layer--pattern {
+.seat-layer--center {
   z-index: 5;
 }
 
@@ -561,7 +561,7 @@
 
 .detail-option__sample--channels {
   background: repeating-linear-gradient(
-    90deg,
+    0deg,
     #eeeeee 0,
     #eeeeee 14px,
     #a7a7a7 15px,
@@ -1203,4 +1203,75 @@
   mask-position: center;
   mask-size: contain;
   mask-mode: alpha;
+}
+/* ---------------------------------------------------------
+   Butaca Maestra — quinta capa funcional: diseños
+   --------------------------------------------------------- */
+
+.seat-layer--pattern {
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 1;
+
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  mask-mode: alpha;
+}
+
+[data-seat-layer="pattern-back"] {
+  -webkit-mask-image: url("../../assets/configurator/centro/center-back-mask.png");
+  mask-image: url("../../assets/configurator/centro/center-back-mask.png");
+}
+
+[data-seat-layer="pattern-seat"] {
+  -webkit-mask-image: url("../../assets/configurator/centro/center-seat-mask.png");
+  mask-image: url("../../assets/configurator/centro/center-seat-mask.png");
+}
+
+.seat-render[data-pattern="rombos"] .seat-layer--pattern {
+  background-image: url("../../assets/configurator/patrones/rombos.png");
+}
+
+.seat-render[data-pattern="canelones"] .seat-layer--pattern {
+  background-image: url("../../assets/configurator/patrones/canelones.png");
+}
+
+.seat-layer--pattern::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background-color: var(--seat-stitching-color, transparent);
+  opacity: 0;
+
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  mask-mode: alpha;
+}
+
+.seat-render[data-pattern="rombos"] .seat-layer--pattern::after {
+  opacity: 0.45;
+
+  -webkit-mask-image: url("../../assets/configurator/patrones/rombos-stitching-mask.png");
+  mask-image: url("../../assets/configurator/patrones/rombos-stitching-mask.png");
+}
+
+.seat-render[data-pattern="canelones"] .seat-layer--pattern::after {
+  opacity: 0.45;
+
+  -webkit-mask-image: url("../../assets/configurator/patrones/canelones-stitching-mask.png");
+  mask-image: url("../../assets/configurator/patrones/canelones-stitching-mask.png");
 }
