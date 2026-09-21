@@ -1275,3 +1275,46 @@
   -webkit-mask-image: url("../../assets/configurator/patrones/canelones-stitching-mask.png");
   mask-image: url("../../assets/configurator/patrones/canelones-stitching-mask.png");
 }
+
+/* ---------------------------------------------------------
+   Butaca Maestra — vivos opcionales
+   --------------------------------------------------------- */
+
+.seat-layer--piping {
+  background-color: var(--seat-stitching-color, transparent);
+  opacity: 0;
+
+  -webkit-mask-image: url("../../assets/configurator/vivos/piping-mask.png");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+
+  mask-image: url("../../assets/configurator/vivos/piping-mask.png");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  mask-mode: alpha;
+
+  transition: opacity 180ms ease;
+}
+
+.seat-render[data-piping="on"] .seat-layer--piping {
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------
+   Butaca Maestra — bordado opcional
+   --------------------------------------------------------- */
+
+[data-seat-layer="embroidery-back"] {
+  background-image: url("../../assets/configurator/bordado/embroidery-back.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.seat-render[data-embroidery="on"] [data-seat-layer="embroidery-back"] {
+  opacity: 1;
+}
