@@ -63,6 +63,37 @@
   const photoGuides = document.querySelectorAll("[data-photo-for]");
   const seatRender = document.querySelector("[data-seat-render]");
   const bordadoNote = document.querySelector("[data-bordado-note]");
+  const miniScrollAfterSelection = (button) => {
+    if (!window.matchMedia("(max-width: 820px)").matches) {
+      return;
+    }
+
+    if (button.getAttribute("aria-pressed") !== "true") {
+      return;
+    }
+
+    const activeStep = button.closest(".configurator-step");
+
+    if (!activeStep || activeStep.scrollHeight <= activeStep.clientHeight) {
+      return;
+    }
+
+    window.setTimeout(() => {
+      const remainingScroll =
+        activeStep.scrollHeight -
+        activeStep.clientHeight -
+        activeStep.scrollTop;
+
+      if (remainingScroll <= 0) {
+        return;
+      }
+
+      activeStep.scrollBy({
+        top: Math.min(76, remainingScroll),
+        behavior: "smooth",
+      });
+    }, 120);
+  };
 
   const summaryDesign = document.querySelector("[data-summary-design]");
   const summaryWork = document.querySelector("[data-summary-work]");
@@ -779,36 +810,42 @@
   styleButtons.forEach((button) => {
     button.addEventListener("click", () => {
       selectStyle(button);
+      miniScrollAfterSelection(button);
     });
   });
 
   materialButtons.forEach((button) => {
     button.addEventListener("click", () => {
       selectMaterial(button);
+      miniScrollAfterSelection(button);
     });
   });
 
   colorButtons.forEach((button) => {
     button.addEventListener("click", () => {
       selectColor(button);
+      miniScrollAfterSelection(button);
     });
   });
 
   designButtons.forEach((button) => {
     button.addEventListener("click", () => {
       selectDesign(button);
+      miniScrollAfterSelection(button);
     });
   });
 
   extraButtons.forEach((button) => {
     button.addEventListener("click", () => {
       toggleExtra(button);
+      miniScrollAfterSelection(button);
     });
   });
 
   renewButtons.forEach((button) => {
     button.addEventListener("click", () => {
       toggleRenew(button);
+      miniScrollAfterSelection(button);
     });
   });
 
