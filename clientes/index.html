@@ -270,6 +270,21 @@
                   data-seat-layer="embroidery-headrest"
                 ></div>
               </div>
+              <button
+                class="seat-preview__zoom"
+                type="button"
+                data-action="open-seat-zoom"
+                aria-label="Ampliar vista de la butaca"
+                aria-haspopup="dialog"
+                aria-controls="seat-zoom"
+                aria-expanded="false"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="m21 21-4.35-4.35M19 11a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-11 0h6m-3-3v6"
+                  ></path>
+                </svg>
+              </button>
             </div>
           </div>
 
@@ -949,6 +964,37 @@
           </div>
         </div>
       </section>
+      <div class="seat-zoom" id="seat-zoom" data-seat-zoom hidden>
+        <div
+          class="seat-zoom__backdrop"
+          data-action="close-seat-zoom"
+          aria-hidden="true"
+        ></div>
+
+        <section
+          class="seat-zoom__dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Vista ampliada de la butaca configurada"
+          data-seat-zoom-dialog
+          tabindex="-1"
+        >
+          <button
+            class="seat-zoom__close"
+            type="button"
+            data-action="close-seat-zoom"
+            aria-label="Cerrar vista ampliada"
+          >
+            ×
+          </button>
+
+          <div
+            class="seat-zoom__stage"
+            data-seat-zoom-mount
+            aria-hidden="true"
+          ></div>
+        </section>
+      </div>
 
       <!-- ==================================================
            OTROS TRABAJOS

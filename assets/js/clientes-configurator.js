@@ -24,6 +24,8 @@
   let editingFromSummary = false;
   let vehicleStateBeforeEdit = null;
   let introPreviouslyFocused = null;
+  let seatZoomPreviouslyFocused = null;
+  let configuratorInertBeforeZoom = false;
 
   const startButton = document.querySelector(
     '[data-action="start-configurator"]',
@@ -68,6 +70,15 @@
   const vehicleInputs = document.querySelectorAll("[data-vehicle]");
   const seatRender = document.querySelector("[data-seat-render]");
   const bordadoNote = document.querySelector("[data-bordado-note]");
+  const seatZoomButton = document.querySelector(
+    '[data-action="open-seat-zoom"]',
+  );
+  const seatZoomModal = document.querySelector("[data-seat-zoom]");
+  const seatZoomDialog = document.querySelector("[data-seat-zoom-dialog]");
+  const seatZoomMount = document.querySelector("[data-seat-zoom-mount]");
+  const seatZoomCloseControls = document.querySelectorAll(
+    '[data-action="close-seat-zoom"]',
+  );
   const miniScrollAfterSelection = (button) => {
     if (!window.matchMedia("(max-width: 820px)").matches) {
       return;
@@ -193,6 +204,151 @@
     seatRender.dataset.embroidery = state.bordado ? "on" : "off";
   };
 
+  const getSeatZoomFocusableElements = () => {
+    if (!seatZoomDialog) {
+      return [];
+    }
+
+    return Array.from(
+      seatZoomDialog.querySelectorAll(
+        [
+          "button:not([disabled])",
+          "a[href]",
+          "input:not([disabled])",
+          "select:not([disabled])",
+          "textarea:not([disabled])",
+          '[tabindex]:not([tabindex="-1"])',
+        ].join(", "),
+      ),
+    ).filter(
+      (element) =>
+        element instanceof HTMLElement && element.offsetParent !== null,
+    );
+  };
+
+  const openSeatZoom = () => {
+    if (
+      !seatZoomModal ||
+      !seatZoomDialog ||
+      !seatZoomMount ||
+      !seatRender ||
+      !seatZoomModal.hidden ||
+      configurator.hidden ||
+      (introModal && !introModal.hidden)
+    ) {
+      return;
+    }
+
+    const seatClone = seatRender.cloneNode(true);
+
+    seatClone.removeAttribute("data-seat-render");
+    seatClone.setAttribute("data-seat-render-clone", "");
+    seatClone.setAttribute("aria-hidden", "true");
+
+    seatClone.querySelectorAll("[id]").forEach((element) => {
+      element.removeAttribute("id");
+    });
+
+    seatZoomMount.replaceChildren(seatClone);
+
+    seatZoomPreviouslyFocused =
+      document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : seatZoomButton;
+
+    configuratorInertBeforeZoom = configurator.inert;
+    configurator.inert = true;
+
+    seatZoomModal.hidden = false;
+    document.body.classList.add("is-seat-zoom-open");
+    seatZoomButton?.setAttribute("aria-expanded", "true");
+
+    window.requestAnimationFrame(() => {
+      const firstFocusable = getSeatZoomFocusableElements()[0];
+      const focusTarget = firstFocusable || seatZoomDialog;
+
+      focusTarget.focus({ preventScroll: true });
+    });
+  };
+
+  const closeSeatZoom = ({ restoreFocus = true } = {}) => {
+    if (!seatZoomModal || seatZoomModal.hidden) {
+      return;
+    }
+
+    const previousFocusCanBeRestored =
+      seatZoomPreviouslyFocused instanceof HTMLElement &&
+      seatZoomPreviouslyFocused.isConnected &&
+      !(
+        configurator.hidden && configurator.contains(seatZoomPreviouslyFocused)
+      );
+
+    const focusTarget = previousFocusCanBeRestored
+      ? seatZoomPreviouslyFocused
+      : configurator.hidden
+        ? startButton
+        : seatZoomButton;
+
+    seatZoomModal.hidden = true;
+    document.body.classList.remove("is-seat-zoom-open");
+    seatZoomButton?.setAttribute("aria-expanded", "false");
+
+    configurator.inert = configuratorInertBeforeZoom;
+    configuratorInertBeforeZoom = false;
+
+    seatZoomMount?.replaceChildren();
+    seatZoomPreviouslyFocused = null;
+
+    if (restoreFocus) {
+      window.requestAnimationFrame(() => {
+        focusTarget?.focus({ preventScroll: true });
+      });
+    }
+  };
+
+  const handleSeatZoomKeydown = (event) => {
+    if (!seatZoomModal || seatZoomModal.hidden || !seatZoomDialog) {
+      return;
+    }
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      event.stopPropagation();
+      closeSeatZoom();
+      return;
+    }
+
+    if (event.key !== "Tab") {
+      return;
+    }
+
+    const focusableElements = getSeatZoomFocusableElements();
+
+    if (focusableElements.length === 0) {
+      event.preventDefault();
+      seatZoomDialog.focus({ preventScroll: true });
+      return;
+    }
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    const currentIndex = focusableElements.indexOf(document.activeElement);
+
+    if (event.shiftKey && currentIndex <= 0) {
+      event.preventDefault();
+      lastElement.focus({ preventScroll: true });
+      return;
+    }
+
+    if (
+      !event.shiftKey &&
+      (currentIndex === -1 || currentIndex === focusableElements.length - 1)
+    ) {
+      event.preventDefault();
+      firstElement.focus({ preventScroll: true });
+    }
+  };
+
   const openConfigurator = () => {
     siteHeader.hidden = true;
     hero.hidden = true;
@@ -208,8 +364,9 @@
   };
 
   const closeConfigurator = () => {
-    configurator.hidden = true;
+    closeSeatZoom({ restoreFocus: false });
 
+    configurator.hidden = true;
     siteHeader.hidden = false;
     hero.hidden = false;
     otherServices.hidden = false;
@@ -789,6 +946,28 @@
 
   if (introModal) {
     introModal.addEventListener("keydown", handleConfiguratorIntroKeydown);
+  }
+
+  if (seatZoomButton) {
+    seatZoomButton.addEventListener("click", openSeatZoom);
+  }
+
+  seatZoomCloseControls.forEach((control) => {
+    control.addEventListener("click", () => {
+      closeSeatZoom();
+    });
+  });
+
+  if (seatZoomModal) {
+    seatZoomModal.addEventListener("keydown", handleSeatZoomKeydown);
+  }
+
+  if (seatZoomDialog) {
+    seatZoomDialog.addEventListener("click", (event) => {
+      if (event.target === seatZoomDialog) {
+        closeSeatZoom();
+      }
+    });
   }
 
   if (exitButton) {
