@@ -704,7 +704,7 @@
 }
 @media (max-width: 480px) and (min-height: 600px) {
   .configurator__workspace {
-    grid-template-rows: minmax(220px, 35dvh) minmax(0, 1fr);
+    grid-template-rows: minmax(240px, 38dvh) minmax(0, 1fr);
   }
 }
 
