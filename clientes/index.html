@@ -97,6 +97,78 @@
       </section>
 
       <!-- ==================================================
+           AVISO PREVIO AL CONFIGURADOR
+      =================================================== -->
+      <div class="configurator-intro" data-configurator-intro hidden>
+        <div
+          class="configurator-intro__backdrop"
+          data-action="close-configurator-intro"
+          aria-hidden="true"
+        ></div>
+
+        <section
+          class="configurator-intro__dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="configurator-intro-title"
+          aria-describedby="configurator-intro-description"
+          data-configurator-intro-dialog
+          tabindex="-1"
+        >
+          <button
+            class="configurator-intro__close"
+            type="button"
+            data-action="close-configurator-intro"
+            aria-label="Cerrar"
+          >
+            ×
+          </button>
+
+          <p class="configurator-intro__eyebrow">ANTES DE EMPEZAR</p>
+
+          <h2 id="configurator-intro-title">Creá tu idea</h2>
+
+          <div
+            class="configurator-intro__copy"
+            id="configurator-intro-description"
+          >
+            <p>
+              Los materiales y el estilo que elijas pueden influir en el
+              presupuesto.
+            </p>
+
+            <p>
+              El diseño, el tamaño y el aspecto final son orientativos y se
+              confirmarán antes de fabricar.
+            </p>
+
+            <p class="configurator-intro__reassurance">
+              Podés diseñar tu butaca y solicitar un presupuesto
+              <strong>sin compromiso de compra.</strong>
+            </p>
+          </div>
+
+          <div class="configurator-intro__actions">
+            <button
+              class="button configurator-intro__secondary"
+              type="button"
+              data-action="close-configurator-intro"
+            >
+              Ahora no
+            </button>
+
+            <button
+              class="button button--primary"
+              type="button"
+              data-action="confirm-configurator-intro"
+            >
+              Empezar a diseñar
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <!-- ==================================================
            CONFIGURADOR
            Oculto hasta pulsar "Empezar a diseñar"
       =================================================== -->

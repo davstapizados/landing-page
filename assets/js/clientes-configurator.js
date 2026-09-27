@@ -27,12 +27,23 @@
 
   let currentStepIndex = 0;
   let editingFromSummary = false;
+  let introPreviouslyFocused = null;
 
   const startButton = document.querySelector(
     '[data-action="start-configurator"]',
   );
 
   const configurator = document.querySelector("#configurador");
+  const introModal = document.querySelector("[data-configurator-intro]");
+  const introDialog = document.querySelector(
+    "[data-configurator-intro-dialog]",
+  );
+  const introCloseControls = document.querySelectorAll(
+    '[data-action="close-configurator-intro"]',
+  );
+  const introConfirmButton = document.querySelector(
+    '[data-action="confirm-configurator-intro"]',
+  );
 
   const siteHeader = document.querySelector(".clientes-header");
   const hero = document.querySelector(".clientes-hero");
@@ -183,6 +194,102 @@
       top: 0,
       behavior: "auto",
     });
+  };
+
+  const setIntroBackgroundInert = (isInert) => {
+    [siteHeader, hero, otherServices, footer].forEach((element) => {
+      if (element) {
+        element.inert = isInert;
+      }
+    });
+  };
+
+  const openConfiguratorIntro = () => {
+    if (!introModal || !introDialog) {
+      openConfigurator();
+      return;
+    }
+
+    if (!introModal.hidden) {
+      return;
+    }
+
+    introPreviouslyFocused = document.activeElement;
+
+    introModal.hidden = false;
+    document.body.classList.add("is-configurator-intro-open");
+    setIntroBackgroundInert(true);
+
+    window.requestAnimationFrame(() => {
+      introDialog.focus({ preventScroll: true });
+    });
+  };
+
+  const closeConfiguratorIntro = ({ restoreFocus = true } = {}) => {
+    if (!introModal || introModal.hidden) {
+      return;
+    }
+
+    introModal.hidden = true;
+    document.body.classList.remove("is-configurator-intro-open");
+    setIntroBackgroundInert(false);
+
+    const focusTarget =
+      introPreviouslyFocused instanceof HTMLElement
+        ? introPreviouslyFocused
+        : startButton;
+
+    introPreviouslyFocused = null;
+
+    if (restoreFocus) {
+      focusTarget?.focus({ preventScroll: true });
+    }
+  };
+
+  const confirmConfiguratorIntro = () => {
+    closeConfiguratorIntro({ restoreFocus: false });
+    openConfigurator();
+
+    styleButtons[0]?.focus({ preventScroll: true });
+  };
+
+  const handleConfiguratorIntroKeydown = (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeConfiguratorIntro();
+      return;
+    }
+
+    if (event.key !== "Tab" || !introDialog) {
+      return;
+    }
+
+    const focusableElements = Array.from(
+      introDialog.querySelectorAll("button:not([disabled])"),
+    ).filter((element) => element.offsetParent !== null);
+
+    if (focusableElements.length === 0) {
+      event.preventDefault();
+      return;
+    }
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    const currentIndex = focusableElements.indexOf(document.activeElement);
+
+    if (event.shiftKey && currentIndex <= 0) {
+      event.preventDefault();
+      lastElement.focus();
+      return;
+    }
+
+    if (
+      !event.shiftKey &&
+      (currentIndex === -1 || currentIndex === focusableElements.length - 1)
+    ) {
+      event.preventDefault();
+      firstElement.focus();
+    }
   };
 
   const selectStyle = (button) => {
@@ -801,7 +908,21 @@
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
   };
 
-  startButton.addEventListener("click", openConfigurator);
+  startButton.addEventListener("click", openConfiguratorIntro);
+
+  introCloseControls.forEach((control) => {
+    control.addEventListener("click", () => {
+      closeConfiguratorIntro();
+    });
+  });
+
+  if (introConfirmButton) {
+    introConfirmButton.addEventListener("click", confirmConfiguratorIntro);
+  }
+
+  if (introModal) {
+    introModal.addEventListener("keydown", handleConfiguratorIntroKeydown);
+  }
 
   if (exitButton) {
     exitButton.addEventListener("click", closeConfigurator);
