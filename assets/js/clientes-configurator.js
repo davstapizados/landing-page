@@ -1,7 +1,7 @@
 "use strict";
 
 (() => {
-  const state = {
+  const INITIAL_CONFIGURATOR_STATE = Object.freeze({
     estilo: null,
     material: null,
 
@@ -18,7 +18,9 @@
     modelo: "",
     anio: "",
     version: "",
-  };
+  });
+
+  const state = { ...INITIAL_CONFIGURATOR_STATE };
 
   let currentStepIndex = 0;
   let editingFromSummary = false;
@@ -26,6 +28,8 @@
   let introPreviouslyFocused = null;
   let seatZoomPreviouslyFocused = null;
   let configuratorInertBeforeZoom = false;
+  let exitConfirmPreviouslyFocused = null;
+  let configuratorInertBeforeExitConfirm = false;
 
   const startButton = document.querySelector(
     '[data-action="start-configurator"]',
@@ -78,6 +82,23 @@
   const seatZoomMount = document.querySelector("[data-seat-zoom-mount]");
   const seatZoomCloseControls = document.querySelectorAll(
     '[data-action="close-seat-zoom"]',
+  );
+  const configuratorControls = document.querySelector(
+    ".configurator__controls",
+  );
+
+  const exitConfirmModal = document.querySelector("[data-exit-confirm]");
+  const exitConfirmDialog = document.querySelector(
+    "[data-exit-confirm-dialog]",
+  );
+  const exitConfirmCancelControls = document.querySelectorAll(
+    '[data-action="cancel-exit"]',
+  );
+  const exitConfirmButton = document.querySelector(
+    '[data-action="confirm-exit"]',
+  );
+  const exitConfirmInitialFocus = document.querySelector(
+    "[data-exit-confirm-initial-focus]",
   );
   const miniScrollAfterSelection = (button) => {
     if (!window.matchMedia("(max-width: 820px)").matches) {
@@ -349,6 +370,135 @@
     }
   };
 
+  const getExitConfirmFocusableElements = () => {
+    if (!exitConfirmDialog) {
+      return [];
+    }
+
+    return Array.from(
+      exitConfirmDialog.querySelectorAll(
+        [
+          "button:not([disabled])",
+          "a[href]",
+          "input:not([disabled])",
+          "select:not([disabled])",
+          "textarea:not([disabled])",
+          '[tabindex]:not([tabindex="-1"])',
+        ].join(", "),
+      ),
+    ).filter(
+      (element) =>
+        element instanceof HTMLElement && element.offsetParent !== null,
+    );
+  };
+
+  const openExitConfirmation = () => {
+    if (
+      !exitConfirmModal ||
+      !exitConfirmDialog ||
+      !exitConfirmModal.hidden ||
+      configurator.hidden ||
+      (introModal && !introModal.hidden) ||
+      (seatZoomModal && !seatZoomModal.hidden)
+    ) {
+      return;
+    }
+
+    const activeElement = document.activeElement;
+
+    exitConfirmPreviouslyFocused =
+      activeElement instanceof HTMLElement &&
+      configurator.contains(activeElement)
+        ? activeElement
+        : exitButton;
+
+    configuratorInertBeforeExitConfirm = configurator.inert;
+    configurator.inert = true;
+
+    exitConfirmModal.hidden = false;
+    document.body.classList.add("is-exit-confirm-open");
+    exitButton?.setAttribute("aria-expanded", "true");
+
+    window.requestAnimationFrame(() => {
+      const focusTarget =
+        exitConfirmInitialFocus ||
+        getExitConfirmFocusableElements()[0] ||
+        exitConfirmDialog;
+
+      focusTarget.focus({ preventScroll: true });
+    });
+  };
+
+  const closeExitConfirmation = ({ restoreFocus = true } = {}) => {
+    if (!exitConfirmModal || exitConfirmModal.hidden) {
+      return;
+    }
+
+    const focusTarget =
+      exitConfirmPreviouslyFocused instanceof HTMLElement &&
+      exitConfirmPreviouslyFocused.isConnected &&
+      !configurator.hidden
+        ? exitConfirmPreviouslyFocused
+        : exitButton;
+
+    exitConfirmModal.hidden = true;
+    document.body.classList.remove("is-exit-confirm-open");
+    exitButton?.setAttribute("aria-expanded", "false");
+
+    configurator.inert = configuratorInertBeforeExitConfirm;
+    configuratorInertBeforeExitConfirm = false;
+    exitConfirmPreviouslyFocused = null;
+
+    if (restoreFocus) {
+      window.requestAnimationFrame(() => {
+        focusTarget?.focus({ preventScroll: true });
+      });
+    }
+  };
+
+  const handleExitConfirmationKeydown = (event) => {
+    if (!exitConfirmModal || exitConfirmModal.hidden || !exitConfirmDialog) {
+      return;
+    }
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      event.stopPropagation();
+      closeExitConfirmation();
+      return;
+    }
+
+    if (event.key !== "Tab") {
+      return;
+    }
+
+    const focusableElements = getExitConfirmFocusableElements();
+
+    if (focusableElements.length === 0) {
+      event.preventDefault();
+      exitConfirmDialog.focus({ preventScroll: true });
+      return;
+    }
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    const currentIndex = focusableElements.indexOf(document.activeElement);
+
+    if (event.shiftKey && currentIndex <= 0) {
+      event.preventDefault();
+      lastElement.focus({ preventScroll: true });
+      return;
+    }
+
+    if (
+      !event.shiftKey &&
+      (currentIndex === -1 || currentIndex === focusableElements.length - 1)
+    ) {
+      event.preventDefault();
+      firstElement.focus({ preventScroll: true });
+    }
+  };
+
   const openConfigurator = () => {
     siteHeader.hidden = true;
     hero.hidden = true;
@@ -364,6 +514,7 @@
   };
 
   const closeConfigurator = () => {
+    closeExitConfirmation({ restoreFocus: false });
     closeSeatZoom({ restoreFocus: false });
 
     configurator.hidden = true;
@@ -807,6 +958,72 @@
     updateNavigationState();
   };
 
+  const resetConfigurator = () => {
+    closeSeatZoom({ restoreFocus: false });
+
+    Object.assign(state, INITIAL_CONFIGURATOR_STATE);
+
+    [
+      styleButtons,
+      materialButtons,
+      colorButtons,
+      designButtons,
+      extraButtons,
+    ].forEach((buttonGroup) => {
+      buttonGroup.forEach((button) => {
+        button.setAttribute("aria-pressed", "false");
+      });
+    });
+
+    vehicleInputs.forEach((input) => {
+      input.value = "";
+    });
+
+    if (bordadoNote) {
+      bordadoNote.hidden = true;
+    }
+
+    editingFromSummary = false;
+    vehicleStateBeforeEdit = null;
+    introPreviouslyFocused = null;
+
+    if (nextButton) {
+      nextButton.textContent = "Continuar";
+    }
+
+    if (summaryDesign) {
+      summaryDesign.textContent = "—";
+    }
+
+    if (summaryVehicle) {
+      summaryVehicle.textContent = "—";
+    }
+
+    seatZoomMount?.replaceChildren();
+    seatZoomButton?.setAttribute("aria-expanded", "false");
+    seatZoomPreviouslyFocused = null;
+    configuratorInertBeforeZoom = false;
+    document.body.classList.remove("is-seat-zoom-open");
+
+    updateSeatPreview();
+
+    steps.forEach((step) => {
+      step.scrollTop = 0;
+    });
+
+    if (configuratorControls) {
+      configuratorControls.scrollTop = 0;
+    }
+
+    showStep(0);
+  };
+
+  const confirmConfiguratorExit = () => {
+    closeExitConfirmation({ restoreFocus: false });
+    resetConfigurator();
+    closeConfigurator();
+  };
+
   const goToNextStep = () => {
     if (editingFromSummary) {
       const summaryIndex = steps.findIndex(
@@ -971,7 +1188,21 @@
   }
 
   if (exitButton) {
-    exitButton.addEventListener("click", closeConfigurator);
+    exitButton.addEventListener("click", openExitConfirmation);
+  }
+
+  exitConfirmCancelControls.forEach((control) => {
+    control.addEventListener("click", () => {
+      closeExitConfirmation();
+    });
+  });
+
+  if (exitConfirmButton) {
+    exitConfirmButton.addEventListener("click", confirmConfiguratorExit);
+  }
+
+  if (exitConfirmModal) {
+    exitConfirmModal.addEventListener("keydown", handleExitConfirmationKeydown);
   }
 
   styleButtons.forEach((button) => {

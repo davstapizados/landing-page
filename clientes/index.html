@@ -187,6 +187,9 @@
             class="configurator__exit"
             type="button"
             data-action="exit-configurator"
+            aria-haspopup="dialog"
+            aria-controls="exit-confirm"
+            aria-expanded="false"
           >
             Salir
           </button>
@@ -390,11 +393,6 @@
             >
               <p class="configurator-step__counter">MATERIAL 2 DE 7</p>
               <h3 id="step-material-title">Elegí el material</h3>
-
-              <p>
-                El material influye en el presupuesto final. El estilo no
-                determina el precio.
-              </p>
 
               <div class="configurator-options">
                 <button
@@ -993,6 +991,52 @@
             data-seat-zoom-mount
             aria-hidden="true"
           ></div>
+        </section>
+      </div>
+
+      <div class="exit-confirm" id="exit-confirm" data-exit-confirm hidden>
+        <div
+          class="exit-confirm__backdrop"
+          data-action="cancel-exit"
+          aria-hidden="true"
+        ></div>
+
+        <section
+          class="exit-confirm__dialog"
+          role="alertdialog"
+          aria-modal="true"
+          aria-labelledby="exit-confirm-title"
+          aria-describedby="exit-confirm-description"
+          data-exit-confirm-dialog
+          tabindex="-1"
+        >
+          <p class="exit-confirm__eyebrow">TU DISEÑO</p>
+
+          <h2 id="exit-confirm-title">¿Querés salir?</h2>
+
+          <p id="exit-confirm-description">
+            Si salís ahora, se perderán todas las elecciones y los datos de tu
+            diseño.
+          </p>
+
+          <div class="exit-confirm__actions">
+            <button
+              class="button button--primary"
+              type="button"
+              data-action="cancel-exit"
+              data-exit-confirm-initial-focus
+            >
+              Seguir diseñando
+            </button>
+
+            <button
+              class="button exit-confirm__danger"
+              type="button"
+              data-action="confirm-exit"
+            >
+              Salir y borrar diseño
+            </button>
+          </div>
         </section>
       </div>
 

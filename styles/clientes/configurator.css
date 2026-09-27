@@ -314,6 +314,10 @@
   margin-top: 24px;
 }
 
+.configurator-step[data-step="material"] .configurator-options {
+  margin-top: 24px;
+}
+
 .configurator-step[data-step="style"] .configurator-option {
   min-height: 150px;
   justify-content: flex-end;
@@ -1434,6 +1438,132 @@
 @media (prefers-reduced-motion: reduce) {
   .seat-preview__zoom {
     transition: none;
+  }
+}
+/* ---------------------------------------------------------
+   Confirmación para salir del configurador
+   --------------------------------------------------------- */
+
+.clientes-page.is-exit-confirm-open {
+  overflow: hidden;
+}
+
+.exit-confirm[hidden] {
+  display: none;
+}
+
+.exit-confirm {
+  position: fixed;
+  inset: 0;
+  z-index: 2200;
+
+  display: grid;
+  place-items: center;
+
+  padding: max(12px, env(safe-area-inset-top))
+    max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom))
+    max(12px, env(safe-area-inset-left));
+}
+
+.exit-confirm__backdrop {
+  position: absolute;
+  inset: 0;
+
+  background: rgba(8, 8, 8, 0.68);
+
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.exit-confirm__dialog {
+  position: relative;
+  z-index: 1;
+
+  width: min(100%, 480px);
+  max-height: calc(100dvh - 40px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  padding: 32px;
+
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 24px;
+
+  background: #ffffff;
+  color: #111111;
+
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.34);
+  outline: none;
+}
+
+.exit-confirm__eyebrow {
+  margin: 0 0 10px;
+
+  color: #d71920;
+
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.exit-confirm__dialog h2 {
+  margin: 0;
+
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.exit-confirm__dialog > p:not(.exit-confirm__eyebrow) {
+  margin: 16px 0 0;
+
+  color: #555555;
+
+  line-height: 1.55;
+}
+
+.exit-confirm__actions {
+  margin-top: 28px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.exit-confirm__actions .button {
+  width: 100%;
+  min-height: 48px;
+}
+
+.exit-confirm__danger {
+  border: 1px solid #d71920;
+  background: #ffffff;
+  color: #c5161c;
+}
+
+.exit-confirm__danger:hover {
+  background: #fff3f3;
+}
+
+.exit-confirm__actions .button:focus-visible {
+  outline: 3px solid #d71920;
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .exit-confirm__dialog {
+    width: 100%;
+    max-height: calc(100dvh - 24px);
+
+    padding: 26px 20px 20px;
+
+    border-radius: 20px;
+  }
+
+  .exit-confirm__actions {
+    margin-top: 22px;
+
+    grid-template-columns: 1fr;
   }
 }
 
