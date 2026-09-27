@@ -14,11 +14,6 @@
     bordado: false,
     vivos: false,
 
-    asientos: true,
-    piso: false,
-    apoyabrazos: false,
-    volante: false,
-
     marca: "",
     modelo: "",
     anio: "",
@@ -27,6 +22,7 @@
 
   let currentStepIndex = 0;
   let editingFromSummary = false;
+  let vehicleStateBeforeEdit = null;
   let introPreviouslyFocused = null;
 
   const startButton = document.querySelector(
@@ -69,9 +65,7 @@
   const colorButtons = document.querySelectorAll("[data-color-group]");
   const designButtons = document.querySelectorAll("[data-design]");
   const extraButtons = document.querySelectorAll("[data-extra]");
-  const renewButtons = document.querySelectorAll("[data-renew]");
   const vehicleInputs = document.querySelectorAll("[data-vehicle]");
-  const photoGuides = document.querySelectorAll("[data-photo-for]");
   const seatRender = document.querySelector("[data-seat-render]");
   const bordadoNote = document.querySelector("[data-bordado-note]");
   const miniScrollAfterSelection = (button) => {
@@ -107,14 +101,47 @@
   };
 
   const summaryDesign = document.querySelector("[data-summary-design]");
-  const summaryWork = document.querySelector("[data-summary-work]");
   const summaryVehicle = document.querySelector("[data-summary-vehicle]");
-  const summaryPhotos = document.querySelector("[data-summary-photos]");
   const editButtons = document.querySelectorAll("[data-edit-step]");
-  const configuratorProgress = document.querySelector(
-    "[data-configurator-progress]",
+  const progressBar = document.querySelector("[data-configurator-progressbar]");
+  const progressSegments = document.querySelectorAll(
+    ".configurator-progress__segment",
   );
-  const configuratorTitle = document.querySelector("[data-configurator-title]");
+
+  const focusVisibleConfiguratorStep = () => {
+    const activeStep = steps[currentStepIndex];
+
+    if (!activeStep) {
+      exitButton?.focus({ preventScroll: true });
+      return;
+    }
+
+    const firstControl = activeStep.querySelector(
+      [
+        "button:not([disabled])",
+        "input:not([disabled])",
+        "select:not([disabled])",
+        "textarea:not([disabled])",
+        "a[href]",
+        '[tabindex]:not([tabindex="-1"])',
+      ].join(", "),
+    );
+
+    if (firstControl instanceof HTMLElement) {
+      firstControl.focus({ preventScroll: true });
+      return;
+    }
+
+    const title = activeStep.querySelector("h3");
+
+    if (title instanceof HTMLElement) {
+      title.setAttribute("tabindex", "-1");
+      title.focus({ preventScroll: true });
+      return;
+    }
+
+    exitButton?.focus({ preventScroll: true });
+  };
 
   if (!startButton || !configurator) {
     return;
@@ -174,8 +201,6 @@
 
     configurator.hidden = false;
 
-    updateRenewButtons();
-
     window.scrollTo({
       top: 0,
       behavior: "auto",
@@ -193,6 +218,10 @@
     window.scrollTo({
       top: 0,
       behavior: "auto",
+    });
+
+    window.requestAnimationFrame(() => {
+      startButton.focus({ preventScroll: true });
     });
   };
 
@@ -250,7 +279,7 @@
     closeConfiguratorIntro({ restoreFocus: false });
     openConfigurator();
 
-    styleButtons[0]?.focus({ preventScroll: true });
+    window.requestAnimationFrame(focusVisibleConfiguratorStep);
   };
 
   const handleConfiguratorIntroKeydown = (event) => {
@@ -410,52 +439,6 @@
     updateSeatPreview();
   };
 
-  const updateRenewButtons = () => {
-    renewButtons.forEach((button) => {
-      const renewType = button.dataset.renew;
-
-      const isSelected =
-        renewType === "asientos"
-          ? state.asientos
-          : renewType === "piso"
-            ? state.piso
-            : renewType === "apoyabrazos"
-              ? state.apoyabrazos
-              : renewType === "volante"
-                ? state.volante
-                : false;
-
-      button.setAttribute("aria-pressed", String(isSelected));
-    });
-  };
-
-  const toggleRenew = (button) => {
-    const renewType = button.dataset.renew;
-
-    if (!renewType) {
-      return;
-    }
-
-    if (renewType === "asientos") {
-      return;
-    }
-
-    if (renewType === "piso") {
-      state.piso = !state.piso;
-    }
-
-    if (renewType === "apoyabrazos") {
-      state.apoyabrazos = !state.apoyabrazos;
-    }
-
-    if (renewType === "volante") {
-      state.volante = !state.volante;
-    }
-
-    updateRenewButtons();
-    updateNavigationState();
-  };
-
   const normalizeText = (value) => {
     return value.trim().replace(/\s+/g, " ");
   };
@@ -498,80 +481,29 @@
     );
   };
 
-  const isPhotoTypeSelected = (type) => {
-    if (type === "asientos") {
-      return state.asientos;
+  const captureVehicleState = () => ({
+    marca: state.marca,
+    modelo: state.modelo,
+    anio: state.anio,
+    version: state.version,
+  });
+
+  const restoreVehicleStateBeforeEdit = () => {
+    if (!vehicleStateBeforeEdit) {
+      return;
     }
 
-    if (type === "piso") {
-      return state.piso;
-    }
+    Object.assign(state, vehicleStateBeforeEdit);
 
-    if (type === "apoyabrazos") {
-      return state.apoyabrazos;
-    }
+    vehicleInputs.forEach((input) => {
+      const field = input.dataset.vehicle;
 
-    if (type === "volante") {
-      return state.volante;
-    }
-
-    return false;
-  };
-
-  const updatePhotoGuides = () => {
-    photoGuides.forEach((guide) => {
-      const type = guide.dataset.photoFor;
-
-      guide.hidden = !isPhotoTypeSelected(type);
+      if (field && field in vehicleStateBeforeEdit) {
+        input.value = vehicleStateBeforeEdit[field];
+      }
     });
-  };
 
-  const buildWorkSummary = () => {
-    const items = [];
-
-    if (state.asientos) {
-      items.push("Juego completo de asientos");
-    }
-
-    if (state.piso) {
-      items.push("Piso");
-    }
-
-    if (state.apoyabrazos) {
-      items.push("Apoyabrazos");
-    }
-
-    if (state.volante) {
-      items.push("Volante");
-    }
-
-    return items.join(" · ");
-  };
-
-  const buildPhotoSummary = () => {
-    const items = [];
-
-    if (state.asientos) {
-      items.push(
-        "Butacas delanteras",
-        "Asiento trasero",
-        "Detalles particulares",
-      );
-    }
-
-    if (state.piso) {
-      items.push("Piso delantero", "Piso trasero");
-    }
-
-    if (state.apoyabrazos) {
-      items.push("Apoyabrazos");
-    }
-
-    if (state.volante) {
-      items.push("Volante completo", "Detalle del volante");
-    }
-
-    return items.join(" · ");
+    vehicleStateBeforeEdit = null;
   };
 
   const updateSummary = () => {
@@ -595,10 +527,6 @@
       summaryDesign.textContent = details.join(" · ");
     }
 
-    if (summaryWork) {
-      summaryWork.textContent = buildWorkSummary();
-    }
-
     if (summaryVehicle) {
       const vehicleParts = [state.marca, state.modelo, state.anio];
 
@@ -607,10 +535,6 @@
       }
 
       summaryVehicle.textContent = vehicleParts.join(" · ");
-    }
-
-    if (summaryPhotos) {
-      summaryPhotos.textContent = buildPhotoSummary();
     }
   };
 
@@ -623,60 +547,15 @@
       return;
     }
 
+    const stepName = steps[currentStepIndex]?.dataset.step;
+
     nextButton.hidden = false;
 
     if (whatsappButton) {
       whatsappButton.hidden = true;
     }
 
-    if (currentStepIndex === 0) {
-      nextButton.disabled = !state.estilo;
-      return;
-    }
-
-    if (currentStepIndex === 1) {
-      nextButton.disabled = !state.material;
-      return;
-    }
-
-    if (currentStepIndex === 2) {
-      nextButton.disabled = !(
-        state.colorPrincipal &&
-        state.colorLateral &&
-        state.colorCentro &&
-        state.colorCostura
-      );
-
-      return;
-    }
-
-    if (currentStepIndex === 3) {
-      nextButton.disabled = !state.diseno;
-      return;
-    }
-
-    if (currentStepIndex === 4) {
-      nextButton.disabled = !(
-        state.asientos ||
-        state.piso ||
-        state.apoyabrazos ||
-        state.volante
-      );
-
-      return;
-    }
-
-    if (currentStepIndex === 5) {
-      nextButton.disabled = !isVehicleValid();
-      return;
-    }
-
-    if (currentStepIndex === 6) {
-      nextButton.disabled = false;
-      return;
-    }
-
-    if (currentStepIndex === 7) {
+    if (stepName === "summary") {
       nextButton.hidden = true;
 
       if (whatsappButton) {
@@ -686,64 +565,69 @@
       return;
     }
 
-    nextButton.disabled = true;
-  };
-  const updateConfiguratorHeader = (stepName) => {
-    const headerMap = {
-      style: {
-        progress: "1 DE 5 · DISEÑO 1/4",
-        title: "Creá tu idea",
-      },
-
-      material: {
-        progress: "1 DE 5 · DISEÑO 2/4",
-        title: "Creá tu idea",
-      },
-
-      colors: {
-        progress: "1 DE 5 · DISEÑO 3/4",
-        title: "Creá tu idea",
-      },
-
-      details: {
-        progress: "1 DE 5 · DISEÑO 4/4",
-        title: "Creá tu idea",
-      },
-
-      renew: {
-        progress: "2 DE 5 · QUÉ RENOVAR",
-        title: "Elegí qué renovar",
-      },
-
-      vehicle: {
-        progress: "3 DE 5 · TU AUTO",
-        title: "Tu auto",
-      },
-
-      photos: {
-        progress: "4 DE 5 · FOTOS",
-        title: "Prepará las fotos",
-      },
-
-      summary: {
-        progress: "5 DE 5 · TU IDEA",
-        title: "Tu idea",
-      },
-    };
-
-    const header = headerMap[stepName];
-
-    if (!header) {
+    if (stepName === "style") {
+      nextButton.disabled = !state.estilo;
       return;
     }
 
-    if (configuratorProgress) {
-      configuratorProgress.textContent = header.progress;
+    if (stepName === "material") {
+      nextButton.disabled = !state.material;
+      return;
     }
 
-    if (configuratorTitle) {
-      configuratorTitle.textContent = header.title;
+    if (stepName === "colors") {
+      nextButton.disabled = !(
+        state.colorPrincipal &&
+        state.colorLateral &&
+        state.colorCentro &&
+        state.colorCostura
+      );
+      return;
     }
+
+    if (stepName === "details") {
+      nextButton.disabled = !state.diseno;
+      return;
+    }
+
+    if (stepName === "vehicle") {
+      nextButton.disabled = !isVehicleValid();
+      return;
+    }
+
+    if (stepName === "photos") {
+      nextButton.disabled = false;
+      return;
+    }
+
+    nextButton.disabled = true;
+  };
+  const progressLabels = {
+    style: "Estilo",
+    material: "Material",
+    colors: "Colores",
+    details: "Detalles",
+    vehicle: "Tu auto",
+    photos: "Fotos",
+    summary: "Tu idea",
+  };
+
+  const updateStepProgress = (index) => {
+    const currentStep = index + 1;
+    const stepName = steps[index]?.dataset.step;
+    const stepLabel = progressLabels[stepName] ?? "Etapa";
+
+    if (progressBar) {
+      progressBar.setAttribute("aria-valuenow", String(currentStep));
+      progressBar.setAttribute(
+        "aria-valuetext",
+        `${stepLabel}, paso ${currentStep} de 7`,
+      );
+    }
+
+    progressSegments.forEach((segment, segmentIndex) => {
+      segment.classList.toggle("is-reached", segmentIndex <= index);
+    });
   };
 
   const showStep = (index) => {
@@ -757,11 +641,7 @@
     currentStepIndex = index;
 
     const stepName = steps[index]?.dataset.step;
-    updateConfiguratorHeader(stepName);
-
-    if (stepName === "photos") {
-      updatePhotoGuides();
-    }
+    updateStepProgress(index);
 
     if (stepName === "summary") {
       updateSummary();
@@ -780,6 +660,7 @@
         return;
       }
 
+      vehicleStateBeforeEdit = null;
       editingFromSummary = false;
 
       showStep(summaryIndex);
@@ -808,6 +689,7 @@
         return;
       }
 
+      restoreVehicleStateBeforeEdit();
       editingFromSummary = false;
 
       showStep(summaryIndex);
@@ -835,6 +717,9 @@
       return;
     }
 
+    vehicleStateBeforeEdit =
+      stepName === "vehicle" ? captureVehicleState() : null;
+
     editingFromSummary = true;
 
     showStep(targetIndex);
@@ -847,24 +732,6 @@
   const WHATSAPP_NUMBER = "5491132016031";
 
   const buildWhatsAppMessage = () => {
-    const trabajos = [];
-
-    if (state.asientos) {
-      trabajos.push("Juego completo de asientos");
-    }
-
-    if (state.piso) {
-      trabajos.push("Piso");
-    }
-
-    if (state.apoyabrazos) {
-      trabajos.push("Apoyabrazos");
-    }
-
-    if (state.volante) {
-      trabajos.push("Volante");
-    }
-
     const messageLines = [
       "Hola, quiero solicitar un presupuesto.",
       "",
@@ -881,7 +748,7 @@
     messageLines.push(
       "",
       "TRABAJO SOLICITADO",
-      ...trabajos,
+      "Juego completo de asientos",
       "",
       "DISEÑO DE LAS FUNDAS",
       `Estilo: ${labels.estilos[state.estilo] || state.estilo}`,
@@ -963,13 +830,6 @@
     });
   });
 
-  renewButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      toggleRenew(button);
-      miniScrollAfterSelection(button);
-    });
-  });
-
   vehicleInputs.forEach((input) => {
     input.addEventListener("input", () => {
       updateVehicleState(input);
@@ -1016,6 +876,5 @@
     previousButton.addEventListener("click", goToPreviousStep);
   }
 
-  updateRenewButtons();
   showStep(0);
 })();

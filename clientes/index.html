@@ -180,13 +180,7 @@
       >
         <header class="configurator__header">
           <div>
-            <p class="configurator__progress" data-configurator-progress>
-              Diseñá · 1 de 4
-            </p>
-
-            <h2 id="configurator-title" data-configurator-title>
-              Creá tu idea
-            </h2>
+            <h2 id="configurator-title">Creá tu idea</h2>
           </div>
 
           <button
@@ -283,18 +277,53 @@
                PANEL VARIABLE
           =============================================== -->
           <div class="configurator__controls">
+            <div
+              class="configurator-progress"
+              data-configurator-progressbar
+              role="progressbar"
+              aria-label="Progreso del configurador"
+              aria-valuemin="1"
+              aria-valuemax="7"
+              aria-valuenow="1"
+              aria-valuetext="Estilo, paso 1 de 7"
+            >
+              <span
+                class="configurator-progress__segment is-reached"
+                aria-hidden="true"
+              ></span>
+              <span
+                class="configurator-progress__segment"
+                aria-hidden="true"
+              ></span>
+              <span
+                class="configurator-progress__segment"
+                aria-hidden="true"
+              ></span>
+              <span
+                class="configurator-progress__segment"
+                aria-hidden="true"
+              ></span>
+              <span
+                class="configurator-progress__segment"
+                aria-hidden="true"
+              ></span>
+              <span
+                class="configurator-progress__segment"
+                aria-hidden="true"
+              ></span>
+              <span
+                class="configurator-progress__segment"
+                aria-hidden="true"
+              ></span>
+            </div>
             <!-- PASO 1: ESTILO -->
             <section
               class="configurator-step is-active"
               data-step="style"
               aria-labelledby="step-style-title"
             >
-              <h3 id="step-style-title">Elegí un punto de partida</h3>
-
-              <p>
-                Después vas a poder cambiar el material, los colores y los
-                detalles.
-              </p>
+              <p class="configurator-step__counter">ESTILO 1 DE 7</p>
+              <h3 id="step-style-title">Elegí tu estilo</h3>
 
               <div class="configurator-options">
                 <button
@@ -344,6 +373,7 @@
               aria-labelledby="step-material-title"
               hidden
             >
+              <p class="configurator-step__counter">MATERIAL 2 DE 7</p>
               <h3 id="step-material-title">Elegí el material</h3>
 
               <p>
@@ -381,6 +411,7 @@
               aria-labelledby="step-colors-title"
               hidden
             >
+              <p class="configurator-step__counter">COLORES 3 DE 7</p>
               <h3 id="step-colors-title">Elegí tu combinación</h3>
 
               <p>Vas a ver cómo cambia la butaca mientras elegís.</p>
@@ -588,6 +619,7 @@
               aria-labelledby="step-details-title"
               hidden
             >
+              <p class="configurator-step__counter">DETALLES 4 DE 7</p>
               <h3 id="step-details-title">Dale el toque final</h3>
 
               <p>
@@ -678,69 +710,11 @@
 
             <section
               class="configurator-step"
-              data-step="renew"
-              aria-labelledby="step-renew-title"
-              hidden
-            >
-              <p class="configurator-step__counter">Qué renovar</p>
-
-              <h3 id="step-renew-title">
-                ¿Qué partes del interior querés renovar?
-              </h3>
-
-              <p>Podés elegir una o varias opciones.</p>
-
-              <div
-                class="renew-grid"
-                role="group"
-                aria-label="Partes del interior a renovar"
-              >
-                <button
-                  type="button"
-                  class="renew-option"
-                  data-renew="asientos"
-                  aria-pressed="false"
-                >
-                  <strong>Juego completo de asientos</strong>
-                  <span>Delanteros + traseros</span>
-                </button>
-
-                <button
-                  type="button"
-                  class="renew-option"
-                  data-renew="piso"
-                  aria-pressed="false"
-                >
-                  <strong>Piso</strong>
-                </button>
-
-                <button
-                  type="button"
-                  class="renew-option"
-                  data-renew="apoyabrazos"
-                  aria-pressed="false"
-                >
-                  <strong>Apoyabrazos</strong>
-                </button>
-
-                <button
-                  type="button"
-                  class="renew-option"
-                  data-renew="volante"
-                  aria-pressed="false"
-                >
-                  <strong>Volante</strong>
-                </button>
-              </div>
-            </section>
-
-            <section
-              class="configurator-step"
               data-step="vehicle"
               aria-labelledby="step-vehicle-title"
               hidden
             >
-              <p class="configurator-step__counter">Tu auto</p>
+              <p class="configurator-step__counter">TU AUTO 5 DE 7</p>
 
               <h3 id="step-vehicle-title">Contanos qué auto tenés</h3>
 
@@ -821,7 +795,7 @@
               aria-labelledby="step-photos-title"
               hidden
             >
-              <p class="configurator-step__counter">Fotos</p>
+              <p class="configurator-step__counter">FOTOS 6 DE 7</p>
 
               <h3 id="step-photos-title">Prepará estas fotos</h3>
 
@@ -830,51 +804,23 @@
                 vehículo.
               </p>
 
-              <div class="photos-grid" data-photos-list>
-                <article class="photo-guide" data-photo-for="asientos" hidden>
+              <div class="photos-grid">
+                <article class="photo-guide">
                   <strong>Butacas delanteras</strong>
                   <span>Que se vean completas.</span>
                 </article>
 
-                <article class="photo-guide" data-photo-for="asientos" hidden>
+                <article class="photo-guide">
                   <strong>Asiento trasero</strong>
                   <span>Que se vean asiento, respaldo y apoyacabezas.</span>
                 </article>
 
-                <article class="photo-guide" data-photo-for="asientos" hidden>
+                <article class="photo-guide">
                   <strong>Detalles particulares</strong>
                   <span
-                    >Apoyabrazos, divisiones u otros elementos especiales.</span
+                    >Costuras, divisiones u otros elementos especiales de los
+                    asientos.</span
                   >
-                </article>
-
-                <article class="photo-guide" data-photo-for="piso" hidden>
-                  <strong>Piso delantero</strong>
-                  <span>Vista general del sector delantero.</span>
-                </article>
-
-                <article class="photo-guide" data-photo-for="piso" hidden>
-                  <strong>Piso trasero</strong>
-                  <span>Vista general del sector trasero.</span>
-                </article>
-
-                <article
-                  class="photo-guide"
-                  data-photo-for="apoyabrazos"
-                  hidden
-                >
-                  <strong>Apoyabrazos</strong>
-                  <span>Foto completa y detalle del estado actual.</span>
-                </article>
-
-                <article class="photo-guide" data-photo-for="volante" hidden>
-                  <strong>Volante completo</strong>
-                  <span>Una foto de frente.</span>
-                </article>
-
-                <article class="photo-guide" data-photo-for="volante" hidden>
-                  <strong>Detalle del volante</strong>
-                  <span>Acercate a las zonas desgastadas o dañadas.</span>
                 </article>
               </div>
 
@@ -890,7 +836,7 @@
               aria-labelledby="step-summary-title"
               hidden
             >
-              <p class="configurator-step__counter">Tu idea</p>
+              <p class="configurator-step__counter">TU IDEA 7 DE 7</p>
 
               <h3 id="step-summary-title">Así queda tu idea</h3>
 
@@ -941,22 +887,6 @@
 
                 <section class="summary-card">
                   <div class="summary-card__header">
-                    <h4>Trabajo solicitado</h4>
-
-                    <button
-                      type="button"
-                      class="summary-edit"
-                      data-edit-step="renew"
-                    >
-                      Editar
-                    </button>
-                  </div>
-
-                  <p data-summary-work>—</p>
-                </section>
-
-                <section class="summary-card">
-                  <div class="summary-card__header">
                     <h4>Tu auto</h4>
 
                     <button
@@ -974,7 +904,9 @@
                 <section class="summary-card">
                   <h4>Fotos a adjuntar</h4>
 
-                  <p data-summary-photos>—</p>
+                  <p>
+                    Butacas delanteras, asiento trasero y detalles particulares.
+                  </p>
                 </section>
               </div>
 

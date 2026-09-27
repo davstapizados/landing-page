@@ -24,20 +24,9 @@
   border-bottom: 1px solid #d9d9d9;
 }
 
-.configurator__header h2,
-.configurator__header p {
+.configurator__header h2 {
   margin: 0;
-}
-
-.configurator__progress {
-  margin-bottom: 6px !important;
-
   color: #d71920;
-
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .configurator__exit {
@@ -196,9 +185,30 @@
   height: 100%;
 
   display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-rows: auto minmax(0, 1fr) auto;
 
   padding-block: 36px 24px;
+}
+
+.configurator-progress {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+
+  margin: 0 0 18px;
+}
+
+.configurator-progress__segment {
+  height: 3px;
+
+  border-radius: 999px;
+  background: #d9d9d9;
+
+  transition: background-color 180ms ease;
+}
+
+.configurator-progress__segment.is-reached {
+  background: #d71920;
 }
 
 .configurator-step {
@@ -252,6 +262,7 @@
 .configurator-step[data-step="style"] .configurator-options {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
+  margin-top: 24px;
 }
 
 .configurator-step[data-step="style"] .configurator-option {
@@ -586,63 +597,6 @@
 }
 
 /* ---------------------------------------------------------
-   Qué renovar
-   --------------------------------------------------------- */
-
-.renew-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.renew-option {
-  min-height: 82px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  gap: 6px;
-
-  padding: 12px;
-
-  border: 1px solid #d7d7d7;
-  border-radius: 16px;
-
-  background: #ffffff;
-  color: #111111;
-
-  text-align: left;
-  font: inherit;
-
-  cursor: pointer;
-
-  transition:
-    border-color 180ms ease,
-    background-color 180ms ease,
-    transform 180ms ease;
-}
-
-.renew-option:hover {
-  border-color: #999999;
-  transform: translateY(-1px);
-}
-
-.renew-option[aria-pressed="true"] {
-  border-color: #d71920;
-  background: #fff7f7;
-}
-
-.renew-option strong {
-  font-size: 1rem;
-}
-
-.renew-option span {
-  color: #666666;
-  font-size: 0.88rem;
-}
-
-/* ---------------------------------------------------------
    Animaciones
    --------------------------------------------------------- */
 
@@ -791,22 +745,6 @@
 }
 
 .configurator-step[data-step="colors"] .swatch-grid {
-  gap: 8px;
-}
-
-/* ---------------------------------------------------------
-   Ajuste específico: Qué renovar
-   --------------------------------------------------------- */
-
-.configurator-step[data-step="renew"] h3 {
-  font-size: clamp(1.9rem, 2.6vw, 2.7rem);
-}
-
-.configurator-step[data-step="renew"] > p:not(.configurator-step__counter) {
-  margin: 12px 0 16px;
-}
-
-.configurator-step[data-step="renew"] .renew-grid {
   gap: 8px;
 }
 
