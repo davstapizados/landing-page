@@ -1784,8 +1784,7 @@
     }
 
     .configurator:has(.vehicle-field input:focus) .configurator__navigation {
-      position: static;
-      margin-top: 8px;
+      display: none;
     }
 
     .configurator:has(.vehicle-field input:focus)
