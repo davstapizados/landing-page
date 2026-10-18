@@ -1767,3 +1767,30 @@
     animation: none;
   }
 }
+
+/* Ajuste para el teclado de iPhone en el paso Tu auto */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 820px) {
+    .configurator:has(.vehicle-field input:focus) .configurator__workspace {
+      grid-template-rows: minmax(0, 1fr);
+    }
+
+    .configurator:has(.vehicle-field input:focus) .configurator__visual {
+      display: none;
+    }
+
+    .configurator:has(.vehicle-field input:focus) .configurator__controls {
+      padding-top: 12px;
+    }
+
+    .configurator:has(.vehicle-field input:focus) .configurator__navigation {
+      position: static;
+      margin-top: 8px;
+    }
+
+    .configurator:has(.vehicle-field input:focus)
+      .configurator-step[data-step="vehicle"] {
+      scroll-padding-block: 12px;
+    }
+  }
+}
