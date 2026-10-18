@@ -132,6 +132,41 @@
     }, 120);
   };
 
+  let vehicleMiniScrollTimer = null;
+
+  const miniScrollAfterVehicleInput = (input) => {
+    if (
+      !window.matchMedia("(max-width: 820px)").matches ||
+      !input.value.trim()
+    ) {
+      return;
+    }
+
+    const activeStep = input.closest(".configurator-step");
+
+    if (!activeStep) {
+      return;
+    }
+
+    window.clearTimeout(vehicleMiniScrollTimer);
+
+    vehicleMiniScrollTimer = window.setTimeout(() => {
+      const remainingScroll =
+        activeStep.scrollHeight -
+        activeStep.clientHeight -
+        activeStep.scrollTop;
+
+      if (remainingScroll <= 0) {
+        return;
+      }
+
+      activeStep.scrollBy({
+        top: Math.min(76, remainingScroll),
+        behavior: "smooth",
+      });
+    }, 280);
+  };
+
   const summaryDesign = document.querySelector("[data-summary-design]");
   const summaryVehicle = document.querySelector("[data-summary-vehicle]");
   const editButtons = document.querySelectorAll("[data-edit-step]");
@@ -959,6 +994,9 @@
   };
 
   const resetConfigurator = () => {
+    window.clearTimeout(vehicleMiniScrollTimer);
+    vehicleMiniScrollTimer = null;
+
     closeSeatZoom({ restoreFocus: false });
 
     Object.assign(state, INITIAL_CONFIGURATOR_STATE);
@@ -1240,28 +1278,36 @@
     });
   });
 
-  vehicleInputs.forEach((input) => {
+  vehicleInputs.forEach((input, inputIndex) => {
     input.addEventListener("input", () => {
       updateVehicleState(input);
     });
-  });
-  const versionInput = document.querySelector('[data-vehicle="version"]');
 
-  if (versionInput) {
-    versionInput.addEventListener("keydown", (event) => {
+    input.addEventListener("change", () => {
+      miniScrollAfterVehicleInput(input);
+    });
+
+    input.addEventListener("keydown", (event) => {
       if (event.key !== "Enter") {
         return;
       }
 
       event.preventDefault();
+      updateVehicleState(input);
 
-      if (!isVehicleValid()) {
+      const nextInput = vehicleInputs[inputIndex + 1];
+
+      if (nextInput) {
+        miniScrollAfterVehicleInput(input);
+        nextInput.focus({ preventScroll: true });
         return;
       }
 
-      goToNextStep();
+      if (isVehicleValid()) {
+        goToNextStep();
+      }
     });
-  }
+  });
 
   editButtons.forEach((button) => {
     button.addEventListener("click", () => {
