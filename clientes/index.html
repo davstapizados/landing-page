@@ -27,6 +27,7 @@
 
     <!-- JavaScript exclusivo del configurador -->
     <script src="../assets/js/clientes-configurator.js" defer></script>
+    <script src="../assets/js/clientes-showcase.js" defer></script>
   </head>
 
   <body class="clientes-page">
@@ -38,22 +39,47 @@
          HEADER B2C
     =================================================== -->
     <header class="clientes-header">
-      <div class="clientes-header__inner">
+      <div class="clientes-showroom__header">
+        <span
+          class="clientes-showroom__header-balance"
+          aria-hidden="true"
+        ></span>
+
         <a
-          class="clientes-header__brand"
+          class="clientes-showroom__logo"
           href="../"
           aria-label="Davs Tapizados - Ir al inicio"
         >
-          DAVS TAPIZADOS
+          <img
+            src="../assets/logos/logo-davs-horizontal.svg"
+            alt="Davs Tapizados"
+          />
         </a>
 
-        <nav
-          class="clientes-header__actions"
-          aria-label="Navegación de clientes"
+        <button
+          class="clientes-showroom__menu-button"
+          type="button"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="clientes-menu"
+          data-showroom-menu-button
         >
-          <a href="../nuestros-trabajos/"> Nuestros trabajos </a>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
-          <a href="#otros-trabajos"> Otros trabajos </a>
+        <nav
+          class="clientes-showroom__menu"
+          id="clientes-menu"
+          aria-label="Navegación de clientes"
+          data-showroom-menu
+          hidden
+        >
+          <a href="../">Inicio</a>
+          <a href="#protectores-tablero">Tapetes para tableros</a>
+          <a href="#disena-tu-tapizado">Diseñá tu tapizado</a>
+          <a href="#otros-trabajos">Trabajos extras</a>
         </nav>
       </div>
     </header>
@@ -62,38 +88,180 @@
       <!-- ==================================================
            HERO
       =================================================== -->
-      <section class="clientes-hero" aria-labelledby="clientes-hero-title">
-        <div class="clientes-hero__content">
-          <p class="clientes-hero__eyebrow">DAVS TAPIZADOS</p>
+      <section
+        class="clientes-hero"
+        aria-label="Productos y configurador de Davs Tapizados"
+      >
+        <!-- Tapetes para tableros -->
+        <section
+          class="clientes-dashboard"
+          id="protectores-tablero"
+          aria-labelledby="clientes-hero-title"
+          aria-roledescription="carrusel"
+          data-dashboard-carousel
+        >
+          <div class="clientes-dashboard__viewport">
+            <div class="clientes-dashboard__track" data-dashboard-track>
+              <figure
+                class="clientes-dashboard__item is-active"
+                role="group"
+                aria-roledescription="diapositiva"
+                aria-label="1 de 4"
+                aria-hidden="false"
+                data-dashboard-slide
+              >
+                <img
+                  src="../assets/clientes/protectores/tapete-portada.png"
+                  alt="Tapete negro personalizado para tablero con detalles rojos"
+                />
+              </figure>
 
-          <h1 id="clientes-hero-title">
-            Renová el interior de tu auto a tu estilo.
-          </h1>
+              <figure
+                class="clientes-dashboard__item"
+                role="group"
+                aria-roledescription="diapositiva"
+                aria-label="2 de 4"
+                aria-hidden="true"
+                data-dashboard-slide
+              >
+                <img
+                  src="../assets/clientes/protectores/protector-gol.jpg"
+                  alt="Tapete personalizado para tablero de Volkswagen Gol"
+                />
+              </figure>
 
-          <p class="clientes-hero__description">
-            Explorá estilos, materiales, colores y detalles para crear una idea
-            de tus nuevas fundas. Después nos mostrás tu vehículo y te ayudamos
-            a llevarla a la realidad.
-          </p>
+              <figure
+                class="clientes-dashboard__item"
+                role="group"
+                aria-roledescription="diapositiva"
+                aria-label="3 de 4"
+                aria-hidden="true"
+                data-dashboard-slide
+              >
+                <img
+                  src="../assets/clientes/protectores/protector-bmw.jpg"
+                  alt="Tapete personalizado para tablero de BMW"
+                />
+              </figure>
 
-          <div class="clientes-hero__actions">
+              <figure
+                class="clientes-dashboard__item"
+                role="group"
+                aria-roledescription="diapositiva"
+                aria-label="4 de 4"
+                aria-hidden="true"
+                data-dashboard-slide
+              >
+                <img
+                  src="../assets/clientes/protectores/protector-montero.jpg"
+                  alt="Tapete personalizado para tablero de Mitsubishi Montero"
+                />
+              </figure>
+            </div>
+
+            <div class="clientes-dashboard__overlay">
+              <h1 id="clientes-hero-title">Tapetes para tableros</h1>
+
+              <p class="clientes-dashboard__description">
+                Protección y estilo para tu auto.
+              </p>
+
+              <a
+                class="clientes-showroom__button clientes-showroom__button--primary"
+                href="https://wa.me/5491132016031?text=Hola%2C%20quiero%20cotizar%20un%20tapete%20para%20tablero%20para%20mi%20auto."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Quiero cotizarlo
+                <span aria-hidden="true">›</span>
+              </a>
+            </div>
+
             <button
-              class="button button--primary"
+              class="clientes-dashboard__arrow clientes-dashboard__arrow--previous"
+              type="button"
+              aria-label="Ver tapete anterior"
+              data-dashboard-previous
+            >
+              ‹
+            </button>
+
+            <button
+              class="clientes-dashboard__arrow clientes-dashboard__arrow--next"
+              type="button"
+              aria-label="Ver siguiente tapete"
+              data-dashboard-next
+            >
+              ›
+            </button>
+
+            <div
+              class="clientes-dashboard__dots"
+              role="group"
+              aria-label="Elegir tapete"
+            >
+              <button
+                class="is-active"
+                type="button"
+                aria-label="Mostrar tapete 1"
+                aria-current="true"
+                data-dashboard-dot="0"
+              ></button>
+
+              <button
+                type="button"
+                aria-label="Mostrar tapete 2"
+                aria-current="false"
+                data-dashboard-dot="1"
+              ></button>
+
+              <button
+                type="button"
+                aria-label="Mostrar tapete 3"
+                aria-current="false"
+                data-dashboard-dot="2"
+              ></button>
+
+              <button
+                type="button"
+                aria-label="Mostrar tapete 4"
+                aria-current="false"
+                data-dashboard-dot="3"
+              ></button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Acceso al configurador existente -->
+        <section
+          class="clientes-design-access"
+          id="disena-tu-tapizado"
+          aria-labelledby="clientes-design-access-title"
+        >
+          <div class="clientes-design-access__media">
+            <img
+              src="../assets/clientes/configurador/butaca-portada.jpg"
+              alt="Butaca personalizada en tonos marrones"
+            />
+          </div>
+
+          <div class="clientes-design-access__content">
+            <p class="clientes-design-access__eyebrow">Configurador</p>
+
+            <h2 id="clientes-design-access-title">Diseñá tu tapizado</h2>
+
+            <p>Elegí estilo, materiales y detalles para tu butaca.</p>
+
+            <button
+              class="clientes-showroom__button clientes-showroom__button--primary"
               type="button"
               data-action="start-configurator"
             >
-              Empezar a diseñar mis fundas
+              Diseñar y cotizar
+              <span aria-hidden="true">›</span>
             </button>
-
-            <a class="button button--secondary" href="#otros-trabajos">
-              Consultar otro trabajo
-            </a>
           </div>
-        </div>
-
-        <div class="clientes-hero__visual" aria-hidden="true">
-          <!-- La imagen definitiva del Hero se incorporará después. -->
-        </div>
+        </section>
       </section>
 
       <!-- ==================================================
@@ -1052,21 +1220,87 @@
         id="otros-trabajos"
         aria-labelledby="other-services-title"
       >
-        <div class="other-services__content">
-          <h2 id="other-services-title">¿Buscás otro trabajo para tu auto?</h2>
+        <div class="clientes-extras">
+          <header class="clientes-extras__header">
+            <div>
+              <p class="clientes-extras__eyebrow">Más para tu auto</p>
 
-          <p>
-            También podés consultarnos por piso, apoyabrazos, volante y
-            reparación o modificación de espuma.
-          </p>
+              <h2 id="other-services-title">Trabajos extras</h2>
+            </div>
 
-          <button
-            type="button"
-            class="button button--primary"
-            data-action="start-other-services"
+            <a
+              class="clientes-extras__view-all"
+              href="https://wa.me/5491132016031?text=Hola%2C%20quiero%20consultar%20por%20otro%20trabajo%20de%20tapicer%C3%ADa."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver todos
+              <span aria-hidden="true">›</span>
+            </a>
+          </header>
+
+          <div
+            class="clientes-extras__scroller"
+            role="list"
+            aria-label="Trabajos adicionales"
           >
-            Consultar otro trabajo
-          </button>
+            <a
+              class="clientes-extras__item"
+              href="https://wa.me/5491132016031?text=Hola%2C%20quiero%20cotizar%20un%20organizador%20de%20asiento."
+              target="_blank"
+              rel="noopener noreferrer"
+              role="listitem"
+            >
+              <img
+                class="clientes-extras__media clientes-extras__media--organizer"
+                src="../assets/clientes/trabajos/organizador-asiento.jpg"
+                alt="Organizador personalizado para el respaldo del asiento"
+              />
+
+              <span class="clientes-extras__caption">
+                <strong>Organizador de asiento</strong>
+                <span class="clientes-extras__arrow" aria-hidden="true">›</span>
+              </span>
+            </a>
+
+            <a
+              class="clientes-extras__item"
+              href="https://wa.me/5491132016031?text=Hola%2C%20quiero%20cotizar%20el%20tapizado%20de%20un%20asiento%20de%20moto."
+              target="_blank"
+              rel="noopener noreferrer"
+              role="listitem"
+            >
+              <img
+                class="clientes-extras__media"
+                src="../assets/clientes/trabajos/asiento-moto.jpg"
+                alt="Asiento de moto tapizado en negro"
+              />
+
+              <span class="clientes-extras__caption">
+                <strong>Asiento de moto</strong>
+                <span class="clientes-extras__arrow" aria-hidden="true">›</span>
+              </span>
+            </a>
+
+            <a
+              class="clientes-extras__item"
+              href="https://wa.me/5491132016031?text=Hola%2C%20quiero%20cotizar%20un%20tapizado%20personalizado."
+              target="_blank"
+              rel="noopener noreferrer"
+              role="listitem"
+            >
+              <img
+                class="clientes-extras__media"
+                src="../assets/clientes/trabajos/tapizado-personalizado.jpg"
+                alt="Trabajo de tapizado personalizado con diferentes texturas"
+              />
+
+              <span class="clientes-extras__caption">
+                <strong>Tapizado personalizado</strong>
+                <span class="clientes-extras__arrow" aria-hidden="true">›</span>
+              </span>
+            </a>
+          </div>
         </div>
       </section>
     </main>
