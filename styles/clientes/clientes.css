@@ -164,6 +164,32 @@
   color: var(--color-brand-red);
 }
 
+.clientes-showroom__menu-business {
+  margin-top: 6px;
+
+  display: grid;
+  gap: 3px;
+
+  background: var(--color-brand-blue);
+  color: #ffffff !important;
+}
+
+.clientes-showroom__menu-business:hover {
+  background: color-mix(in srgb, var(--color-brand-blue) 90%, black) !important;
+
+  color: #ffffff !important;
+}
+
+.clientes-showroom__menu-business strong {
+  font-size: 0.95rem;
+}
+
+.clientes-showroom__menu-business span {
+  color: rgb(255 255 255 / 0.7);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
 .clientes-page .clientes-showroom__logo:focus-visible,
 .clientes-page .clientes-showroom__menu-button:focus-visible,
 .clientes-page .clientes-showroom__menu a:focus-visible {
@@ -795,6 +821,43 @@
 .clientes-footer p {
   margin: 0;
   font-size: 0.9rem;
+}
+
+.clientes-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.clientes-footer__business {
+  display: grid;
+  gap: 3px;
+
+  min-width: min(280px, 100%);
+  padding: 12px 18px;
+
+  border: 1px solid rgb(255 255 255 / 0.15);
+  border-radius: 14px;
+
+  background: rgb(255 255 255 / 0.06);
+  color: #ffffff;
+
+  text-decoration: none;
+}
+
+.clientes-footer__business:hover {
+  border-color: var(--clientes-red);
+  background: rgb(255 255 255 / 0.1);
+}
+
+.clientes-footer__business strong {
+  font-size: 0.95rem;
+}
+
+.clientes-footer__business span {
+  color: #a8a8a8;
+  font-size: 0.76rem;
 }
 
 /* ---------------------------------------------------------

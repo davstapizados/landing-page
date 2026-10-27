@@ -1,4 +1,59 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <circle cx="32" cy="32" r="22" stroke="#b80113" stroke-width="3"/>
-  <path d="M32 19V33L41 39" stroke="#b80113" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="64"
+  height="64"
+  viewBox="0 0 64 64"
+>
+  <g transform="translate(-3.55 -8.75) scale(0.04247)">
+    <g
+      fill="none"
+      stroke="#b80113"
+      stroke-width="82"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <circle
+        cx="1065"
+        cy="1031"
+        r="394"
+        fill="#b80113"
+        fill-opacity="0.1"
+      />
+
+      <path d="M527 744H800" />
+      <path d="M527 1318H800" />
+      <path d="M383 888H690" />
+      <path d="M383 1174H690" />
+      <path d="M198 1031H660" />
+
+      <path
+        d="M880 985L1023 1118L1248 900"
+        stroke-width="94"
+      />
+    </g>
+
+    <rect
+      x="1030"
+      y="520"
+      width="69"
+      height="120"
+      fill="#b80113"
+    />
+
+    <path
+      fill="#b80113"
+      d="M984 461H1145A22 33 0 0 1 1145 527H984A22 33 0 0 1 984 461Z"
+    />
+
+    <g
+      transform="translate(1065 1031) rotate(51.5)"
+      fill="#b80113"
+    >
+      <rect x="-27" y="-470" width="54" height="75" />
+
+      <path
+        d="M-50 -515H50A22 24.5 0 0 1 50 -466H-50A22 24.5 0 0 1 -50 -515Z"
+      />
+    </g>
+  </g>
 </svg>

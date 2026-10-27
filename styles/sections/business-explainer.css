@@ -1,0 +1,313 @@
+/* ========================================
+   EXPLICATIVO B2B
+======================================== */
+
+.business-explainer {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: grid;
+  place-items: center;
+
+  padding: 20px;
+}
+
+.business-explainer[hidden] {
+  display: none;
+}
+
+.business-explainer__backdrop {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+
+  background: rgb(0 8 28 / 0.82);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.business-explainer__dialog {
+  position: relative;
+  z-index: 1;
+
+  width: min(720px, 100%);
+  max-height: calc(100dvh - 40px);
+  overflow-y: auto;
+
+  padding: clamp(24px, 5vw, 44px);
+
+  border: 1px solid rgb(255 255 255 / 0.2);
+  border-radius: 26px;
+
+  background: #ffffff;
+  box-shadow: 0 30px 90px rgb(0 0 0 / 0.34);
+}
+
+.business-explainer__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  width: 42px;
+  height: 42px;
+  padding: 0;
+
+  display: grid;
+  place-items: center;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #f1f2f5;
+  color: var(--color-brand-blue);
+
+  font: inherit;
+  font-size: 1.6rem;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.business-explainer__eyebrow {
+  margin: 0 50px 8px 0;
+
+  color: var(--color-brand-red);
+
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.business-explainer__dialog > h2 {
+  max-width: 15ch;
+  margin: 0;
+
+  color: var(--color-brand-blue);
+
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.business-explainer__dialog > p:not(.business-explainer__eyebrow) {
+  max-width: 55ch;
+  margin: 14px 0 24px;
+
+  color: var(--color-text-muted);
+
+  line-height: 1.55;
+}
+
+.business-explainer__stage {
+  position: relative;
+
+  min-height: 280px;
+  overflow: hidden;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 22px;
+
+  background:
+    radial-gradient(circle at 82% 18%, rgb(184 1 19 / 0.3), transparent 34%),
+    linear-gradient(145deg, #001446, #00091f);
+
+  color: #ffffff;
+}
+
+.business-explainer__scene {
+  position: relative;
+
+  width: 100%;
+  min-height: 280px;
+  padding: 34px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  animation: explainer-scene-in 420ms ease both;
+}
+
+.business-explainer__scene[hidden] {
+  display: none;
+}
+
+.business-explainer__number {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+
+  color: rgb(255 255 255 / 0.38);
+
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.business-explainer__scene img {
+  width: 76px;
+  height: 76px;
+  margin-bottom: 18px;
+
+  object-fit: contain;
+
+  filter: brightness(0) invert(1);
+}
+
+.business-explainer__scene h3 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.1;
+}
+
+.business-explainer__scene p {
+  max-width: 44ch;
+  margin: 12px 0 0;
+
+  color: rgb(255 255 255 / 0.76);
+
+  line-height: 1.55;
+}
+
+.business-explainer__timeline {
+  height: 4px;
+  margin-top: 18px;
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: #e5e7eb;
+}
+
+.business-explainer__timeline span {
+  display: block;
+
+  width: 20%;
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: var(--color-brand-red);
+
+  transition: width 300ms ease;
+}
+
+.business-explainer__controls {
+  margin-top: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.business-explainer__controls button {
+  min-width: 46px;
+  min-height: 44px;
+  padding: 10px 16px;
+
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+
+  background: #ffffff;
+  color: var(--color-brand-blue);
+
+  font: inherit;
+  font-weight: 750;
+
+  cursor: pointer;
+}
+
+.business-explainer__controls button[data-explainer-toggle] {
+  min-width: 130px;
+
+  border-color: var(--color-brand-red);
+
+  background: var(--color-brand-red);
+  color: #ffffff;
+}
+
+.business-explainer__close:focus-visible,
+.business-explainer__controls button:focus-visible {
+  outline: 3px solid rgb(184 1 19 / 0.28);
+  outline-offset: 3px;
+}
+
+.is-explainer-open {
+  overflow: hidden;
+}
+
+@keyframes explainer-scene-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .business-explainer {
+    padding: 10px;
+  }
+
+  .business-explainer__dialog {
+    max-height: calc(100dvh - 20px);
+    padding: 24px 18px 20px;
+
+    border-radius: 22px;
+  }
+
+  .business-explainer__close {
+    top: 12px;
+    right: 12px;
+
+    width: 38px;
+    height: 38px;
+  }
+
+  .business-explainer__dialog > h2 {
+    font-size: 2rem;
+  }
+
+  .business-explainer__stage,
+  .business-explainer__scene {
+    min-height: 250px;
+  }
+
+  .business-explainer__scene {
+    padding: 28px 20px;
+  }
+
+  .business-explainer__scene img {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .business-explainer__scene {
+    animation: none;
+  }
+
+  .business-explainer__timeline span {
+    transition: none;
+  }
+}

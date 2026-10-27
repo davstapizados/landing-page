@@ -126,6 +126,9 @@
             class="site-header__menu"
             type="button"
             aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="site-menu"
+            data-site-menu-button
           >
             <span></span>
             <span></span>
@@ -133,6 +136,25 @@
           </button>
         </div>
       </div>
+      <nav
+        class="site-menu"
+        id="site-menu"
+        aria-label="Navegación principal"
+        data-site-menu
+        hidden
+      >
+        <div class="container site-menu__panel">
+          <a href="#como-funciona">Cómo funciona</a>
+          <a href="#beneficios">Beneficios</a>
+          <a href="#faq">Preguntas frecuentes</a>
+          <a href="#contacto">Contacto</a>
+
+          <a class="site-menu__client" href="clientes/">
+            <strong>Cliente particular</strong>
+            <span>Diseñá y cotizá para tu auto</span>
+          </a>
+        </div>
+      </nav>
     </header>
 
     <main id="contenido-principal">
@@ -183,15 +205,20 @@
               <span>Quiero ser Punto de Atención</span>
             </a>
 
-            <a class="button button--secondary" href="#como-funciona">
+            <button
+              class="button button--secondary"
+              type="button"
+              data-explainer-open
+            >
               <img
                 class="button__icon"
                 src="assets/icons/play.svg"
                 alt=""
                 aria-hidden="true"
               />
-              <span>Cómo funciona</span>
-            </a>
+
+              <span>Ver cómo funciona</span>
+            </button>
           </div>
         </div>
       </section>
@@ -199,7 +226,7 @@
         <div class="container">
           <div class="trust-grid">
             <!-- CALIDAD PREMIUM -->
-            <div class="trust-card" tabindex="0">
+            <div class="trust-card">
               <div class="trust-card__inner">
                 <div class="trust-card__front">
                   <img
@@ -219,7 +246,7 @@
             </div>
 
             <!-- A TIEMPO -->
-            <div class="trust-card" tabindex="0">
+            <div class="trust-card">
               <div class="trust-card__inner">
                 <div class="trust-card__front">
                   <img
@@ -239,7 +266,7 @@
             </div>
 
             <!-- INSTALACIÓN -->
-            <div class="trust-card" tabindex="0">
+            <div class="trust-card">
               <div class="trust-card__inner">
                 <div class="trust-card__front">
                   <img
@@ -259,7 +286,7 @@
             </div>
 
             <!-- TODOS GANAN -->
-            <div class="trust-card" tabindex="0">
+            <div class="trust-card">
               <div class="trust-card__inner">
                 <div class="trust-card__front">
                   <img
@@ -632,6 +659,156 @@
       </section>
     </main>
 
+    <div class="business-explainer" data-business-explainer hidden>
+      <button
+        class="business-explainer__backdrop"
+        type="button"
+        aria-label="Cerrar explicación"
+        data-explainer-close
+      ></button>
+
+      <section
+        class="business-explainer__dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="business-explainer-title"
+        aria-describedby="business-explainer-description"
+        tabindex="-1"
+        data-explainer-dialog
+      >
+        <button
+          class="business-explainer__close"
+          type="button"
+          aria-label="Cerrar"
+          data-explainer-close
+        >
+          ×
+        </button>
+
+        <p class="business-explainer__eyebrow">Video explicativo</p>
+
+        <h2 id="business-explainer-title">Así funciona el programa.</h2>
+
+        <p id="business-explainer-description">
+          Un recorrido breve por el trabajo entre tu negocio y Davs Tapizados.
+        </p>
+
+        <div class="business-explainer__stage" aria-live="polite">
+          <article
+            class="business-explainer__scene is-active"
+            data-explainer-scene
+          >
+            <span class="business-explainer__number">01</span>
+
+            <img src="assets/icons/recommend.svg" alt="" aria-hidden="true" />
+
+            <h3>Presentás la propuesta</h3>
+
+            <p>
+              Detectás la necesidad y le mostrás a tu cliente las opciones
+              disponibles.
+            </p>
+          </article>
+
+          <article
+            class="business-explainer__scene"
+            data-explainer-scene
+            hidden
+          >
+            <span class="business-explainer__number">02</span>
+
+            <img src="assets/icons/work.svg" alt="" aria-hidden="true" />
+
+            <h3>Nos enviás la consulta</h3>
+
+            <p>
+              Reunimos los datos del vehículo y preparamos un presupuesto
+              personalizado.
+            </p>
+          </article>
+
+          <article
+            class="business-explainer__scene"
+            data-explainer-scene
+            hidden
+          >
+            <span class="business-explainer__number">03</span>
+
+            <img src="assets/icons/quality.svg" alt="" aria-hidden="true" />
+
+            <h3>Fabricamos a medida</h3>
+
+            <p>
+              Davs se ocupa de los materiales, los moldes, la confección y el
+              control de calidad.
+            </p>
+          </article>
+
+          <article
+            class="business-explainer__scene"
+            data-explainer-scene
+            hidden
+          >
+            <span class="business-explainer__number">04</span>
+
+            <img
+              src="assets/icons/installation.svg"
+              alt=""
+              aria-hidden="true"
+            />
+
+            <h3>Instalamos y acompañamos</h3>
+
+            <p>
+              Coordinamos el trabajo, la instalación y cualquier seguimiento
+              posterior.
+            </p>
+          </article>
+
+          <article
+            class="business-explainer__scene"
+            data-explainer-scene
+            hidden
+          >
+            <span class="business-explainer__number">05</span>
+
+            <img src="assets/icons/handshake.svg" alt="" aria-hidden="true" />
+
+            <h3>Todos suman valor</h3>
+
+            <p>
+              Tu cliente recibe calidad premium y tu negocio incorpora una nueva
+              oportunidad.
+            </p>
+          </article>
+        </div>
+
+        <div class="business-explainer__timeline" aria-hidden="true">
+          <span data-explainer-progress></span>
+        </div>
+
+        <div class="business-explainer__controls">
+          <button
+            type="button"
+            aria-label="Escena anterior"
+            data-explainer-previous
+          >
+            ‹
+          </button>
+
+          <button type="button" data-explainer-toggle>Reproducir</button>
+
+          <button
+            type="button"
+            aria-label="Escena siguiente"
+            data-explainer-next
+          >
+            ›
+          </button>
+        </div>
+      </section>
+    </div>
+
     <footer class="site-footer">
       <div class="container site-footer__layout">
         <div class="site-footer__brand">
@@ -680,6 +857,7 @@
             <a href="#como-funciona">Cómo funciona</a>
             <a href="#beneficios">Beneficios</a>
             <a href="#faq">Preguntas frecuentes</a>
+            <a href="clientes/">Cliente particular</a>
             <a href="#hero">Volver arriba</a>
           </div>
         </div>
@@ -689,6 +867,7 @@
         <p>© 2026 Davs Tapizados. Todos los derechos reservados.</p>
       </div>
     </footer>
-    <script src="assets/js/trust-cards.js"></script>
+    <script src="assets/js/site-navigation.js"></script>
+    <script src="assets/js/business-explainer.js"></script>
   </body>
 </html>

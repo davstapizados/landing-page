@@ -1,85 +1,17 @@
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 64 64"
-  fill="none"
->
-  <!-- Brazo izquierdo -->
-  <path
-    d="M7.5 23
-       L16 14.5
-       L25 20.5
-       L19.5 29
-       L11 30
-       Z"
-    stroke="#b80113"
-    stroke-width="3.6"
-    stroke-linejoin="round"
-  />
-
-  <!-- Brazo derecho -->
-  <path
-    d="M56.5 23
-       L48 14.5
-       L39 20.5
-       L44.5 29
-       L53 30
-       Z"
-    stroke="#b80113"
-    stroke-width="3.6"
-    stroke-linejoin="round"
-  />
-
-  <!-- Unión de manos -->
-  <path
-    d="M19.5 29
-       L27 22.5
-       C29.5 20.4 33.5 20.4 36 22.5
-       L44.5 29"
-    stroke="#b80113"
-    stroke-width="3.6"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  />
-
-  <!-- Dedos / apretón -->
-  <path
-    d="M21 32
-       L31.5 42
-       C33.5 44
-       36.5 44
-       38.5 42
-       L46 34"
-    stroke="#b80113"
-    stroke-width="3.6"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  />
-
-  <path
-    d="M25 36.5L21 40.5"
-    stroke="#b80113"
-    stroke-width="3.4"
-    stroke-linecap="round"
-  />
-
-  <path
-    d="M30 41L26 45"
-    stroke="#b80113"
-    stroke-width="3.4"
-    stroke-linecap="round"
-  />
-
-  <path
-    d="M35 43L31 47"
-    stroke="#b80113"
-    stroke-width="3.4"
-    stroke-linecap="round"
-  />
-
-  <path
-    d="M40 40.5L36.5 44.5"
-    stroke="#b80113"
-    stroke-width="3.4"
-    stroke-linecap="round"
-  />
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <g transform="translate(1.37 1.68) scale(0.1197)" fill="#b80113">
+    <!-- Manga izquierda -->
+    <polygon points="95,106 136,129 63,262 22,239" stroke="#b80113" stroke-width="6" stroke-linejoin="round"/>
+    <!-- Manga derecha -->
+    <polygon points="417,106 376,129 449,262 490,239" stroke="#b80113" stroke-width="6" stroke-linejoin="round"/>
+    <!-- Mano superior con pulgar y curva central -->
+    <path d="M204,153 C212,147 222,146 236,145 C290,141 335,143 378,157 L441,268 L414,276 L386,262 L350,235 L310,207 L266,190 L250,198 L232,214 L212,226 L190,231 Q168,234 171,216 L177,203 L188,183 L197,168 L204,155 Z"/>
+    <!-- Mano inferior con dedos de la derecha y hendiduras -->
+    <path fill-rule="evenodd" d="M135,153 L183,168 L180,179 L169,199 L161,218 Q158,241 190,241 L216,235 L238,222 L256,206 L263,199 L307,215 L345,242 L381,269 L410,284 L413,289 L372,330 L335,366 L300,392 Q284,406 262,405 Q244,404 231.5,400 L260,365 L253.2,359.2 L92,231 Z M282.1,318.5 L350.1,282.5 A4,4 0 0 1 353.9,289.5 L285.9,325.5 A4,4 0 0 1 282.1,318.5 Z M270.2,352.4 L316.2,329.4 A4,4 0 0 1 319.8,336.6 L273.8,359.6 A4,4 0 0 1 270.2,352.4 Z"/>
+    <!-- Cuatro dedos redondeados inferiores -->
+    <path d="M130.5,254.5 L98.8,293.2 A17,17 0 0 0 125.2,314.8 L156.9,276.1 Z"/>
+    <path d="M163.5,281.5 L131.8,320.2 A17,17 0 0 0 158.2,341.8 L189.9,303.1 Z"/>
+    <path d="M196.5,308.5 L164.8,347.2 A17,17 0 0 0 191.2,368.8 L222.9,330.1 Z"/>
+    <path d="M229.5,335.5 L197.8,374.2 A17,17 0 0 0 224.2,395.8 L255.9,357.1 Z"/>
+  </g>
 </svg>
