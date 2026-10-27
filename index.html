@@ -463,12 +463,149 @@
           </div>
 
           <div class="business-benefits__visual">
-            <div class="business-benefits__image-wrapper">
-              <img
-                class="business-benefits__image"
-                src="assets/images/benefits-stitching.webp"
-                alt="Detalle de costura y tapizado automotriz"
-              />
+            <div
+              class="business-benefits__gallery"
+              aria-label="Trabajos realizados por Davs Tapizados"
+              aria-roledescription="carrusel"
+              data-benefits-carousel
+            >
+              <div class="business-benefits__image-wrapper">
+                <!-- DETALLE DE COSTURA -->
+                <figure
+                  class="business-benefits__slide is-active"
+                  role="group"
+                  aria-roledescription="diapositiva"
+                  aria-label="1 de 5"
+                  aria-hidden="false"
+                  data-benefits-slide
+                >
+                  <img
+                    class="business-benefits__image"
+                    src="assets/images/services/detalle-costura.jpg"
+                    alt="Detalle de tapizado negro con costuras verdes"
+                    decoding="async"
+                  />
+                  <figcaption>Detalle de costura</figcaption>
+                </figure>
+
+                <!-- TAPIZADO AUTOMOTRIZ -->
+                <figure
+                  class="business-benefits__slide"
+                  role="group"
+                  aria-roledescription="diapositiva"
+                  aria-label="2 de 5"
+                  aria-hidden="true"
+                  data-benefits-slide
+                >
+                  <img
+                    class="business-benefits__image"
+                    src="assets/images/services/tapizado-automotriz.jpg"
+                    alt="Butacas automotrices tapizadas en negro"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption>Tapizado automotriz</figcaption>
+                </figure>
+
+                <!-- VOLANTE PERSONALIZADO -->
+                <figure
+                  class="business-benefits__slide"
+                  role="group"
+                  aria-roledescription="diapositiva"
+                  aria-label="3 de 5"
+                  aria-hidden="true"
+                  data-benefits-slide
+                >
+                  <img
+                    class="business-benefits__image"
+                    src="assets/images/services/volante-personalizado.jpg"
+                    alt="Volante personalizado en negro y marrón"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption>Volante personalizado</figcaption>
+                </figure>
+
+                <!-- ASIENTO DE MOTO -->
+                <figure
+                  class="business-benefits__slide"
+                  role="group"
+                  aria-roledescription="diapositiva"
+                  aria-label="4 de 5"
+                  aria-hidden="true"
+                  data-benefits-slide
+                >
+                  <img
+                    class="business-benefits__image"
+                    src="assets/images/services/asiento-moto.jpg"
+                    alt="Asiento de moto personalizado en negro"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption>Tapizado de asiento de moto</figcaption>
+                </figure>
+
+                <!-- ORGANIZADOR DE ASIENTO -->
+                <figure
+                  class="business-benefits__slide"
+                  role="group"
+                  aria-roledescription="diapositiva"
+                  aria-label="5 de 5"
+                  aria-hidden="true"
+                  data-benefits-slide
+                >
+                  <img
+                    class="business-benefits__image"
+                    src="assets/images/services/organizador-asiento.jpg"
+                    alt="Organizador marrón instalado detrás de un asiento"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption>Organizador de asiento</figcaption>
+                </figure>
+              </div>
+
+              <div
+                class="business-benefits__dots"
+                role="group"
+                aria-label="Elegir trabajo"
+              >
+                <button
+                  class="is-active"
+                  type="button"
+                  aria-label="Mostrar detalle de costura"
+                  aria-current="true"
+                  data-benefits-dot="0"
+                ></button>
+
+                <button
+                  type="button"
+                  aria-label="Mostrar tapizado automotriz"
+                  aria-current="false"
+                  data-benefits-dot="1"
+                ></button>
+
+                <button
+                  type="button"
+                  aria-label="Mostrar volante personalizado"
+                  aria-current="false"
+                  data-benefits-dot="2"
+                ></button>
+
+                <button
+                  type="button"
+                  aria-label="Mostrar asiento de moto"
+                  aria-current="false"
+                  data-benefits-dot="3"
+                ></button>
+
+                <button
+                  type="button"
+                  aria-label="Mostrar organizador de asiento"
+                  aria-current="false"
+                  data-benefits-dot="4"
+                ></button>
+              </div>
             </div>
 
             <div class="business-benefits__card">
@@ -869,5 +1006,6 @@
     </footer>
     <script src="assets/js/site-navigation.js"></script>
     <script src="assets/js/business-explainer.js"></script>
+    <script src="assets/js/business-benefits-carousel.js"></script>
   </body>
 </html>

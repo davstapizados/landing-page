@@ -116,6 +116,114 @@
   object-fit: cover;
   object-position: center;
 }
+.business-benefits__gallery {
+  position: relative;
+}
+
+.business-benefits__slide {
+  position: absolute;
+  inset: 0;
+
+  margin: 0;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 650ms ease,
+    visibility 0s linear 650ms;
+}
+
+.business-benefits__slide.is-active {
+  z-index: 1;
+
+  opacity: 1;
+  visibility: visible;
+
+  transition-delay: 0s;
+}
+
+.business-benefits__slide figcaption {
+  position: absolute;
+  z-index: 2;
+  bottom: 1rem;
+  left: 1rem;
+
+  max-width: calc(100% - 2rem);
+  padding: 0.45rem 0.75rem;
+
+  border: 1px solid rgb(255 255 255 / 0.2);
+  border-radius: 999px;
+
+  background: rgb(0 20 70 / 0.82);
+  color: #ffffff;
+
+  font-size: 0.78rem;
+  font-weight: 750;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.business-benefits__dots {
+  position: absolute;
+  z-index: 3;
+  top: 0.75rem;
+  right: 0.75rem;
+
+  display: flex;
+  gap: 0.1rem;
+
+  padding: 0.2rem 0.35rem;
+
+  border-radius: 999px;
+
+  background: rgb(0 20 70 / 0.58);
+}
+
+.business-benefits__dots button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  place-items: center;
+
+  border: 0;
+
+  background: transparent;
+
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.business-benefits__dots button::before {
+  content: "";
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 999px;
+
+  background: rgb(255 255 255 / 0.68);
+
+  transition:
+    width 200ms ease,
+    background-color 200ms ease;
+}
+
+.business-benefits__dots button.is-active::before {
+  width: 19px;
+
+  background: var(--color-brand-red);
+}
+
+.business-benefits__dots button:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: -2px;
+}
+
+.business-benefits__card {
+  z-index: 4;
+}
 
 /* ========================================
    TARJETA SUPERPUESTA
@@ -184,7 +292,70 @@
 
   background: var(--color-brand-red);
 }
+/* ========================================
+   ESCRITORIO — COLUMNAS CON IGUAL ALTURA
+======================================== */
 
+@media (min-width: 901px) {
+  .business-benefits {
+    padding-bottom: 8rem;
+  }
+  .business-benefits__layout {
+    align-items: stretch;
+  }
+
+  .business-benefits__visual {
+    position: relative;
+
+    min-height: 100%;
+  }
+
+  .business-benefits__gallery,
+  .business-benefits__image-wrapper {
+    height: 100%;
+  }
+
+  .business-benefits__image-wrapper {
+    aspect-ratio: auto;
+  }
+
+  .business-benefits__card {
+    position: absolute;
+
+    top: auto;
+    right: -3.75rem;
+    bottom: -5.5rem;
+    left: auto;
+
+    display: block;
+
+    width: min(72%, 250px);
+    margin: 0;
+    padding: 1.25rem;
+
+    border-radius: 16px;
+
+    transform: none;
+  }
+
+  .business-benefits__card-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0.9rem;
+  }
+
+  .business-benefits__card-text {
+    max-width: 17ch;
+
+    font-size: 1.15rem;
+    line-height: 1.3;
+  }
+
+  .business-benefits__card-accent {
+    width: 38px;
+    margin-top: 1rem;
+  }
+}
 /* ========================================
    TABLET
 ======================================== */
@@ -214,6 +385,9 @@
     aspect-ratio: 16 / 10;
 
     border-radius: 22px;
+  }
+  .business-benefits__dots {
+    right: calc(9% + 0.75rem);
   }
 
   .business-benefits__card {
@@ -318,5 +492,11 @@
   .business-benefits__card-accent {
     width: 38px;
     margin-top: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .business-benefits__slide {
+    transition: none;
   }
 }
