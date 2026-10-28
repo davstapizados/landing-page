@@ -95,7 +95,7 @@
   left: 50%;
 
   width: 1px;
-  height: calc(100% - 72px);
+  height: calc(100% - 92px);
 
   background: rgb(255 255 255 / 0.22);
 
@@ -228,7 +228,7 @@
 
   .how-step:not(:last-child) .how-step__visual::after {
     top: 72px;
-    height: calc(100% - 52px);
+    height: calc(100% - 72px);
   }
 
   .how-step__content {

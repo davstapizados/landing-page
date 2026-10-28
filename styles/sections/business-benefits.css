@@ -104,7 +104,7 @@
 
   border-radius: 26px;
 
-  background: linear-gradient(145deg, rgb(0 20 70 / 0.08), rgb(0 20 70 / 0.02));
+  background: transparent;
 }
 
 .business-benefits__image {
@@ -113,8 +113,10 @@
   width: 100%;
   height: 100%;
 
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
+
+  background: transparent;
 }
 .business-benefits__gallery {
   position: relative;
@@ -146,44 +148,45 @@
 .business-benefits__slide figcaption {
   position: absolute;
   z-index: 2;
-  bottom: 1rem;
-  left: 1rem;
+  top: 0.75rem;
+  bottom: auto;
+  left: 0.75rem;
 
-  max-width: calc(100% - 2rem);
-  padding: 0.45rem 0.75rem;
+  max-width: calc(100% - 7rem);
+  padding: 0.38rem 0.6rem;
 
   border: 1px solid rgb(255 255 255 / 0.2);
-  border-radius: 999px;
+  border-radius: 10px;
 
   background: rgb(0 20 70 / 0.82);
   color: #ffffff;
 
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   font-weight: 750;
-  line-height: 1;
-  white-space: nowrap;
+  line-height: 1.2;
+  white-space: normal;
 }
 
 .business-benefits__dots {
   position: absolute;
   z-index: 3;
-  top: 0.75rem;
-  right: 0.75rem;
+  top: 0.65rem;
+  right: 0.65rem;
 
   display: flex;
-  gap: 0.1rem;
+  gap: 0;
 
-  padding: 0.2rem 0.35rem;
+  padding: 0.1rem 0.25rem;
 
   border-radius: 999px;
 
-  background: rgb(0 20 70 / 0.58);
+  background: rgb(0 20 70 / 0.52);
 }
 
 .business-benefits__dots button {
   display: grid;
-  width: 28px;
-  height: 28px;
+  width: 18px;
+  height: 22px;
   padding: 0;
   place-items: center;
 
@@ -198,8 +201,8 @@
 .business-benefits__dots button::before {
   content: "";
 
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 
   border-radius: 999px;
 
@@ -211,7 +214,7 @@
 }
 
 .business-benefits__dots button.is-active::before {
-  width: 19px;
+  width: 14px;
 
   background: var(--color-brand-red);
 }
@@ -499,4 +502,37 @@
   .business-benefits__slide {
     transition: none;
   }
+}
+/* ========================================
+   CARRUSEL LIMPIO Y TARJETA COMPACTA
+======================================== */
+
+.business-benefits__slide figcaption,
+.business-benefits__dots {
+  display: none;
+}
+
+.business-benefits__card {
+  width: min(62%, 210px);
+  padding: 1rem;
+
+  border-radius: 14px;
+}
+
+.business-benefits__card-icon {
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0.7rem;
+}
+
+.business-benefits__card-text {
+  max-width: none;
+
+  font-size: 0.95rem;
+  line-height: 1.25;
+}
+
+.business-benefits__card-accent {
+  width: 32px;
+  margin-top: 0.75rem;
 }
