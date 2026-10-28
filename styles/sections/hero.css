@@ -263,3 +263,11 @@
     transform: none;
   }
 }
+
+/* Alineación del contenido principal en escritorio */
+@media (min-width: 901px) {
+  .hero__content {
+    width: min(100% - 2rem, var(--container-width));
+    padding-left: 0;
+  }
+}
