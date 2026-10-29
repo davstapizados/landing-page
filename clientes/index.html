@@ -80,7 +80,7 @@
             <strong>Empresas</strong>
             <span>Soluciones para negocios</span>
           </a>
-          <a href="#protectores-tablero">Tapetes para tableros</a>
+          <a href="#protectores-tablero">Protectores de tableros</a>
           <a href="#disena-tu-tapizado">Diseñá tu tapizado</a>
           <a href="#otros-trabajos">Trabajos extras</a>
         </nav>
@@ -95,7 +95,7 @@
         class="clientes-hero"
         aria-label="Productos y configurador de Davs Tapizados"
       >
-        <!-- Tapetes para tableros -->
+        <!-- Protectores de tableros -->
         <section
           class="clientes-dashboard"
           id="protectores-tablero"
@@ -115,7 +115,7 @@
               >
                 <img
                   src="../assets/clientes/protectores/tapete-portada.png"
-                  alt="Tapete negro personalizado para tablero con detalles rojos"
+                  alt="Protector negro personalizado para tablero con detalles rojos"
                 />
               </figure>
 
@@ -129,7 +129,7 @@
               >
                 <img
                   src="../assets/clientes/protectores/protector-gol.jpg"
-                  alt="Tapete personalizado para tablero de Volkswagen Gol"
+                  alt="Protector personalizado para tablero de Volkswagen Gol"
                 />
               </figure>
 
@@ -143,7 +143,7 @@
               >
                 <img
                   src="../assets/clientes/protectores/protector-bmw.jpg"
-                  alt="Tapete personalizado para tablero de BMW"
+                  alt="Protector personalizado para tablero de BMW"
                 />
               </figure>
 
@@ -157,13 +157,13 @@
               >
                 <img
                   src="../assets/clientes/protectores/protector-montero.jpg"
-                  alt="Tapete personalizado para tablero de Mitsubishi Montero"
+                  alt="Protector personalizado para tablero de Mitsubishi Montero"
                 />
               </figure>
             </div>
 
             <div class="clientes-dashboard__overlay">
-              <h1 id="clientes-hero-title">Tapetes para tableros</h1>
+              <h1 id="clientes-hero-title">Protectores de tableros</h1>
 
               <p class="clientes-dashboard__description">
                 Protección y estilo para tu auto.
@@ -171,7 +171,7 @@
 
               <a
                 class="clientes-showroom__button clientes-showroom__button--primary"
-                href="https://wa.me/5491132016031?text=Hola%2C%20quiero%20cotizar%20un%20tapete%20para%20tablero%20para%20mi%20auto."
+                href="https://wa.me/5491132016031?text=Hola%2C%20quiero%20cotizar%20un%20protector%20de%20tablero%20para%20mi%20auto."
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -180,54 +180,36 @@
               </a>
             </div>
 
-            <button
-              class="clientes-dashboard__arrow clientes-dashboard__arrow--previous"
-              type="button"
-              aria-label="Ver tapete anterior"
-              data-dashboard-previous
-            >
-              ‹
-            </button>
-
-            <button
-              class="clientes-dashboard__arrow clientes-dashboard__arrow--next"
-              type="button"
-              aria-label="Ver siguiente tapete"
-              data-dashboard-next
-            >
-              ›
-            </button>
-
             <div
               class="clientes-dashboard__dots"
               role="group"
-              aria-label="Elegir tapete"
+              aria-label="Elegir protector"
             >
               <button
                 class="is-active"
                 type="button"
-                aria-label="Mostrar tapete 1"
+                aria-label="Mostrar protector 1"
                 aria-current="true"
                 data-dashboard-dot="0"
               ></button>
 
               <button
                 type="button"
-                aria-label="Mostrar tapete 2"
+                aria-label="Mostrar protector 2"
                 aria-current="false"
                 data-dashboard-dot="1"
               ></button>
 
               <button
                 type="button"
-                aria-label="Mostrar tapete 3"
+                aria-label="Mostrar protector 3"
                 aria-current="false"
                 data-dashboard-dot="2"
               ></button>
 
               <button
                 type="button"
-                aria-label="Mostrar tapete 4"
+                aria-label="Mostrar protector 4"
                 aria-current="false"
                 data-dashboard-dot="3"
               ></button>
@@ -1307,6 +1289,106 @@
         </div>
       </section>
     </main>
+
+    <!-- ==================================================
+         DETALLE DE PROTECTORES DE TABLERO
+    =================================================== -->
+    <div
+      class="protector-modal"
+      id="protector-modal"
+      data-protector-modal
+      hidden
+    >
+      <div
+        class="protector-modal__backdrop"
+        data-action="close-protector-modal"
+        aria-hidden="true"
+      ></div>
+
+      <section
+        class="protector-modal__dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="protector-modal-title"
+        aria-describedby="protector-modal-description"
+        data-protector-modal-dialog
+        tabindex="-1"
+      >
+        <button
+          class="protector-modal__close"
+          type="button"
+          data-action="close-protector-modal"
+          aria-label="Cerrar información"
+        >
+          ×
+        </button>
+
+        <div class="protector-modal__layout">
+          <div class="protector-modal__media">
+            <!-- Más adelante reemplazaremos esta imagen por el video -->
+            <img
+              src="../assets/clientes/protectores/tapete-portada.png"
+              alt="Protector personalizado para el tablero de un vehículo"
+              data-protector-modal-poster
+            />
+          </div>
+
+          <div class="protector-modal__content">
+            <p class="protector-modal__eyebrow">PROTECTORES DE TABLEROS</p>
+
+            <h2 id="protector-modal-title">Protección hecha para tu auto</h2>
+
+            <p class="protector-modal__intro" id="protector-modal-description">
+              Diseñamos cada protector teniendo en cuenta el modelo del vehículo
+              y el estilo que quieras lograr.
+            </p>
+
+            <ul class="protector-modal__features">
+              <li>
+                Confeccionado a medida según la marca y el modelo del vehículo.
+              </li>
+
+              <li>
+                Colores, texturas y terminaciones disponibles para elegir.
+              </li>
+
+              <li>El diseño final se confirma con Davs antes de fabricar.</li>
+            </ul>
+
+            <p class="protector-modal__models-title">Modelos disponibles</p>
+
+            <div class="protector-modal__models">
+              <article class="protector-modal__model">
+                <strong>Clásico</strong>
+                <p>Diseño sobrio, de líneas limpias y terminación uniforme.</p>
+              </article>
+
+              <article class="protector-modal__model">
+                <strong>Semi</strong>
+                <p>
+                  Partís de un diseño disponible y elegís colores y detalles.
+                </p>
+              </article>
+
+              <article class="protector-modal__model">
+                <strong>Personalizado</strong>
+                <p>Formas, colores y terminaciones definidos junto con vos.</p>
+              </article>
+            </div>
+
+            <a
+              class="clientes-showroom__button clientes-showroom__button--primary"
+              href="https://wa.me/5491132016031?text=Hola%2C%20quiero%20cotizar%20un%20protector%20de%20tablero%20para%20mi%20auto."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Consultar por mi auto
+              <span aria-hidden="true">›</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
 
     <!-- ==================================================
          FOOTER
