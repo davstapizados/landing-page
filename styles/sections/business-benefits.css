@@ -326,7 +326,11 @@
     position: absolute;
 
     top: auto;
-    right: -3.75rem;
+    right: clamp(
+      -3.75rem,
+      calc((var(--container-width) - 100vw) / 2 + 1rem),
+      -0.5rem
+    );
     bottom: -5.5rem;
     left: auto;
 
