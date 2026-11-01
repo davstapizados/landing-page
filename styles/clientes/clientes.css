@@ -1190,6 +1190,21 @@
 .clientes-page [hidden] {
   display: none !important;
 }
+/* ---------------------------------------------------------
+   Tablet / Fold abierto
+   --------------------------------------------------------- */
+
+@media (min-width: 721px) and (max-width: 1200px) {
+  .clientes-dashboard {
+    min-width: 0;
+  }
+
+  .clientes-dashboard__viewport {
+    width: 100%;
+    min-width: 0;
+    aspect-ratio: auto;
+  }
+}
 
 /* ---------------------------------------------------------
    Mobile
