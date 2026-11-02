@@ -89,6 +89,8 @@
 
   const viewport = document.querySelector("[data-extras-viewport]");
   const track = document.querySelector("[data-extras-track]");
+  const previousCardsButton = document.querySelector("[data-extras-previous]");
+  const nextCardsButton = document.querySelector("[data-extras-next]");
   const modal = document.querySelector("[data-extras-modal]");
   const dialog = modal?.querySelector("[data-extras-modal-dialog]");
   const modalMedia = modal?.querySelector("[data-extras-modal-media]");
@@ -163,48 +165,41 @@
     track.classList.toggle("is-reduced-motion", reducedMotion.matches);
   };
 
-  const cloneItemsForLoop = () => {
-    const fragment = document.createDocumentFragment();
+  const getScrollStep = () => {
+    const firstItem = originalItems[0];
 
-    originalItems.forEach((item) => {
-      const clone = item.cloneNode(true);
+    if (!firstItem) {
+      return viewport.clientWidth;
+    }
 
-      clone.dataset.extraClone = "true";
-      clone.setAttribute("aria-hidden", "true");
+    const trackStyles = window.getComputedStyle(track);
+    const gap =
+      Number.parseFloat(trackStyles.columnGap || trackStyles.gap) || 0;
 
-      clone.querySelectorAll("button, a, [tabindex]").forEach((control) => {
-        control.tabIndex = -1;
-      });
-
-      fragment.appendChild(clone);
-    });
-
-    track.appendChild(fragment);
+    return firstItem.getBoundingClientRect().width + gap;
   };
 
-  const updateLoopMeasurements = () => {
-    const firstOriginal = originalItems[0];
-    const firstClone = track.querySelector("[data-extra-clone]");
-
-    if (!firstOriginal || !firstClone) {
-      return;
-    }
-
-    const distance = firstClone.offsetLeft - firstOriginal.offsetLeft;
-
-    if (distance <= 0) {
-      track.classList.remove("is-ready");
-      return;
-    }
-
-    track.style.setProperty("--extras-loop-distance", `${distance}px`);
-
-    track.style.setProperty(
-      "--extras-loop-duration",
-      `${Math.max(36, distance / 18)}s`,
+  const updateNavigationState = () => {
+    const maxScrollLeft = Math.max(
+      0,
+      viewport.scrollWidth - viewport.clientWidth,
     );
 
-    track.classList.add("is-ready");
+    if (previousCardsButton) {
+      previousCardsButton.disabled = viewport.scrollLeft <= 2;
+    }
+
+    if (nextCardsButton) {
+      nextCardsButton.disabled =
+        maxScrollLeft <= 2 || viewport.scrollLeft >= maxScrollLeft - 2;
+    }
+  };
+
+  const moveExtras = (direction) => {
+    viewport.scrollBy({
+      left: direction * getScrollStep(),
+      behavior: reducedMotion.matches ? "auto" : "smooth",
+    });
   };
 
   const showCardSlide = (serviceKey, requestedIndex) => {
@@ -314,9 +309,6 @@
     }
   };
 
-  const getOriginalCard = (serviceKey) =>
-    originalCards.find((card) => card.dataset.extraService === serviceKey);
-
   const openModal = (serviceKey, trigger) => {
     const service = services[serviceKey];
 
@@ -329,10 +321,7 @@
     activeService = serviceKey;
     activeImageIndex = 0;
 
-    previouslyFocused =
-      trigger.closest("[data-extra-clone]") !== null
-        ? getOriginalCard(serviceKey)
-        : trigger;
+    previouslyFocused = trigger;
 
     modalTitle.textContent = service.title;
     modalDescription.textContent = service.description;
@@ -457,8 +446,17 @@
     }
   };
 
-  cloneItemsForLoop();
+  previousCardsButton?.addEventListener("click", () => {
+    moveExtras(-1);
+  });
 
+  nextCardsButton?.addEventListener("click", () => {
+    moveExtras(1);
+  });
+
+  viewport.addEventListener("scroll", updateNavigationState, {
+    passive: true,
+  });
   viewport.addEventListener("click", (event) => {
     const card = event.target.closest("[data-extra-card]");
 
@@ -479,9 +477,17 @@
     updatePauseState();
   });
 
-  viewport.addEventListener("focusin", () => {
+  viewport.addEventListener("focusin", (event) => {
     focused = true;
     updatePauseState();
+
+    const item = event.target.closest(".clientes-extras__item");
+
+    item?.scrollIntoView({
+      behavior: "auto",
+      block: "nearest",
+      inline: "nearest",
+    });
   });
 
   viewport.addEventListener("focusout", () => {
@@ -584,7 +590,7 @@
 
   const handleMotionPreference = () => {
     updatePauseState();
-    updateLoopMeasurements();
+    updateNavigationState();
   };
 
   if (reducedMotion.addEventListener) {
@@ -595,16 +601,18 @@
 
   const resizeObserver =
     "ResizeObserver" in window
-      ? new ResizeObserver(updateLoopMeasurements)
+      ? new ResizeObserver(updateNavigationState)
       : null;
 
   resizeObserver?.observe(viewport);
 
-  window.addEventListener("resize", updateLoopMeasurements);
+  window.addEventListener("resize", updateNavigationState);
 
-  window.addEventListener("load", updateLoopMeasurements, { once: true });
+  window.addEventListener("load", updateNavigationState, {
+    once: true,
+  });
 
-  window.requestAnimationFrame(updateLoopMeasurements);
+  window.requestAnimationFrame(updateNavigationState);
 
   Object.keys(services).forEach((serviceKey) => {
     showCardSlide(serviceKey, 0);
