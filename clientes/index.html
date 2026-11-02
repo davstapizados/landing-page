@@ -28,6 +28,7 @@
     <!-- JavaScript exclusivo del configurador -->
     <script src="../assets/js/clientes-configurator.js" defer></script>
     <script src="../assets/js/clientes-showcase.js" defer></script>
+    <script src="../assets/js/clientes-extras.js" defer></script>
   </head>
 
   <body class="clientes-page">
@@ -231,8 +232,6 @@
           </div>
 
           <div class="clientes-design-access__content">
-            <p class="clientes-design-access__eyebrow">Configurador</p>
-
             <h2 id="clientes-design-access-title">Diseñá tu tapizado</h2>
 
             <p>Elegí estilo, materiales y detalles para tu butaca.</p>
@@ -285,11 +284,6 @@
             class="configurator-intro__copy"
             id="configurator-intro-description"
           >
-            <p>
-              Los materiales y el estilo que elijas pueden influir en el
-              presupuesto.
-            </p>
-
             <p>
               El diseño, el tamaño y el aspecto final son orientativos y se
               confirmarán antes de fabricar.
@@ -1212,79 +1206,236 @@
 
               <h2 id="other-services-title">Trabajos extras</h2>
             </div>
-
-            <a
-              class="clientes-extras__view-all"
-              href="https://wa.me/5491132016031?text=Hola%2C%20quiero%20consultar%20por%20otro%20trabajo%20de%20tapicer%C3%ADa."
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ver todos
-              <span aria-hidden="true">›</span>
-            </a>
           </header>
 
-          <div
-            class="clientes-extras__scroller"
-            role="list"
-            aria-label="Trabajos adicionales"
-          >
-            <a
-              class="clientes-extras__item"
-              href="https://wa.me/5491132016031?text=Hola%2C%20quiero%20cotizar%20un%20organizador%20de%20asiento."
-              target="_blank"
-              rel="noopener noreferrer"
-              role="listitem"
+          <div class="clientes-extras__viewport" data-extras-viewport>
+            <div
+              class="clientes-extras__scroller"
+              data-extras-track
+              role="list"
+              aria-label="Trabajos adicionales"
             >
-              <img
-                class="clientes-extras__media clientes-extras__media--organizer"
-                src="../assets/clientes/trabajos/organizador-asiento.jpg"
-                alt="Organizador personalizado para el respaldo del asiento"
-              />
+              <article class="clientes-extras__item" role="listitem">
+                <button
+                  class="clientes-extras__button"
+                  type="button"
+                  data-extra-card
+                  data-extra-service="organizador"
+                  aria-label="Ver detalles del organizador de asiento"
+                >
+                  <span class="clientes-extras__media-stack" aria-hidden="true">
+                    <img
+                      class="clientes-extras__media clientes-extras__media--organizer is-active"
+                      src="../assets/clientes/trabajos/organizador-asiento.jpg"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      data-extra-card-slide
+                    />
+                  </span>
 
-              <span class="clientes-extras__caption">
-                <strong>Organizador de asiento</strong>
-                <span class="clientes-extras__arrow" aria-hidden="true">›</span>
-              </span>
-            </a>
+                  <span class="clientes-extras__caption">
+                    <strong>Organizador de asiento</strong>
+                    <span class="clientes-extras__arrow" aria-hidden="true">
+                      ›
+                    </span>
+                  </span>
+                </button>
+              </article>
 
-            <a
-              class="clientes-extras__item"
-              href="https://wa.me/5491132016031?text=Hola%2C%20quiero%20cotizar%20el%20tapizado%20de%20un%20asiento%20de%20moto."
-              target="_blank"
-              rel="noopener noreferrer"
-              role="listitem"
-            >
-              <img
-                class="clientes-extras__media"
-                src="../assets/clientes/trabajos/asiento-moto.jpg"
-                alt="Asiento de moto tapizado en negro"
-              />
+              <article class="clientes-extras__item" role="listitem">
+                <button
+                  class="clientes-extras__button"
+                  type="button"
+                  data-extra-card
+                  data-extra-service="timon"
+                  aria-label="Ver detalles del tapizado de timón"
+                >
+                  <span class="clientes-extras__media-stack" aria-hidden="true">
+                    <img
+                      class="clientes-extras__media is-active"
+                      src="../assets/clientes/trabajos/volante-01.jpg"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      data-extra-card-slide
+                    />
 
-              <span class="clientes-extras__caption">
-                <strong>Asiento de moto</strong>
-                <span class="clientes-extras__arrow" aria-hidden="true">›</span>
-              </span>
-            </a>
+                    <img
+                      class="clientes-extras__media"
+                      src="../assets/clientes/trabajos/volante-02.jpg"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      data-extra-card-slide
+                    />
+                  </span>
 
-            <a
-              class="clientes-extras__item"
-              href="https://wa.me/5491132016031?text=Hola%2C%20quiero%20cotizar%20un%20tapizado%20personalizado."
-              target="_blank"
-              rel="noopener noreferrer"
-              role="listitem"
-            >
-              <img
-                class="clientes-extras__media"
-                src="../assets/clientes/trabajos/tapizado-personalizado.jpg"
-                alt="Trabajo de tapizado personalizado con diferentes texturas"
-              />
+                  <span class="clientes-extras__caption">
+                    <strong>Tapizado de timón</strong>
+                    <span class="clientes-extras__arrow" aria-hidden="true">
+                      ›
+                    </span>
+                  </span>
+                </button>
+              </article>
 
-              <span class="clientes-extras__caption">
-                <strong>Tapizado personalizado</strong>
-                <span class="clientes-extras__arrow" aria-hidden="true">›</span>
-              </span>
-            </a>
+              <article class="clientes-extras__item" role="listitem">
+                <button
+                  class="clientes-extras__button"
+                  type="button"
+                  data-extra-card
+                  data-extra-service="piso"
+                  aria-label="Ver detalles del tapizado de piso"
+                >
+                  <span class="clientes-extras__media-stack" aria-hidden="true">
+                    <img
+                      class="clientes-extras__media is-active"
+                      src="../assets/clientes/trabajos/piso-01.jpg"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      data-extra-card-slide
+                    />
+
+                    <img
+                      class="clientes-extras__media"
+                      src="../assets/clientes/trabajos/piso-02.jpg"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      data-extra-card-slide
+                    />
+
+                    <img
+                      class="clientes-extras__media"
+                      src="../assets/clientes/trabajos/piso-03.jpg"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      data-extra-card-slide
+                    />
+
+                    <img
+                      class="clientes-extras__media"
+                      src="../assets/clientes/trabajos/piso-04.jpg"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      data-extra-card-slide
+                    />
+                  </span>
+
+                  <span class="clientes-extras__caption">
+                    <strong>Tapizado de piso</strong>
+                    <span class="clientes-extras__arrow" aria-hidden="true">
+                      ›
+                    </span>
+                  </span>
+                </button>
+              </article>
+
+              <article class="clientes-extras__item" role="listitem">
+                <button
+                  class="clientes-extras__button"
+                  type="button"
+                  data-extra-card
+                  data-extra-service="techo"
+                  aria-label="Ver detalles del tapizado de techo"
+                >
+                  <span class="clientes-extras__media-stack" aria-hidden="true">
+                    <img
+                      class="clientes-extras__media is-active"
+                      src="../assets/clientes/trabajos/techo-01.jpg"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      data-extra-card-slide
+                    />
+
+                    <img
+                      class="clientes-extras__media"
+                      src="../assets/clientes/trabajos/techo-02.jpg"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      data-extra-card-slide
+                    />
+
+                    <img
+                      class="clientes-extras__media"
+                      src="../assets/clientes/trabajos/techo-03.jpg"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      data-extra-card-slide
+                    />
+                  </span>
+
+                  <span class="clientes-extras__caption">
+                    <strong>Tapizado de techo</strong>
+                    <span class="clientes-extras__arrow" aria-hidden="true">
+                      ›
+                    </span>
+                  </span>
+                </button>
+              </article>
+
+              <article class="clientes-extras__item" role="listitem">
+                <button
+                  class="clientes-extras__button"
+                  type="button"
+                  data-extra-card
+                  data-extra-service="limpieza"
+                  aria-label="Ver detalles de la limpieza de auto"
+                >
+                  <span class="clientes-extras__media-stack" aria-hidden="true">
+                    <img
+                      class="clientes-extras__media is-active"
+                      src="../assets/clientes/trabajos/limpieza-01.jpg"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      data-extra-card-slide
+                    />
+
+                    <img
+                      class="clientes-extras__media"
+                      src="../assets/clientes/trabajos/limpieza-02.jpeg"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      data-extra-card-slide
+                    />
+
+                    <img
+                      class="clientes-extras__media"
+                      src="../assets/clientes/trabajos/limpieza-03.jpg"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      data-extra-card-slide
+                    />
+
+                    <img
+                      class="clientes-extras__media"
+                      src="../assets/clientes/trabajos/limpieza-04.webp"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      data-extra-card-slide
+                    />
+                  </span>
+
+                  <span class="clientes-extras__caption">
+                    <strong>Limpieza de auto</strong>
+                    <span class="clientes-extras__arrow" aria-hidden="true">
+                      ›
+                    </span>
+                  </span>
+                </button>
+              </article>
+            </div>
           </div>
         </div>
       </section>
@@ -1390,6 +1541,110 @@
       </section>
     </div>
 
+    <!-- ==================================================
+         DETALLE DE TRABAJOS EXTRAS
+    =================================================== -->
+    <div class="extras-modal" data-extras-modal hidden>
+      <div
+        class="extras-modal__backdrop"
+        data-action="close-extras-modal"
+        aria-hidden="true"
+      ></div>
+
+      <section
+        class="extras-modal__dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="extras-modal-title"
+        aria-describedby="extras-modal-description"
+        data-extras-modal-dialog
+        tabindex="-1"
+      >
+        <button
+          class="extras-modal__close"
+          type="button"
+          data-action="close-extras-modal"
+          aria-label="Cerrar información"
+        >
+          ×
+        </button>
+
+        <div class="extras-modal__layout">
+          <div class="extras-modal__gallery">
+            <div class="extras-modal__media" data-extras-modal-media>
+              <button
+                class="extras-modal__control extras-modal__control--previous"
+                type="button"
+                data-action="previous-extra-image"
+                aria-label="Ver imagen anterior"
+              >
+                ‹
+              </button>
+
+              <button
+                class="extras-modal__image-button"
+                type="button"
+                data-extras-modal-zoom
+                aria-label="Ampliar imagen"
+              >
+                <img
+                  src="../assets/clientes/trabajos/organizador-asiento.jpg"
+                  alt=""
+                  data-extras-modal-image
+                />
+
+                <span class="extras-modal__zoom-hint" aria-hidden="true">
+                  ⌕
+                </span>
+              </button>
+
+              <button
+                class="extras-modal__control extras-modal__control--next"
+                type="button"
+                data-action="next-extra-image"
+                aria-label="Ver imagen siguiente"
+              >
+                ›
+              </button>
+            </div>
+
+            <div
+              class="extras-modal__dots"
+              data-extras-modal-dots
+              role="group"
+              aria-label="Seleccionar imagen"
+            ></div>
+          </div>
+
+          <div class="extras-modal__content">
+            <p class="extras-modal__eyebrow">TRABAJOS EXTRAS</p>
+
+            <h2 id="extras-modal-title" data-extras-modal-title>
+              Organizador de asiento
+            </h2>
+
+            <p
+              class="extras-modal__description"
+              id="extras-modal-description"
+              data-extras-modal-description
+            ></p>
+
+            <ul class="extras-modal__features" data-extras-modal-features></ul>
+
+            <a
+              class="clientes-showroom__button clientes-showroom__button--primary extras-modal__whatsapp"
+              href="https://wa.me/5491132016031"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-extras-modal-whatsapp
+            >
+              Consultar por WhatsApp
+              <span aria-hidden="true">›</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
     <!-- ==================================================
          FOOTER
     =================================================== -->
