@@ -110,7 +110,7 @@
 
       autoplayTimer = window.setInterval(() => {
         showSlide(activeIndex + 1);
-      }, 4800);
+      }, 2500);
     };
 
     const restartAutoplay = () => {
