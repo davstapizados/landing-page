@@ -1,51 +1,6 @@
 "use strict";
 
 (() => {
-  const setupShowroomMenu = () => {
-    const menuButton = document.querySelector("[data-showroom-menu-button]");
-    const menu = document.querySelector("[data-showroom-menu]");
-
-    if (!menuButton || !menu) {
-      return;
-    }
-
-    const setMenuOpen = (isOpen) => {
-      menu.hidden = !isOpen;
-      menuButton.setAttribute("aria-expanded", String(isOpen));
-      menuButton.setAttribute(
-        "aria-label",
-        isOpen ? "Cerrar menú" : "Abrir menú",
-      );
-    };
-
-    menuButton.addEventListener("click", () => {
-      setMenuOpen(menu.hidden);
-    });
-
-    menu.addEventListener("click", (event) => {
-      if (event.target.closest("a")) {
-        setMenuOpen(false);
-      }
-    });
-
-    document.addEventListener("click", (event) => {
-      const header = menuButton.closest(".clientes-showroom__header");
-
-      if (!menu.hidden && header && !header.contains(event.target)) {
-        setMenuOpen(false);
-      }
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key !== "Escape" || menu.hidden) {
-        return;
-      }
-
-      setMenuOpen(false);
-      menuButton.focus();
-    });
-  };
-
   const setupDashboardCarousel = () => {
     const carousel = document.querySelector("[data-dashboard-carousel]");
 
@@ -357,7 +312,6 @@
 
     modal.addEventListener("keydown", handleModalKeydown);
   };
-  setupShowroomMenu();
   setupDashboardCarousel();
   setupProtectorModal();
 })();

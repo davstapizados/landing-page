@@ -88,11 +88,6 @@
     =================================================== -->
     <header class="clientes-header">
       <div class="clientes-showroom__header">
-        <span
-          class="clientes-showroom__header-balance"
-          aria-hidden="true"
-        ></span>
-
         <a
           class="clientes-showroom__logo"
           href="../"
@@ -104,33 +99,19 @@
           />
         </a>
 
-        <button
-          class="clientes-showroom__menu-button"
-          type="button"
-          aria-label="Abrir menú"
-          aria-expanded="false"
-          aria-controls="clientes-menu"
-          data-showroom-menu-button
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
         <nav
-          class="clientes-showroom__menu"
-          id="clientes-menu"
-          aria-label="Navegación de clientes"
-          data-showroom-menu
-          hidden
+          class="clientes-showroom__audience"
+          aria-label="Elegir tipo de cliente"
         >
-          <a class="clientes-showroom__menu-business" href="../">
-            <strong>Empresas</strong>
-            <span>Soluciones para negocios</span>
+          <a
+            class="clientes-showroom__audience-link"
+            href="./"
+            aria-current="page"
+          >
+            Clientes
           </a>
-          <a href="#protectores-tablero">Protectores de tableros</a>
-          <a href="#disena-tu-tapizado">Diseñá tu tapizado</a>
-          <a href="#otros-trabajos">Trabajos extras</a>
+
+          <a class="clientes-showroom__audience-link" href="../"> Empresas </a>
         </nav>
       </div>
     </header>
