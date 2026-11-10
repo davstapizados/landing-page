@@ -1015,6 +1015,22 @@
   line-height: 1.35;
 }
 
+.summary-privacy {
+  margin: 6px 0 0 !important;
+
+  color: #727272;
+
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.summary-privacy a {
+  color: var(--clientes-red);
+
+  font-weight: 700;
+  text-underline-offset: 2px;
+}
+
 .summary-whatsapp {
   width: 100%;
 

@@ -1741,7 +1741,24 @@
   color: #a8a8a8;
   font-size: 0.76rem;
 }
+.clientes-footer__privacy {
+  color: #bdbdbd;
 
+  font-size: 0.82rem;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+
+  transition: color 180ms ease;
+}
+
+.clientes-footer__privacy:hover {
+  color: #ffffff;
+}
+
+.clientes-footer__privacy:focus-visible {
+  outline: 2px solid var(--clientes-red);
+  outline-offset: 4px;
+}
 /* ---------------------------------------------------------
    Elementos ocultos
    --------------------------------------------------------- */
